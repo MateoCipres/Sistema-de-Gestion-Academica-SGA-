@@ -33,9 +33,9 @@ Durante el desarrollo del proyecto se incorporarán progresivamente nuevas tecno
 
 Actualmente:
 
-
-
 - HTML5
+
+- JavaScript
 
 
 
@@ -43,8 +43,6 @@ Próximamente:
 
 
 - CSS3
-
-- JavaScript
 
 - React
 
@@ -61,6 +59,8 @@ Próximamente:
 
 
 🚧 En desarrollo.
+^ Clase 02 4/08
+
 
 
 
