@@ -4,33 +4,54 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="CSS/estilos.css">
     <script src="JS/alumnos.js" defer></script>
     <title>SGA</title>
 </head>
 
 <body>
-    <h1>Sistema de Gestión Académica </h1>
-    <h2>Alta de Alumno</h2>
+    <header>
+        <h1>Sistema de Gestión Académica </h1>
+    </header>
+    <main>
+        <section class="formulario">
+            <h2>Alta de Alumno</h2>
 
 
-    <form id="formAlumno">
-        <label for="nombre">Nombre</label>
-        <input type="text" id="nombre"><br><br>
+            <form id="formAlumno">
+                <label for="nombre">Nombre</label>
+                <input type="text" id="nombre"><br><br>
 
-        <label for="carrera">Carrera</label>
-        <input type="text" id="carrera"><br><br>
+                <label for="carrera">Carrera</label>
+                <input type="text" id="carrera"><br><br>
 
-        <label for="correo">Correo Electronico</label>
-        <input type="email" id="correo"><br><br>
+                <label for="correo">Correo Electronico</label>
+                <input type="email" id="correo"><br><br>
 
-        <button type="submit">Confirmar Alumno</button>
-    </form>
-    <hr>
-    <h2>Alumnos registrados</h2>
-    <ul id="listaAlumnos"></ul>
+                <button type="submit">Confirmar Alumno</button>
 
+            </form>
+            <p id="mensaje"></p>
+        </section>
+        <section class="alumnos">
 
+            <h2>Alumnos registrados</h2>
+            <p id="cantidadAlumno"></p>
 
+            <table>
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Nombre</th>
+                        <th>Carrera</th>
+                        <th>Correo</th>
+                        <th>Acciones</th>
+                    </tr>
+                </thead>
+                <tbody id="listaAlumnos"></tbody>
+            </table>
+        </section>
+    </main>
 </body>
 
 </html>
