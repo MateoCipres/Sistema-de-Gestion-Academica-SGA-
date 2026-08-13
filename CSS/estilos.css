@@ -66,3 +66,36 @@ td {
 th {
     background-color: thistle;
 }
+
+.mje-exito {
+    position: fixed;
+    font-weight: bold;
+    top: 20px;
+    right: 20px;
+    padding: 15px 20px;
+    font-weight: bold;
+    background-color: whitesmoke;
+    color: green;
+    box-shadow: 0 4px 10px rgba(rgb(0, 0, 0), rgb(5, 5, 5), rgb(0, 0, 0), alpha);
+    z-index: 1000;
+}
+
+.oculto {
+    display: none;
+}
+
+.mje-error {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    padding: 15px 20px;
+    border-radius: 8px;
+    font-weight: bold;
+    background-color: red;
+    box-shadow: 0 4px 10px rgba(rgb(0, 0, 0), rgb(5, 5, 5), rgb(0, 0, 0), alpha);
+    z-index: 1000;
+}
+
+.mje-exito {
+    color: green;
+}

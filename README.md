@@ -62,6 +62,26 @@ Próximamente:
 ^ Clase 02 4/08
 
 
+alumnos.js
+
+-Variables globales
+    -formulario
+    -listaAlumnos
+    -mensaje
+    -alumnoEditando
+
+-ObtenerAlumnos()
+    -LocalStorage + JSON.parse
+
+
+-mostrarAlumnos(alumnos)
+    -limpiartabla
+    -recorrer alumnos
+    -generar tabla + botones de accion
+
+-MostrarMensaje
+ - setTimeout()
+
 
 
 ## Autor
