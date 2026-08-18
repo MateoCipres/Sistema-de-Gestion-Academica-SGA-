@@ -99,3 +99,33 @@ th {
 .mje-exito {
     color: green;
 }
+
+.btn-editar,
+.btn-eliminar {
+    border: none;
+    padding: 8px 10px;
+    border-radius: 6px;
+    cursor: pointer;
+    margin: 0 3px;
+    font-size: 14px;
+}
+
+.btn-editar {
+    background-color: rgb(16, 4, 244);
+    color: #cef604;
+}
+
+.btn-eliminar {
+    background-color: rgb(255, 3, 3);
+    color: #f1f1f3;
+}
+
+.btn-editar:hover {
+    background-color: aqua;
+    transition-duration: .6s;
+}
+
+.btn-eliminar:hover {
+    background-color: rgb(241, 229, 1);
+    transition-duration: .3s;
+}
