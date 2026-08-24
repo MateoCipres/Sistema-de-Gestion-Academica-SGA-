@@ -129,3 +129,8 @@ th {
     background-color: rgb(241, 229, 1);
     transition-duration: .3s;
 }
+
+.Navegacion {
+    font-size: 50px;
+    text-decoration: none;
+}
