@@ -123,19 +123,6 @@ th {
     background-color: thistle;
 }
 
-.mje-exito {
-    position: fixed;
-    font-weight: bold;
-    top: 20px;
-    right: 20px;
-    padding: 15px 20px;
-    font-weight: bold;
-    background-color: whitesmoke;
-    color: green;
-    box-shadow: 0 4px 10px rgba(rgb(0, 0, 0), rgb(5, 5, 5), rgb(0, 0, 0), alpha);
-    z-index: 1000;
-}
-
 .mensaje {
     position: fixed;
     top: 20px;
@@ -185,4 +172,53 @@ th {
 .btn-eliminar:hover {
     background-color: rgb(241, 229, 1);
     transition-duration: .3s;
+}
+
+.inicio {
+    text-align: center;
+    max-width: 40px;
+}
+
+.inicio>p {
+    margin-bottom: 40px;
+}
+
+.modulos {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+}
+
+.tarjeta {
+    display: block;
+    text-decoration: none;
+    color: #333;
+    background-color: white;
+    padding: 35px 25px;
+    border-radius: 12px;
+    box-shadow: rgba(0, 0, 0, 0.88);
+    transition: transform 0.2, box-shadow 0.2s;
+}
+
+.tarjeta:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.12);
+}
+
+.tarjeta i {
+    font-size: 40px;
+    margin-bottom: 15px;
+    color: #cb0eff;
+}
+
+.tarjeta h2 {
+    margin: 10px 0;
+}
+
+.tarjeta p {
+    color: #6818a5;
+}
+
+.tarjeta-deshabilitada {
+    transform: none;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.88);
 }
