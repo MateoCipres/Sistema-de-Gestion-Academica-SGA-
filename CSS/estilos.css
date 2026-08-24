@@ -6,26 +6,57 @@ body {
     font-family: Arial, Helvetica, sans-serif;
     margin: 0;
     background-color: rgb(192, 182, 205);
+    color: #333;
 }
 
 header {
     background-color: rgb(108, 96, 171);
-    color: aliceblue;
-    padding: 20px;
-    text-align: center;
+}
+
+nav {
+    max-width: 1100px;
+    margin: auto;
+    display: flex;
+    align-items: center;
+    padding: 0 20px;
+}
+
+nav a {
+    color: white;
+    text-decoration: none;
+    padding: 18px 20px;
+    transition: background-color 0.2s;
+}
+
+nav a:hover {
+    background-color: slategray;
+}
+
+nav a.activo {
+    background-color: dimgrey;
 }
 
 main {
     width: 90%;
-    max-width: 1000px;
-    margin: 30px auto;
+    max-width: 1100px;
+    margin: 40px auto;
+    padding: 0 20px;
 }
 
-section {
-    background-color: azure;
+h1 {
+    margin-bottom: 30px;
+}
+
+h2 {
+    margin-top: 0;
+}
+
+.formulario-containter {
+    background-color: white;
     padding: 25px;
-    margin-bottom: 25px;
-    border-radius: 8px;
+    border-radius: 10px;
+    margin-bottom: 30px;
+    box-shadow: 0 2px 8px rgb(from color r g b);
 }
 
 form {
@@ -128,9 +159,4 @@ th {
 .btn-eliminar:hover {
     background-color: rgb(241, 229, 1);
     transition-duration: .3s;
-}
-
-.Navegacion {
-    font-size: 50px;
-    text-decoration: none;
 }
