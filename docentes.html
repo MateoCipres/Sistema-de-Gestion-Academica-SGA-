@@ -1,21 +1,62 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="CSS/estilos.css">
-    <title>Document</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
+    <script src="JS/docentes.js" defer></script>
+    <title>SGA-DOCENTES</title>
 </head>
 
 <body>
     <header>
+        <h1>Sistema de Gestión Académica</h1>
         <nav>
             <a href="index.html">Inicio</a>
             <a href="alumnos.html">Alumnos</a>
             <a href="docentes.html">Docentes</a>
         </nav>
     </header>
+    <main>
+        <section class="formulario">
+            <h2>Alta de Docente</h2>
+
+            <form id="formDocente">
+                <label for="nombre">Nombre</label>
+                <input type="text" id="nombre"><br><br>
+
+                <label for="especialidad">Especialidad</label>
+                <input type="text" id="especialidad"><br><br>
+
+                <label for="correo">Correo Electronico</label>
+                <input type="email" id="correo"><br><br>
+
+                <button type="submit">Confirmar Docente</button>
+
+            </form>
+            <p id="mensaje" class="oculto"></p>
+        </section>
+        <section class="docentes">
+
+            <h2>Docentes registrados</h2>
+            <p id="cantidadDocente"></p>
+
+            <table>
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Nombre</th>
+                        <th>Especialidad</th>
+                        <th>Correo</th>
+                        <th>Acciones</th>
+                    </tr>
+                </thead>
+                <tbody id="listaDocentes"></tbody>
+            </table>
+        </section>
+    </main>
 </body>
 
 </html>
