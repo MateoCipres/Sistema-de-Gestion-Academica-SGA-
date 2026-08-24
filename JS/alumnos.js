@@ -142,12 +142,12 @@ function obtenerAlumnos() {
 
 const mensaje = document.querySelector("#mensaje")
 
-function mostrarMensaje(texto, tipo) {
-    mensaje.textContent = texto
-    mensaje.className = tipo
+function mostrarMensaje(texto, clase) {
+    mensaje.textContent = texto;
+    mensaje.className = `mensaje ${clase}`
+    mensaje.style.display = "block"
     setTimeout(() => {
-        mensaje.textContent = " "
-        mensaje.className = "oculto"
+        mensaje.style.display = "none"
     }, 3000)
 }
 
