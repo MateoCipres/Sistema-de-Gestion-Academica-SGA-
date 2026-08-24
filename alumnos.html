@@ -20,11 +20,11 @@
         </nav>
     </header>
     <main>
-        <section class="formulario">
+        <section class="formulario-containter">
             <h2>Alta de Alumno</h2>
 
 
-            <form id="formAlumno">
+            <form id="formulario">
                 <div class="campo">
                     <label for="nombre">Nombre</label>
                     <input type="text" id="nombre">
@@ -42,12 +42,12 @@
                 <button type="submit">Confirmar Alumno</button>
 
             </form>
-            <p id="mensaje" class="oculto"></p>
+
         </section>
-        <section class="alumnos">
+        <section class="lista-container">
 
             <h2>Alumnos registrados</h2>
-            <p id="cantidadAlumno"></p>
+            <!-- <p id="cantidadAlumno"></p> -->
 
             <table>
                 <thead>
@@ -62,6 +62,7 @@
                 <tbody id="listaAlumnos"></tbody>
             </table>
         </section>
+        <div id="mensaje" class="mensaje"></div>
     </main>
 </body>
 
