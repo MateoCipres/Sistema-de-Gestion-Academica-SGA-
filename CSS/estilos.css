@@ -61,8 +61,20 @@ h2 {
 
 form {
     display: flex;
-    flex-direction: column;
-    gap: 10px;
+    gap: 18px;
+}
+
+.campo input {
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    font-size: 16px;
+}
+
+.campo input:focus {
+    outline: none;
+    border-color: #cef604;
+    box-shadow: 0 0 0 2px rgba(37, 99, 0235, 0, 15);
 }
 
 input {
@@ -72,10 +84,23 @@ input {
 }
 
 button {
-    padding: 10px 15px;
+    padding: 11px 18px;
     border: none;
-    border-radius: 5px;
+    border-radius: 6px;
+    background-color: #6818a5;
+    color: #fdfdfd;
+    font-size: 15px;
     cursor: pointer;
+}
+
+button:hover {
+    background-color: #cb0eff;
+    color: #333;
+}
+
+.lista-container {
+    background-color: white;
+    padding: 25px;
 }
 
 form button {
@@ -111,24 +136,25 @@ th {
     z-index: 1000;
 }
 
-.oculto {
-    display: none;
-}
-
-.mje-error {
+.mensaje {
     position: fixed;
     top: 20px;
     right: 20px;
     padding: 15px 20px;
     border-radius: 8px;
     font-weight: bold;
-    background-color: red;
-    box-shadow: 0 4px 10px rgba(rgb(0, 0, 0), rgb(5, 5, 5), rgb(0, 0, 0), alpha);
+    background-color: rgb(255, 254, 254);
+    color: white;
+    display: none;
     z-index: 1000;
 }
 
+.mje-error {
+    background-color: red;
+}
+
 .mje-exito {
-    color: green;
+    background-color: greenyellow;
 }
 
 .btn-editar,
