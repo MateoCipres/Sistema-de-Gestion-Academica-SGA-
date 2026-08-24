@@ -53,7 +53,7 @@
 
 
 //clase 06 formulario con alumnos
-const formulario = document.querySelector("#formAlumno")
+const formulario = document.querySelector("#formulario")
 const listaAlumnos = document.querySelector("#listaAlumnos")
 let alumnoEditandoId = null
 
