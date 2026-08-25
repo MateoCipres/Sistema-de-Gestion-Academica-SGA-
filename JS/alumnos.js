@@ -56,6 +56,7 @@
 const formulario = document.querySelector("#formulario")
 const listaAlumnos = document.querySelector("#listaAlumnos")
 let alumnoEditandoId = null
+let alumnoEditar = null
 
 const botonVaciarFormulario = document.createElement("button")
 botonVaciarFormulario.type = "button"
@@ -122,22 +123,37 @@ formulario.addEventListener("submit", function(event) {
         alumno.nombre = nombre
         alumno.carrera = carrera
         alumno.correo = correo
+
+        const datosActuales = {
+            nombre: nombre,
+            carrera: carrera,
+            correo: correo
+        }
+        if (datosActuales.nombre === alumnoEditar.nombre &&
+            datosActuales.carrera === alumnoEditar.carrera &&
+            datosActuales.correo === alumnoEditar.correo) {
+            mostrarMensaje("no se realizaron cambios", "mje-advertencia")
+            return
+        }
+
+        // if (JSON.stringify(datosActuales) === JSON.stringify(alumnoEditar)) {
+        //     mostrarMensaje("no se realizaron cambios", "mje-error")
+        //     return
+        // }
+        alumnoEditar = null
         alumnoEditandoId = null
         formulario.querySelector("button").textContent = "Guardar alumno"
         mostrarMensaje("Alumno actualizado correctamente", "mje-exito")
     }
 
-    localStorage.setItem("alumnos", JSON.stringify(alumnos))
+    // localStorage.setItem("alumnos", JSON.stringify(alumnos))
+    guardarDatos("alumnos", alumnos)
     mostrarAlumnos(alumnos)
     formulario.reset()
 })
 
 function obtenerAlumnos() {
-    const datos = localStorage.getItem("alumnos")
-    if (datos) {
-        return JSON.parse(datos)
-    }
-    return []
+    return obtenerDatos("alumnos")
 }
 
 const mensaje = document.querySelector("#mensaje")
