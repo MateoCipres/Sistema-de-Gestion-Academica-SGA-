@@ -17,7 +17,7 @@
         <h1>Sistema de de Alumnos </h1>
         <nav>
             <a href="index.html">Inicio</a>
-            <a href="alumnos.html">Alumnos</a>
+            <a href="alumnos.html" class="activo">Alumnos</a>
             <a href="docentes.html">Docentes</a>
         </nav>
     </header>
@@ -40,9 +40,10 @@
                     <label for="correo">Correo Electronico</label>
                     <input type="email" id="correo">
                 </div>
-
-                <button type="submit">Confirmar Alumno</button>
-
+                <div class="acciones-form">
+                    <button type="submit" id="btn-guardar">Confirmar Alumno</button>
+                    <button type="button" id="btn-cancelar">Cancelar</button>
+                </div>
             </form>
 
         </section>

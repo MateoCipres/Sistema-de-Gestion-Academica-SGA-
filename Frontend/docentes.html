@@ -20,11 +20,11 @@
         <nav>
             <a href="index.html">Inicio</a>
             <a href="alumnos.html">Alumnos</a>
-            <a href="docentes.html">Docentes</a>
+            <a href="docentes.html" class="activo">Docentes</a>
         </nav>
     </header>
     <main>
-        <section class="formulario">
+        <section class="formulario-containter">
             <h2>Alta de Docente</h2>
 
             <form id="formDocente">
@@ -42,23 +42,27 @@
             </form>
             <p id="mensaje" class="mensaje"></p>
         </section>
+
         <section class="docentes">
 
-            <h2>Docentes registrados</h2>
-            <p id="cantidadDocente"></p>
+            <section class="lista-container">
 
-            <table>
-                <thead>
-                    <tr>
-                        <th>ID</th>
-                        <th>Nombre</th>
-                        <th>Especialidad</th>
-                        <th>Correo</th>
-                        <th>Acciones</th>
-                    </tr>
-                </thead>
-                <tbody id="listaDocentes"></tbody>
-            </table>
+                <h2>Docentes registrados</h2>
+                <!-- <p id="cantidadDocente"></p> -->
+
+                <table>
+                    <thead>
+                        <tr>
+                            <th>ID</th>
+                            <th>Nombre</th>
+                            <th>Especialidad</th>
+                            <th>Correo</th>
+                            <th>Acciones</th>
+                        </tr>
+                    </thead>
+                    <tbody id="listaDocentes"></tbody>
+                </table>
+            </section>
         </section>
     </main>
 </body>

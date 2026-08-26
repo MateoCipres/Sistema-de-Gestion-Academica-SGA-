@@ -156,6 +156,25 @@ function obtenerAlumnos() {
     return obtenerDatos("alumnos")
 }
 
+function obtenerDatos(clave) {
+    const datos = localStorage.getItem(clave)
+
+    if (datos === null) {
+        return []
+    }
+
+    try {
+        const datosParseados = JSON.parse(datos)
+        return Array.isArray(datosParseados) ? datosParseados : []
+    } catch (error) {
+        return []
+    }
+}
+
+function guardarDatos(clave, datos) {
+    localStorage.setItem(clave, JSON.stringify(datos))
+}
+
 const mensaje = document.querySelector("#mensaje")
 
 function mostrarMensaje(texto, clase) {

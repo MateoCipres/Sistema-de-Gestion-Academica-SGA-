@@ -51,12 +51,13 @@ h2 {
     margin-top: 0;
 }
 
-.formulario-containter {
+.formulario-containter,
+.formulario-container {
     background-color: white;
     padding: 25px;
     border-radius: 10px;
     margin-bottom: 30px;
-    box-shadow: 0 2px 8px rgb(from color r g b);
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.12);
 }
 
 form {
@@ -74,7 +75,7 @@ form {
 .campo input:focus {
     outline: none;
     border-color: #cef604;
-    box-shadow: 0 0 0 2px rgba(37, 99, 0235, 0, 15);
+    box-shadow: 0 0 0 2px rgba(37, 99, 235, 0.15);
 }
 
 input {
@@ -101,6 +102,8 @@ button:hover {
 .lista-container {
     background-color: white;
     padding: 25px;
+    border-radius: 10px;
+    overflow-x: auto;
 }
 
 form button {
@@ -141,7 +144,8 @@ th {
 }
 
 .mje-exito {
-    background-color: greenyellow;
+    background-color: green;
+    color: white;
 }
 
 .btn-editar,
@@ -176,7 +180,8 @@ th {
 
 .inicio {
     text-align: center;
-    max-width: 40px;
+    max-width: 900px;
+    margin: 0 auto;
 }
 
 .inicio>p {
@@ -186,6 +191,7 @@ th {
 .modulos {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 20px;
 }
 
 .tarjeta {
@@ -195,8 +201,8 @@ th {
     background-color: white;
     padding: 35px 25px;
     border-radius: 12px;
-    box-shadow: rgba(0, 0, 0, 0.88);
-    transition: transform 0.2, box-shadow 0.2s;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.12);
+    transition: transform 0.2s, box-shadow 0.2s;
 }
 
 .tarjeta:hover {
@@ -221,4 +227,17 @@ th {
 .tarjeta-deshabilitada {
     transform: none;
     box-shadow: 0 2px 8px rgba(0, 0, 0, 0.88);
+}
+
+@media (max-width: 700px) {
+    nav {
+        flex-wrap: wrap;
+        justify-content: center;
+    }
+    form {
+        flex-direction: column;
+    }
+    form button {
+        align-self: flex-start;
+    }
 }
