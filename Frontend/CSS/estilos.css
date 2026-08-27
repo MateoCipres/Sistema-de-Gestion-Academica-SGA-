@@ -51,7 +51,6 @@ h2 {
     margin-top: 0;
 }
 
-.formulario-containter,
 .formulario-container {
     background-color: white;
     padding: 25px;
@@ -145,6 +144,11 @@ th {
 
 .mje-exito {
     background-color: green;
+    color: white;
+}
+
+.mje-advertencia {
+    background-color: #d19b00;
     color: white;
 }
 

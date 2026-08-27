@@ -1,9 +1,8 @@
 // Módulo Docentes — SGA
-// Autónomo: no depende de alumnos.js porque vive en su propia página (docentes.html)
+// Usa guardarDatos/obtenerDatos de storage.js y mostrarMensaje/escaparHTML/esCorreoValido de ui.js
 
 const formularioDocente = document.querySelector("#formDocente")
 const listaDocentes = document.querySelector("#listaDocentes")
-const mensaje = document.querySelector("#mensaje")
 let docenteEditandoId = null
 
 const botonVaciarFormulario = document.createElement("button")
@@ -28,8 +27,6 @@ botonVaciarFormulario.addEventListener("click", () => {
     document.querySelector("#nombre").focus()
 })
 
-
-
 formularioDocente.addEventListener("submit", function(event) {
     event.preventDefault()
 
@@ -42,13 +39,18 @@ formularioDocente.addEventListener("submit", function(event) {
         return
     }
 
-    if (!correo.includes("@")) {
-        mostrarMensaje("Ingrese un correo electronico valido", "mje-error")
+    if (nombre.length < 3) {
+        mostrarMensaje("El nombre debe tener como minimo 3 caracteres", "mje-error")
         return
     }
 
-    if (nombre.length < 3) {
-        mostrarMensaje("El nombre debe tener como minimo 3 caracteres", "mje-error")
+    if (especialidad.length < 3) {
+        mostrarMensaje("La especialidad debe tener como minimo 3 caracteres", "mje-error")
+        return
+    }
+
+    if (!esCorreoValido(correo)) {
+        mostrarMensaje("Ingrese un correo electronico valido", "mje-error")
         return
     }
 
@@ -78,28 +80,22 @@ formularioDocente.addEventListener("submit", function(event) {
         mostrarMensaje("Docente actualizado correctamente", "mje-exito")
     }
 
-    localStorage.setItem("docentes", JSON.stringify(docentes))
+    guardarDatos("docentes", docentes)
     mostrarDocentes(docentes)
     formularioDocente.reset()
 })
 
 function obtenerDocentes() {
-    const datos = localStorage.getItem("docentes")
-    if (datos) {
-        return JSON.parse(datos)
-    }
-    return []
+    return obtenerDatos("docentes")
 }
 
 function mostrarDocentes(docentes) {
-    listaDocentes.innerHTML = ""
-    for (const docente of docentes) {
-        listaDocentes.innerHTML += `
+    const filas = docentes.map(docente => `
         <tr>
             <td>${docente.id}</td>
-            <td>${docente.nombre}</td>
-            <td>${docente.especialidad}</td>
-            <td>${docente.correo}</td>
+            <td>${escaparHTML(docente.nombre)}</td>
+            <td>${escaparHTML(docente.especialidad)}</td>
+            <td>${escaparHTML(docente.correo)}</td>
             <td>
                 <button class="btn-editar" data-id="${docente.id}" title="Editar docente">
                     <i class="fa-solid fa-pen"></i>
@@ -109,15 +105,22 @@ function mostrarDocentes(docentes) {
                 </button>
             </td>
         </tr>
-        `
-    }
+    `)
+
+    listaDocentes.innerHTML = filas.join("")
 }
 
 function eliminarDocente(id) {
     const docentes = obtenerDocentes()
     const docentesActualizados = docentes.filter(docente => docente.id !== id)
-    localStorage.setItem("docentes", JSON.stringify(docentesActualizados))
+    guardarDatos("docentes", docentesActualizados)
     mostrarDocentes(docentesActualizados)
+
+    // Si se borra el docente que se estaba editando, hay que limpiar el formulario
+    if (docenteEditandoId === id) {
+        vaciarFormulario()
+    }
+
     mostrarMensaje("Docente eliminado correctamente", "mje-exito")
 }
 
