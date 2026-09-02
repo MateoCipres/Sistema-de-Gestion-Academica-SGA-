@@ -7,18 +7,20 @@ GET http://localhost:3000/alumnos/2
 POST http://localhost:3000/alumnos
 Content-Type: application/json
 
-[
-  {
-    "id": "6",
-    "nombre": "Lucia",
-    "carrera": "Fisico"
-  },
-  {
-    "id": "7",
-    "nombre": "gaston",
-    "carrera": "Astronauta"
-  }
-]
+{
+    "id": 3,
+    "nombre": "Lucía",
+    "carrera": "Programación"
+}
+###
+PUT http://localhost:3000/alumnos/2
+Content-Type: application/json
 
+{
+    "id": 2,
+    "nombre": "Juan Perez",
+    "carrera": "Programación"
+}
 
 ###
+DELETE http://localhost:3000/alumnos/2
