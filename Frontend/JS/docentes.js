@@ -1,10 +1,12 @@
-// Módulo Docentes — SGA
-// Usa guardarDatos/obtenerDatos de storage.js y mostrarMensaje/escaparHTML/esCorreoValido de ui.js
+// Módulo Docentes - SGA.
+// Usa storage.js para persistencia y ui.js para mensajes, seguridad y validación.
 
+// Obtiene las referencias al formulario y a la tabla de docentes.
 const formularioDocente = document.querySelector("#formDocente")
 const listaDocentes = document.querySelector("#listaDocentes")
 let docenteEditandoId = null
 
+// Agrega un botón para limpiar los campos y cancelar una edición.
 const botonVaciarFormulario = document.createElement("button")
 botonVaciarFormulario.type = "button"
 botonVaciarFormulario.id = "btnVaciarFormulario"
@@ -13,6 +15,7 @@ botonVaciarFormulario.className = "btn btn-secondary"
 formularioDocente.appendChild(botonVaciarFormulario)
 
 function vaciarFormulario() {
+    // Borra los valores y vuelve el formulario al estado de alta.
     formularioDocente.reset()
     docenteEditandoId = null
     const botonSubmit = formularioDocente.querySelector("button[type='submit']")
@@ -28,6 +31,7 @@ botonVaciarFormulario.addEventListener("click", () => {
 })
 
 formularioDocente.addEventListener("submit", function(event) {
+    // Intercepta el envío, valida los campos y crea o actualiza un docente.
     event.preventDefault()
 
     const nombre = document.querySelector("#nombre").value.trim()
@@ -54,6 +58,7 @@ formularioDocente.addEventListener("submit", function(event) {
         return
     }
 
+    // Recupera la lista actual antes de aplicar la operación solicitada.
     const docentes = obtenerDocentes()
 
     if (docenteEditandoId === null) {
@@ -86,10 +91,12 @@ formularioDocente.addEventListener("submit", function(event) {
 })
 
 function obtenerDocentes() {
+    // Centraliza la lectura de docentes almacenados en localStorage.
     return obtenerDatos("docentes")
 }
 
 function mostrarDocentes(docentes) {
+    // Genera las filas de la tabla y escapa los datos antes de insertarlos.
     const filas = docentes.map(docente => `
         <tr>
             <td>${docente.id}</td>
@@ -111,6 +118,7 @@ function mostrarDocentes(docentes) {
 }
 
 function eliminarDocente(id) {
+    // Elimina por ID, persiste la lista resultante y actualiza la tabla.
     const docentes = obtenerDocentes()
     const docentesActualizados = docentes.filter(docente => docente.id !== id)
     guardarDatos("docentes", docentesActualizados)
@@ -124,6 +132,7 @@ function eliminarDocente(id) {
     mostrarMensaje("Docente eliminado correctamente", "mje-exito")
 }
 
+// La delegación de eventos permite manejar botones creados dinámicamente.
 listaDocentes.addEventListener("click", (e) => {
     const botonEliminar = e.target.closest(".btn-eliminar")
     if (botonEliminar) {
@@ -143,6 +152,7 @@ listaDocentes.addEventListener("click", (e) => {
 })
 
 function editarDocente(id) {
+    // Busca el docente y coloca sus datos en el formulario para editarlos.
     const docentes = obtenerDocentes()
     const docente = docentes.find(docente => docente.id === id)
 
@@ -159,5 +169,5 @@ function editarDocente(id) {
     document.querySelector("#nombre").focus()
 }
 
-// Mostrar los docentes ya guardados al cargar la página
+// Renderiza los docentes existentes al cargar la página.
 mostrarDocentes(obtenerDocentes())

@@ -1,6 +1,11 @@
+/* Hace que el tamaño declarado incluya el padding y el borde de cada elemento. */
+
 * {
     box-sizing: border-box;
 }
+
+
+/* Estilos generales de la página: tipografía, margen, fondo y color base. */
 
 body {
     font-family: Arial, Helvetica, sans-serif;
@@ -9,9 +14,15 @@ body {
     color: #333;
 }
 
+
+/* Fondo del encabezado que contiene la navegación. */
+
 header {
     background-color: rgb(108, 96, 171);
 }
+
+
+/* Centra el menú y organiza sus enlaces en una fila flexible. */
 
 nav {
     max-width: 1100px;
@@ -20,6 +31,9 @@ nav {
     align-items: center;
     padding: 0 20px;
 }
+
+
+/* Apariencia y área clickeable de cada enlace del menú. */
 
 nav a {
     color: white;
@@ -36,6 +50,9 @@ nav a.activo {
     background-color: dimgrey;
 }
 
+
+/* Limita el ancho del contenido y lo centra en la pantalla. */
+
 main {
     width: 90%;
     max-width: 1100px;
@@ -51,6 +68,9 @@ h2 {
     margin-top: 0;
 }
 
+
+/* Panel visual que contiene cada formulario de alta o edición. */
+
 .formulario-container {
     background-color: white;
     padding: 25px;
@@ -58,6 +78,9 @@ h2 {
     margin-bottom: 30px;
     box-shadow: 0 2px 8px rgba(0, 0, 0, 0.12);
 }
+
+
+/* Distribuye los campos del formulario horizontalmente. */
 
 form {
     display: flex;
@@ -83,6 +106,9 @@ input {
     border-radius: 5px;
 }
 
+
+/* Estilo base para botones de acciones. */
+
 button {
     padding: 11px 18px;
     border: none;
@@ -98,6 +124,9 @@ button:hover {
     color: #333;
 }
 
+
+/* Panel que contiene la tabla y permite desplazamiento horizontal si hace falta. */
+
 .lista-container {
     background-color: white;
     padding: 25px;
@@ -108,6 +137,9 @@ button:hover {
 form button {
     margin-top: 10px;
 }
+
+
+/* La tabla ocupa el panel completo y evita separaciones entre bordes. */
 
 table {
     width: 100%;
@@ -124,6 +156,9 @@ td {
 th {
     background-color: thistle;
 }
+
+
+/* Mensaje flotante reutilizado para informar éxitos, errores y advertencias. */
 
 .mensaje {
     position: fixed;
@@ -151,6 +186,9 @@ th {
     background-color: #d19b00;
     color: white;
 }
+
+
+/* Estilos compartidos por los botones de editar y eliminar de cada fila. */
 
 .btn-editar,
 .btn-eliminar {
@@ -182,6 +220,9 @@ th {
     transition-duration: .3s;
 }
 
+
+/* Estilos específicos de la portada y sus tarjetas de módulos. */
+
 .inicio {
     text-align: center;
     max-width: 900px;
@@ -197,6 +238,9 @@ th {
     grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
     gap: 20px;
 }
+
+
+/* Cada tarjeta funciona como acceso visual a un módulo del sistema. */
 
 .tarjeta {
     display: block;
@@ -232,6 +276,9 @@ th {
     transform: none;
     box-shadow: 0 2px 8px rgba(0, 0, 0, 0.88);
 }
+
+
+/* En pantallas pequeñas, el menú y los formularios se acomodan en columna. */
 
 @media (max-width: 700px) {
     nav {

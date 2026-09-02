@@ -1,7 +1,9 @@
+<!-- Página para registrar, visualizar, editar y eliminar alumnos. -->
 <!DOCTYPE html>
 <html lang="es">
 
 <head>
+    <!-- Configuración básica, estilos y scripts necesarios para la página. -->
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="CSS/estilos.css">
@@ -13,6 +15,7 @@
 </head>
 
 <body>
+    <!-- Encabezado común con el título del sistema y la navegación principal. -->
     <header>
         <h1>Sistema de Gestión Académica</h1>
         <nav>
@@ -22,6 +25,7 @@
         </nav>
     </header>
     <main>
+        <!-- Formulario cuyos datos son leídos por alumnos.js al enviarlo. -->
         <section class="formulario-container">
             <h2>Alta de Alumno</h2>
 
@@ -44,6 +48,7 @@
             </form>
 
         </section>
+        <!-- La tabla comienza vacía: alumnos.js inserta sus filas dinámicamente. -->
         <section class="lista-container">
 
             <h2>Alumnos registrados</h2>

@@ -1,9 +1,12 @@
+### Obtener todos los alumnos registrados.
 GET http://localhost:3000/alumnos
 
 ###
+### Obtener un alumno específico por su ID.
 GET http://localhost:3000/alumnos/2
 
 ###
+### Crear un alumno enviando sus datos en formato JSON.
 POST http://localhost:3000/alumnos
 Content-Type: application/json
 
@@ -13,6 +16,7 @@ Content-Type: application/json
     "carrera": "Programación"
 }
 ###
+### Actualizar los datos del alumno cuyo ID se indica en la URL.
 PUT http://localhost:3000/alumnos/2
 Content-Type: application/json
 
@@ -23,4 +27,5 @@ Content-Type: application/json
 }
 
 ###
+### Eliminar el alumno cuyo ID se indica en la URL.
 DELETE http://localhost:3000/alumnos/2

@@ -1,11 +1,13 @@
-// Módulo Alumnos — SGA
-// Usa guardarDatos/obtenerDatos de storage.js y mostrarMensaje/escaparHTML/esCorreoValido de ui.js
+// Módulo Alumnos - SGA.
+// Usa storage.js para persistencia y ui.js para mensajes, seguridad y validación.
 
+// Obtiene referencias al formulario y a la tabla que se actualizará en el DOM.
 const formulario = document.querySelector("#formulario")
 const listaAlumnos = document.querySelector("#listaAlumnos")
 let alumnoEditandoId = null
 let alumnoEditar = null
 
+// Crea un botón adicional para limpiar el formulario sin recargar la página.
 const botonVaciarFormulario = document.createElement("button")
 botonVaciarFormulario.type = "button"
 botonVaciarFormulario.id = "btnVaciarFormulario"
@@ -14,6 +16,7 @@ botonVaciarFormulario.className = "btn btn-secondary"
 formulario.appendChild(botonVaciarFormulario)
 
 function vaciarFormulario() {
+    // Restablece los campos y termina cualquier modo de edición activo.
     formulario.reset()
     alumnoEditandoId = null
     alumnoEditar = null
@@ -30,6 +33,7 @@ botonVaciarFormulario.addEventListener("click", () => {
 })
 
 formulario.addEventListener("submit", function(event) {
+    // Evita el envío tradicional y valida los datos antes de guardarlos.
     event.preventDefault()
 
     const nombre = document.querySelector("#nombre").value.trim()
@@ -56,6 +60,7 @@ formulario.addEventListener("submit", function(event) {
         return
     }
 
+    // Se trabaja sobre la lista actual y se decide entre alta o actualización.
     const alumnos = obtenerAlumnos()
 
     if (alumnoEditandoId === null) {
@@ -95,10 +100,12 @@ formulario.addEventListener("submit", function(event) {
 })
 
 function obtenerAlumnos() {
+    // Centraliza la lectura de alumnos para mantener separada la persistencia.
     return obtenerDatos("alumnos")
 }
 
 function mostrarAlumnos(alumnos) {
+    // Convierte cada alumno en una fila HTML y la inserta en la tabla.
     const filas = alumnos.map(alumno => `
         <tr>
             <td>${alumno.id}</td>
@@ -120,6 +127,7 @@ function mostrarAlumnos(alumnos) {
 }
 
 function eliminarAlumno(id) {
+    // Filtra el alumno seleccionado, guarda la lista nueva y refresca la tabla.
     const alumnos = obtenerAlumnos()
     const alumnosActualizados = alumnos.filter(alumno => alumno.id !== id)
     guardarDatos("alumnos", alumnosActualizados)
@@ -133,6 +141,7 @@ function eliminarAlumno(id) {
     mostrarMensaje("Alumno eliminado correctamente", "mje-exito")
 }
 
+// Un solo listener en la tabla detecta los clics de editar o eliminar mediante delegación.
 listaAlumnos.addEventListener("click", (e) => {
     const botonEliminar = e.target.closest(".btn-eliminar")
     if (botonEliminar) {
@@ -152,6 +161,7 @@ listaAlumnos.addEventListener("click", (e) => {
 })
 
 function editarAlumno(id) {
+    // Busca el alumno, carga sus datos en el formulario y activa el modo edición.
     const alumnos = obtenerAlumnos()
     const alumno = alumnos.find(alumno => alumno.id === id)
 
@@ -174,5 +184,5 @@ function editarAlumno(id) {
     document.querySelector("#nombre").focus()
 }
 
-// Mostrar los alumnos ya guardados al cargar la página
+// Renderiza los alumnos existentes apenas termina de cargar el script.
 mostrarAlumnos(obtenerAlumnos())
