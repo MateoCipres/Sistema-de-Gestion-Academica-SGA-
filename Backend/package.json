@@ -1,17 +1,25 @@
 {
-  "name": "backend",
-  "version": "1.0.0",
-  "description": "",
-  "main": "server.js",
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "node server.js"
-  },
-  "keywords": [],
-  "author": "",
-  "license": "ISC",
-  "type": "commonjs",
-  "dependencies": {
-    "express": "^5.2.1"
-  }
+    "name": "backend",
+    "version": "1.0.0",
+    "description": "Configuración del backend del Sistema de Gestión Académica",
+    "main": "server.js",
+    "scripts": {
+        "start": "node server.js",
+        "dev": "node --watch server.js"
+    },
+    "_comentarios": {
+        "name": "Nombre del proyecto usado por npm.",
+        "version": "Versión actual del proyecto.",
+        "main": "Archivo que se ejecuta como punto de entrada del backend.",
+        "scripts": "Comandos disponibles: start inicia el servidor y dev lo reinicia al detectar cambios.",
+        "type": "commonjs permite usar require y module.exports.",
+        "dependencies": "Dependencias externas necesarias para ejecutar el backend."
+    },
+    "keywords": [],
+    "author": "",
+    "license": "MIT",
+    "type": "commonjs",
+    "dependencies": {
+        "express": "^5.2.1"
+    }
 }
