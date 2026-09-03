@@ -1,0 +1,790 @@
+%PDF-1.4
+%
+1 0 obj
+<< /Type /Catalog /Pages 2 0 R >>
+endobj
+2 0 obj
+<< /Type /Pages /Kids [5 0 R 7 0 R 9 0 R 11 0 R] /Count 4 >>
+endobj
+3 0 obj
+<< /Type /Font /Subtype /Type1 /BaseFont /Helvetica >>
+endobj
+4 0 obj
+<< /Length 4508 >>
+stream
+BT
+0.16 0.27 0.36 rg
+/F1 22 Tf
+1 0 0 1 54 760 Tm
+(Guia de estudio - Sistema de Gestion Academica) Tj
+0.12 0.12 0.12 rg
+/F1 10 Tf
+1 0 0 1 54 746 Tm
+() Tj
+0.35 0.35 0.35 rg
+/F1 13 Tf
+1 0 0 1 54 732 Tm
+(Proyecto de Programacion IV) Tj
+0.12 0.12 0.12 rg
+/F1 10 Tf
+1 0 0 1 54 718 Tm
+() Tj
+0.12 0.12 0.12 rg
+/F1 10 Tf
+1 0 0 1 54 704 Tm
+(Este documento explica como esta organizado el proyecto SGA, que hace cada archivo, como) Tj
+0.12 0.12 0.12 rg
+/F1 10 Tf
+1 0 0 1 54 690 Tm
+(viajan los datos y que diferencias existen entre el frontend actual y el backend en) Tj
+0.12 0.12 0.12 rg
+/F1 10 Tf
+1 0 0 1 54 676 Tm
+(desarrollo.) Tj
+0.12 0.12 0.12 rg
+/F1 10 Tf
+1 0 0 1 54 662 Tm
+() Tj
+0.12 0.12 0.12 rg
+/F1 10 Tf
+1 0 0 1 54 648 Tm
+() Tj
+0.10 0.38 0.42 rg
+/F1 14 Tf
+1 0 0 1 54 629 Tm
+(1. Vista general) Tj
+0.12 0.12 0.12 rg
+/F1 10 Tf
+1 0 0 1 54 615 Tm
+(El sistema es una aplicacion web para administrar alumnos y docentes. La portada permite) Tj
+0.12 0.12 0.12 rg
+/F1 10 Tf
+1 0 0 1 54 601 Tm
+(entrar a cada modulo. El modulo de alumnos permite alta, consulta, edicion y baja. El modulo) Tj
+0.12 0.12 0.12 rg
+/F1 10 Tf
+1 0 0 1 54 587 Tm
+(de docentes ofrece las mismas operaciones con el campo especialidad.) Tj
+0.12 0.12 0.12 rg
+/F1 10 Tf
+1 0 0 1 54 573 Tm
+() Tj
+0.12 0.12 0.12 rg
+/F1 10 Tf
+1 0 0 1 54 559 Tm
+(El frontend funciona actualmente sin depender del servidor: guarda los datos en) Tj
+0.12 0.12 0.12 rg
+/F1 10 Tf
+1 0 0 1 54 545 Tm
+(localStorage, que pertenece al navegador. El backend es una API Express separada que, por) Tj
+0.12 0.12 0.12 rg
+/F1 10 Tf
+1 0 0 1 54 531 Tm
+(ahora, guarda alumnos en un arreglo de memoria.) Tj
+0.12 0.12 0.12 rg
+/F1 10 Tf
+1 0 0 1 54 517 Tm
+() Tj
+0.12 0.12 0.12 rg
+/F1 10 Tf
+1 0 0 1 54 503 Tm
+() Tj
+0.10 0.38 0.42 rg
+/F1 14 Tf
+1 0 0 1 54 484 Tm
+(2. Estructura del proyecto) Tj
+0.22 0.22 0.22 rg
+/F1 10 Tf
+1 0 0 1 54 470 Tm
+(SGA/) Tj
+0.22 0.22 0.22 rg
+/F1 10 Tf
+1 0 0 1 54 456 Tm
+(Frontend/ Paginas, estilos y logica del navegador) Tj
+0.22 0.22 0.22 rg
+/F1 10 Tf
+1 0 0 1 54 442 Tm
+(index.html Portada y accesos a los modulos) Tj
+0.22 0.22 0.22 rg
+/F1 10 Tf
+1 0 0 1 54 428 Tm
+(alumnos.html Formulario y tabla de alumnos) Tj
+0.22 0.22 0.22 rg
+/F1 10 Tf
+1 0 0 1 54 414 Tm
+(docentes.html Formulario y tabla de docentes) Tj
+0.22 0.22 0.22 rg
+/F1 10 Tf
+1 0 0 1 54 400 Tm
+(CSS/estilos.css Estilos compartidos) Tj
+0.22 0.22 0.22 rg
+/F1 10 Tf
+1 0 0 1 54 386 Tm
+(JS/storage.js Utilidades de localStorage) Tj
+0.22 0.22 0.22 rg
+/F1 10 Tf
+1 0 0 1 54 372 Tm
+(JS/ui.js Mensajes, escape HTML y correo) Tj
+0.22 0.22 0.22 rg
+/F1 10 Tf
+1 0 0 1 54 358 Tm
+(JS/alumnos.js Logica CRUD de alumnos) Tj
+0.22 0.22 0.22 rg
+/F1 10 Tf
+1 0 0 1 54 344 Tm
+(JS/docentes.js Logica CRUD de docentes) Tj
+0.22 0.22 0.22 rg
+/F1 10 Tf
+1 0 0 1 54 330 Tm
+(JS/asincronia.js Ejercicios de Promises y fetch) Tj
+0.22 0.22 0.22 rg
+/F1 10 Tf
+1 0 0 1 54 316 Tm
+(Backend/ API REST con Node.js y Express) Tj
+0.22 0.22 0.22 rg
+/F1 10 Tf
+1 0 0 1 54 302 Tm
+(server.js Arranque de Express) Tj
+0.22 0.22 0.22 rg
+/F1 10 Tf
+1 0 0 1 54 288 Tm
+(routes/ URLs y metodos HTTP) Tj
+0.22 0.22 0.22 rg
+/F1 10 Tf
+1 0 0 1 54 274 Tm
+(controllers/ Funciones que responden solicitudes) Tj
+0.22 0.22 0.22 rg
+/F1 10 Tf
+1 0 0 1 54 260 Tm
+(data/ Arreglo que simula una base de datos) Tj
+0.12 0.12 0.12 rg
+/F1 10 Tf
+1 0 0 1 54 246 Tm
+() Tj
+0.10 0.38 0.42 rg
+/F1 14 Tf
+1 0 0 1 54 227 Tm
+(3. Como se carga una pagina) Tj
+0.12 0.12 0.12 rg
+/F1 10 Tf
+1 0 0 1 54 213 Tm
+(Cada HTML define la estructura visual y carga estilos.css. En alumnos.html y docentes.html) Tj
+0.12 0.12 0.12 rg
+/F1 10 Tf
+1 0 0 1 54 199 Tm
+(los scripts tienen defer: el navegador descarga los archivos y espera a que el HTML este) Tj
+0.12 0.12 0.12 rg
+/F1 10 Tf
+1 0 0 1 54 185 Tm
+(disponible antes de ejecutarlos.) Tj
+0.12 0.12 0.12 rg
+/F1 10 Tf
+1 0 0 1 54 171 Tm
+() Tj
+0.12 0.12 0.12 rg
+/F1 10 Tf
+1 0 0 1 54 157 Tm
+(El orden declarado es importante. storage.js define guardarDatos y obtenerDatos; ui.js) Tj
+0.12 0.12 0.12 rg
+/F1 10 Tf
+1 0 0 1 54 143 Tm
+(define mostrarMensaje, escaparHTML y esCorreoValido; por ultimo alumnos.js o docentes.js) Tj
+0.12 0.12 0.12 rg
+/F1 10 Tf
+1 0 0 1 54 129 Tm
+(utiliza esas funciones compartidas.) Tj
+0.12 0.12 0.12 rg
+/F1 10 Tf
+1 0 0 1 54 115 Tm
+() Tj
+0.22 0.22 0.22 rg
+/F1 10 Tf
+1 0 0 1 54 101 Tm
+(storage.js -> ui.js -> alumnos.js) Tj
+0.22 0.22 0.22 rg
+/F1 10 Tf
+1 0 0 1 54 87 Tm
+(storage.js -> ui.js -> docentes.js) Tj
+0.12 0.12 0.12 rg
+/F1 10 Tf
+1 0 0 1 54 73 Tm
+() Tj
+0.10 0.38 0.42 rg
+/F1 14 Tf
+1 0 0 1 54 54 Tm
+(4. Persistencia con localStorage) Tj
+ET
+endstream
+endobj
+5 0 obj
+<< /Type /Page /Parent 2 0 R /MediaBox [0 0 595 842] /Resources << /Font << /F1 3 0 R >> >> /Contents 4 0 R >>
+endobj
+6 0 obj
+<< /Length 4793 >>
+stream
+BT
+0.12 0.12 0.12 rg
+/F1 10 Tf
+1 0 0 1 54 774 Tm
+(con JSON.stringify. obtenerDatos recupera el texto con getItem y lo convierte de nuevo con) Tj
+0.12 0.12 0.12 rg
+/F1 10 Tf
+1 0 0 1 54 760 Tm
+(JSON.parse. Si no existe la clave, devuelve un arreglo vacio.) Tj
+0.12 0.12 0.12 rg
+/F1 10 Tf
+1 0 0 1 54 746 Tm
+() Tj
+0.22 0.22 0.22 rg
+/F1 10 Tf
+1 0 0 1 54 732 Tm
+(guardarDatos\("alumnos", alumnos\)) Tj
+0.22 0.22 0.22 rg
+/F1 10 Tf
+1 0 0 1 54 718 Tm
+(const alumnos = obtenerDatos\("alumnos"\)) Tj
+0.12 0.12 0.12 rg
+/F1 10 Tf
+1 0 0 1 54 704 Tm
+(Las claves alumnos y docentes mantienen separadas las dos colecciones. Los datos sobreviven) Tj
+0.12 0.12 0.12 rg
+/F1 10 Tf
+1 0 0 1 54 690 Tm
+(a una recarga y al cierre del navegador, pero no se comparten con otros navegadores ni con) Tj
+0.12 0.12 0.12 rg
+/F1 10 Tf
+1 0 0 1 54 676 Tm
+(el backend.) Tj
+0.12 0.12 0.12 rg
+/F1 10 Tf
+1 0 0 1 54 662 Tm
+() Tj
+0.12 0.12 0.12 rg
+/F1 10 Tf
+1 0 0 1 54 648 Tm
+() Tj
+0.10 0.38 0.42 rg
+/F1 14 Tf
+1 0 0 1 54 629 Tm
+(5. Modulo de alumnos) Tj
+0.12 0.12 0.12 rg
+/F1 10 Tf
+1 0 0 1 54 615 Tm
+(alumnos.html contiene un formulario con nombre, carrera y correo, y una tabla cuyo tbody) Tj
+0.12 0.12 0.12 rg
+/F1 10 Tf
+1 0 0 1 54 601 Tm
+(tiene el id listaAlumnos. La tabla comienza vacia porque alumnos.js crea sus filas en tiempo) Tj
+0.12 0.12 0.12 rg
+/F1 10 Tf
+1 0 0 1 54 587 Tm
+(de ejecucion.) Tj
+0.12 0.12 0.12 rg
+/F1 10 Tf
+1 0 0 1 54 573 Tm
+() Tj
+0.12 0.12 0.12 rg
+/F1 10 Tf
+1 0 0 1 54 559 Tm
+(Al iniciar, mostrarAlumnos\(obtenerAlumnos\(\)\) lee la lista guardada y la renderiza. Para cada) Tj
+0.12 0.12 0.12 rg
+/F1 10 Tf
+1 0 0 1 54 545 Tm
+(objeto genera una fila con ID, nombre, carrera, correo y botones de editar y eliminar.) Tj
+0.12 0.12 0.12 rg
+/F1 10 Tf
+1 0 0 1 54 531 Tm
+() Tj
+0.12 0.12 0.12 rg
+/F1 10 Tf
+1 0 0 1 54 517 Tm
+() Tj
+0.10 0.38 0.42 rg
+/F1 14 Tf
+1 0 0 1 54 498 Tm
+(Alta de alumno) Tj
+0.12 0.12 0.12 rg
+/F1 10 Tf
+1 0 0 1 54 484 Tm
+(El evento submit cancela el envio tradicional con preventDefault. Luego trim elimina) Tj
+0.12 0.12 0.12 rg
+/F1 10 Tf
+1 0 0 1 54 470 Tm
+(espacios externos y se validan campos obligatorios, longitud minima de nombre y carrera y) Tj
+0.12 0.12 0.12 rg
+/F1 10 Tf
+1 0 0 1 54 456 Tm
+(formato del correo.) Tj
+0.12 0.12 0.12 rg
+/F1 10 Tf
+1 0 0 1 54 442 Tm
+() Tj
+0.22 0.22 0.22 rg
+/F1 10 Tf
+1 0 0 1 54 428 Tm
+(const alumno = { id: Date.now\(\), nombre, carrera, correo }) Tj
+0.12 0.12 0.12 rg
+/F1 10 Tf
+1 0 0 1 54 414 Tm
+(Si no hay una edicion activa, el objeto se agrega con push. La lista completa se guarda de) Tj
+0.12 0.12 0.12 rg
+/F1 10 Tf
+1 0 0 1 54 400 Tm
+(nuevo y la tabla se actualiza. Finalmente se reinicia el formulario.) Tj
+0.12 0.12 0.12 rg
+/F1 10 Tf
+1 0 0 1 54 386 Tm
+() Tj
+0.12 0.12 0.12 rg
+/F1 10 Tf
+1 0 0 1 54 372 Tm
+() Tj
+0.10 0.38 0.42 rg
+/F1 14 Tf
+1 0 0 1 54 353 Tm
+(Edicion y eliminacion) Tj
+0.12 0.12 0.12 rg
+/F1 10 Tf
+1 0 0 1 54 339 Tm
+(Al pulsar editar, editarAlumno busca el ID, completa los inputs y guarda alumnoEditandoId.) Tj
+0.12 0.12 0.12 rg
+/F1 10 Tf
+1 0 0 1 54 325 Tm
+(El siguiente submit modifica ese objeto en lugar de crear uno nuevo. alumnoEditar permite) Tj
+0.12 0.12 0.12 rg
+/F1 10 Tf
+1 0 0 1 54 311 Tm
+(detectar el caso en que no se cambio ningun dato.) Tj
+0.12 0.12 0.12 rg
+/F1 10 Tf
+1 0 0 1 54 297 Tm
+() Tj
+0.12 0.12 0.12 rg
+/F1 10 Tf
+1 0 0 1 54 283 Tm
+(Al pulsar eliminar, el programa pide confirmacion. filter crea una lista sin el ID elegido,) Tj
+0.12 0.12 0.12 rg
+/F1 10 Tf
+1 0 0 1 54 269 Tm
+(la persiste y vuelve a renderizar la tabla. Si el registro estaba en edicion, tambien se) Tj
+0.12 0.12 0.12 rg
+/F1 10 Tf
+1 0 0 1 54 255 Tm
+(vacia el formulario.) Tj
+0.12 0.12 0.12 rg
+/F1 10 Tf
+1 0 0 1 54 241 Tm
+() Tj
+0.12 0.12 0.12 rg
+/F1 10 Tf
+1 0 0 1 54 227 Tm
+() Tj
+0.10 0.38 0.42 rg
+/F1 14 Tf
+1 0 0 1 54 208 Tm
+(6. Modulo de docentes) Tj
+0.12 0.12 0.12 rg
+/F1 10 Tf
+1 0 0 1 54 194 Tm
+(docentes.js repite el mismo patron de alumnos, pero utiliza la clave docentes y el campo) Tj
+0.12 0.12 0.12 rg
+/F1 10 Tf
+1 0 0 1 54 180 Tm
+(especialidad. Sus funciones principales son obtenerDocentes, mostrarDocentes, editarDocente) Tj
+0.12 0.12 0.12 rg
+/F1 10 Tf
+1 0 0 1 54 166 Tm
+(y eliminarDocente.) Tj
+0.12 0.12 0.12 rg
+/F1 10 Tf
+1 0 0 1 54 152 Tm
+() Tj
+0.12 0.12 0.12 rg
+/F1 10 Tf
+1 0 0 1 54 138 Tm
+(La duplicacion es comprensible mientras se aprende CRUD. A futuro se podria extraer una) Tj
+0.12 0.12 0.12 rg
+/F1 10 Tf
+1 0 0 1 54 124 Tm
+(funcion generica, pero conviene priorizar primero una API comun y validaciones consistentes.) Tj
+0.12 0.12 0.12 rg
+/F1 10 Tf
+1 0 0 1 54 110 Tm
+() Tj
+0.12 0.12 0.12 rg
+/F1 10 Tf
+1 0 0 1 54 96 Tm
+() Tj
+0.10 0.38 0.42 rg
+/F1 14 Tf
+1 0 0 1 54 77 Tm
+(7. Utilidades de ui.js) Tj
+0.12 0.12 0.12 rg
+/F1 10 Tf
+1 0 0 1 54 63 Tm
+(mostrarMensaje escribe un texto en #mensaje, aplica una clase y lo oculta luego de 3000) Tj
+ET
+endstream
+endobj
+7 0 obj
+<< /Type /Page /Parent 2 0 R /MediaBox [0 0 595 842] /Resources << /Font << /F1 3 0 R >> >> /Contents 6 0 R >>
+endobj
+8 0 obj
+<< /Length 4718 >>
+stream
+BT
+0.12 0.12 0.12 rg
+/F1 10 Tf
+1 0 0 1 54 774 Tm
+() Tj
+0.12 0.12 0.12 rg
+/F1 10 Tf
+1 0 0 1 54 760 Tm
+(escaparHTML coloca el texto en textContent y devuelve innerHTML. Esto evita que un dato) Tj
+0.12 0.12 0.12 rg
+/F1 10 Tf
+1 0 0 1 54 746 Tm
+(ingresado por una persona se interprete como etiquetas o script cuando se inserta en la) Tj
+0.12 0.12 0.12 rg
+/F1 10 Tf
+1 0 0 1 54 732 Tm
+(tabla.) Tj
+0.12 0.12 0.12 rg
+/F1 10 Tf
+1 0 0 1 54 718 Tm
+() Tj
+0.12 0.12 0.12 rg
+/F1 10 Tf
+1 0 0 1 54 704 Tm
+(esCorreoValido utiliza una expresion regular basica: exige texto antes y despues de @ y un) Tj
+0.12 0.12 0.12 rg
+/F1 10 Tf
+1 0 0 1 54 690 Tm
+(punto en el dominio. Es una validacion practica del lado del cliente, no una verificacion de) Tj
+0.12 0.12 0.12 rg
+/F1 10 Tf
+1 0 0 1 54 676 Tm
+(existencia del correo.) Tj
+0.12 0.12 0.12 rg
+/F1 10 Tf
+1 0 0 1 54 662 Tm
+() Tj
+0.12 0.12 0.12 rg
+/F1 10 Tf
+1 0 0 1 54 648 Tm
+() Tj
+0.10 0.38 0.42 rg
+/F1 14 Tf
+1 0 0 1 54 629 Tm
+(8. CSS y experiencia visual) Tj
+0.12 0.12 0.12 rg
+/F1 10 Tf
+1 0 0 1 54 615 Tm
+(estilos.css define el fondo, encabezado, navegacion, formularios, botones, tablas, tarjetas) Tj
+0.12 0.12 0.12 rg
+/F1 10 Tf
+1 0 0 1 54 601 Tm
+(y mensajes. La media query de 700px cambia el menu y los formularios a una disposicion mas) Tj
+0.12 0.12 0.12 rg
+/F1 10 Tf
+1 0 0 1 54 587 Tm
+(adecuada para pantallas pequenas.) Tj
+0.12 0.12 0.12 rg
+/F1 10 Tf
+1 0 0 1 54 573 Tm
+() Tj
+0.12 0.12 0.12 rg
+/F1 10 Tf
+1 0 0 1 54 559 Tm
+(Los iconos de acciones provienen de Font Awesome mediante CDN. Para usar la aplicacion con) Tj
+0.12 0.12 0.12 rg
+/F1 10 Tf
+1 0 0 1 54 545 Tm
+(internet limitada, se podria instalar Font Awesome localmente o reemplazar esos iconos por) Tj
+0.12 0.12 0.12 rg
+/F1 10 Tf
+1 0 0 1 54 531 Tm
+(texto accesible.) Tj
+0.12 0.12 0.12 rg
+/F1 10 Tf
+1 0 0 1 54 517 Tm
+() Tj
+0.12 0.12 0.12 rg
+/F1 10 Tf
+1 0 0 1 54 503 Tm
+() Tj
+0.10 0.38 0.42 rg
+/F1 14 Tf
+1 0 0 1 54 484 Tm
+(9. Backend Express) Tj
+0.12 0.12 0.12 rg
+/F1 10 Tf
+1 0 0 1 54 470 Tm
+(server.js crea la aplicacion Express, habilita express.json y monta las rutas de alumnos) Tj
+0.12 0.12 0.12 rg
+/F1 10 Tf
+1 0 0 1 54 456 Tm
+(bajo el prefijo /alumnos. Luego escucha en el puerto 3000.) Tj
+0.12 0.12 0.12 rg
+/F1 10 Tf
+1 0 0 1 54 442 Tm
+() Tj
+0.22 0.22 0.22 rg
+/F1 10 Tf
+1 0 0 1 54 428 Tm
+(GET /alumnos lista todos los alumnos) Tj
+0.22 0.22 0.22 rg
+/F1 10 Tf
+1 0 0 1 54 414 Tm
+(GET /alumnos/:id busca un alumno por ID) Tj
+0.22 0.22 0.22 rg
+/F1 10 Tf
+1 0 0 1 54 400 Tm
+(POST /alumnos recibe un alumno en req.body) Tj
+0.22 0.22 0.22 rg
+/F1 10 Tf
+1 0 0 1 54 386 Tm
+(PUT /alumnos/:id actualiza un alumno) Tj
+0.22 0.22 0.22 rg
+/F1 10 Tf
+1 0 0 1 54 372 Tm
+(DELETE /alumnos/:id elimina un alumno) Tj
+0.12 0.12 0.12 rg
+/F1 10 Tf
+1 0 0 1 54 358 Tm
+(El controlador contiene las consultas GET. data/alumnos.js exporta un arreglo con Ana y) Tj
+0.12 0.12 0.12 rg
+/F1 10 Tf
+1 0 0 1 54 344 Tm
+(Jose, que funciona como fuente temporal de datos mientras no existe MongoDB.) Tj
+0.12 0.12 0.12 rg
+/F1 10 Tf
+1 0 0 1 54 330 Tm
+() Tj
+0.12 0.12 0.12 rg
+/F1 10 Tf
+1 0 0 1 54 316 Tm
+() Tj
+0.10 0.38 0.42 rg
+/F1 14 Tf
+1 0 0 1 54 297 Tm
+(10. Problemas actuales del backend) Tj
+0.12 0.12 0.12 rg
+/F1 10 Tf
+1 0 0 1 54 283 Tm
+(Hay dos errores que deben corregirse antes de probar POST y DELETE: routes/alumnos.routes.js) Tj
+0.12 0.12 0.12 rg
+/F1 10 Tf
+1 0 0 1 54 269 Tm
+(usa alumnos pero no importa ese arreglo desde data/alumnos.js; ademas data/alumnos.js) Tj
+0.12 0.12 0.12 rg
+/F1 10 Tf
+1 0 0 1 54 255 Tm
+(exporta una constante y DELETE intenta reasignarla con alumnos = filter\(...\).) Tj
+0.12 0.12 0.12 rg
+/F1 10 Tf
+1 0 0 1 54 241 Tm
+() Tj
+0.12 0.12 0.12 rg
+/F1 10 Tf
+1 0 0 1 54 227 Tm
+(Tambien conviene validar que un ID exista antes de acceder a sus propiedades y devolver) Tj
+0.12 0.12 0.12 rg
+/F1 10 Tf
+1 0 0 1 54 213 Tm
+(estados HTTP apropiados, por ejemplo 404 cuando no se encuentra un alumno y 201 al crear) Tj
+0.12 0.12 0.12 rg
+/F1 10 Tf
+1 0 0 1 54 199 Tm
+(uno.) Tj
+0.12 0.12 0.12 rg
+/F1 10 Tf
+1 0 0 1 54 185 Tm
+() Tj
+0.12 0.12 0.12 rg
+/F1 10 Tf
+1 0 0 1 54 171 Tm
+() Tj
+0.10 0.38 0.42 rg
+/F1 14 Tf
+1 0 0 1 54 152 Tm
+(11. Como ejecutar) Tj
+0.22 0.22 0.22 rg
+/F1 10 Tf
+1 0 0 1 54 138 Tm
+(cd Backend) Tj
+0.22 0.22 0.22 rg
+/F1 10 Tf
+1 0 0 1 54 124 Tm
+(npm install) Tj
+0.22 0.22 0.22 rg
+/F1 10 Tf
+1 0 0 1 54 110 Tm
+(npm start) Tj
+0.12 0.12 0.12 rg
+/F1 10 Tf
+1 0 0 1 54 96 Tm
+(Con el servidor iniciado, la API queda disponible en http://localhost:3000. Para probarla se) Tj
+0.12 0.12 0.12 rg
+/F1 10 Tf
+1 0 0 1 54 82 Tm
+(pueden usar las solicitudes de pruebas del archivo Backend/pruebas.http si el editor tiene) Tj
+0.12 0.12 0.12 rg
+/F1 10 Tf
+1 0 0 1 54 68 Tm
+(una extension HTTP instalada.) Tj
+0.12 0.12 0.12 rg
+/F1 10 Tf
+1 0 0 1 54 54 Tm
+() Tj
+ET
+endstream
+endobj
+9 0 obj
+<< /Type /Page /Parent 2 0 R /MediaBox [0 0 595 842] /Resources << /Font << /F1 3 0 R >> >> /Contents 8 0 R >>
+endobj
+10 0 obj
+<< /Length 2763 >>
+stream
+BT
+0.12 0.12 0.12 rg
+/F1 10 Tf
+1 0 0 1 54 774 Tm
+(El frontend puede abrirse desde Frontend/index.html. Para evitar restricciones del navegador) Tj
+0.12 0.12 0.12 rg
+/F1 10 Tf
+1 0 0 1 54 760 Tm
+(al usar fetch en el futuro, sera conveniente servir Frontend con un servidor local y) Tj
+0.12 0.12 0.12 rg
+/F1 10 Tf
+1 0 0 1 54 746 Tm
+(configurar CORS en Express.) Tj
+0.12 0.12 0.12 rg
+/F1 10 Tf
+1 0 0 1 54 732 Tm
+() Tj
+0.12 0.12 0.12 rg
+/F1 10 Tf
+1 0 0 1 54 718 Tm
+() Tj
+0.10 0.38 0.42 rg
+/F1 14 Tf
+1 0 0 1 54 699 Tm
+(12. Flujo completo de un alta) Tj
+0.22 0.22 0.22 rg
+/F1 10 Tf
+1 0 0 1 54 685 Tm
+(1. La persona completa el formulario.) Tj
+0.22 0.22 0.22 rg
+/F1 10 Tf
+1 0 0 1 54 671 Tm
+(2. submit evita recargar la pagina.) Tj
+0.22 0.22 0.22 rg
+/F1 10 Tf
+1 0 0 1 54 657 Tm
+(3. Se limpian y validan los valores.) Tj
+0.22 0.22 0.22 rg
+/F1 10 Tf
+1 0 0 1 54 643 Tm
+(4. Se crea o modifica un objeto JavaScript.) Tj
+0.22 0.22 0.22 rg
+/F1 10 Tf
+1 0 0 1 54 629 Tm
+(5. JSON.stringify guarda la lista.) Tj
+0.22 0.22 0.22 rg
+/F1 10 Tf
+1 0 0 1 54 615 Tm
+(6. La tabla se regenera con innerHTML.) Tj
+0.22 0.22 0.22 rg
+/F1 10 Tf
+1 0 0 1 54 601 Tm
+(7. Se muestra un mensaje y se limpia el formulario.) Tj
+0.12 0.12 0.12 rg
+/F1 10 Tf
+1 0 0 1 54 587 Tm
+() Tj
+0.10 0.38 0.42 rg
+/F1 14 Tf
+1 0 0 1 54 568 Tm
+(13. Proximos pasos sugeridos) Tj
+0.12 0.12 0.12 rg
+/F1 10 Tf
+1 0 0 1 54 554 Tm
+(1\) Arreglar las rutas POST y DELETE del backend. 2\) Conectar alumnos.js y docentes.js con) Tj
+0.12 0.12 0.12 rg
+/F1 10 Tf
+1 0 0 1 54 540 Tm
+(fetch. 3\) Agregar CORS y manejo de errores. 4\) Persistir en MongoDB. 5\) Incorporar) Tj
+0.12 0.12 0.12 rg
+/F1 10 Tf
+1 0 0 1 54 526 Tm
+(autenticacion. 6\) Crear los modulos de cursos y materias. 7\) Agregar pruebas para) Tj
+0.12 0.12 0.12 rg
+/F1 10 Tf
+1 0 0 1 54 512 Tm
+(validaciones y endpoints.) Tj
+0.12 0.12 0.12 rg
+/F1 10 Tf
+1 0 0 1 54 498 Tm
+() Tj
+0.12 0.12 0.12 rg
+/F1 10 Tf
+1 0 0 1 54 484 Tm
+() Tj
+0.10 0.38 0.42 rg
+/F1 14 Tf
+1 0 0 1 54 465 Tm
+(14. Ideas clave para estudiar) Tj
+0.12 0.12 0.12 rg
+/F1 10 Tf
+1 0 0 1 54 451 Tm
+(HTML define estructura; CSS define presentacion; JavaScript agrega comportamiento. Los) Tj
+0.12 0.12 0.12 rg
+/F1 10 Tf
+1 0 0 1 54 437 Tm
+(eventos conectan acciones de la persona con funciones. JSON permite transportar estructuras) Tj
+0.12 0.12 0.12 rg
+/F1 10 Tf
+1 0 0 1 54 423 Tm
+(como texto. localStorage persiste en el navegador. Express recibe solicitudes HTTP y) Tj
+0.12 0.12 0.12 rg
+/F1 10 Tf
+1 0 0 1 54 409 Tm
+(devuelve respuestas JSON. Un CRUD representa crear, leer, actualizar y eliminar.) Tj
+0.12 0.12 0.12 rg
+/F1 10 Tf
+1 0 0 1 54 395 Tm
+() Tj
+0.12 0.12 0.12 rg
+/F1 10 Tf
+1 0 0 1 54 381 Tm
+() Tj
+0.45 0.45 0.45 rg
+/F1 8 Tf
+1 0 0 1 54 367 Tm
+(Documento generado a partir del estado actual del proyecto SGA.) Tj
+ET
+endstream
+endobj
+11 0 obj
+<< /Type /Page /Parent 2 0 R /MediaBox [0 0 595 842] /Resources << /Font << /F1 3 0 R >> >> /Contents 10 0 R >>
+endobj
+xref
+0 12
+0000000000 65535 f 
+0000000015 00000 n 
+0000000064 00000 n 
+0000000140 00000 n 
+0000000210 00000 n 
+0000004770 00000 n 
+0000004896 00000 n 
+0000009741 00000 n 
+0000009867 00000 n 
+0000014637 00000 n 
+0000014763 00000 n 
+0000017579 00000 n 
+trailer
+<< /Size 12 /Root 1 0 R >>
+startxref
+17707
+%%EOF

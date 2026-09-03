@@ -1,5 +1,6 @@
 // Módulo Alumnos - SGA.
-// Usa storage.js para persistencia y ui.js para mensajes, seguridad y validación.
+// Usa storage.js para persistencia local y ui.js para mensajes, seguridad y validación.
+// La clave "alumnos" separa estos datos de los docentes dentro de localStorage.
 
 // Obtiene referencias al formulario y a la tabla que se actualizará en el DOM.
 const formulario = document.querySelector("#formulario")
@@ -60,16 +61,18 @@ formulario.addEventListener("submit", function(event) {
         return
     }
 
-    // Se trabaja sobre la lista actual y se decide entre alta o actualización.
+    // Se recupera la lista persistida; si no existe, obtenerDatos devuelve [].
+    // Luego se decide entre alta o actualización según alumnoEditandoId.
     const alumnos = obtenerAlumnos()
 
     if (alumnoEditandoId === null) {
         const alumno = {
-            id: Date.now(),
-            nombre: nombre,
-            carrera: carrera,
-            correo: correo
-        }
+                id: Date.now(),
+                nombre: nombre,
+                carrera: carrera,
+                correo: correo
+            }
+            // push agrega el nuevo objeto a la lista que luego se vuelve a guardar.
         alumnos.push(alumno)
         mostrarMensaje("Alumno guardado correctamente", "mje-exito")
     } else {
@@ -85,6 +88,7 @@ formulario.addEventListener("submit", function(event) {
             return
         }
 
+        // La lista recuperada es modificada en memoria y después se persiste completa.
         alumno.nombre = nombre
         alumno.carrera = carrera
         alumno.correo = correo
@@ -94,13 +98,14 @@ formulario.addEventListener("submit", function(event) {
         mostrarMensaje("Alumno actualizado correctamente", "mje-exito")
     }
 
+    // Sobrescribe la clave "alumnos" con la lista actualizada en formato JSON.
     guardarDatos("alumnos", alumnos)
     mostrarAlumnos(alumnos)
     formulario.reset()
 })
 
 function obtenerAlumnos() {
-    // Centraliza la lectura de alumnos para mantener separada la persistencia.
+    // Lee la clave "alumnos" mediante la función común de storage.js.
     return obtenerDatos("alumnos")
 }
 
@@ -127,9 +132,10 @@ function mostrarAlumnos(alumnos) {
 }
 
 function eliminarAlumno(id) {
-    // Filtra el alumno seleccionado, guarda la lista nueva y refresca la tabla.
+    // Lee la lista persistida y filter crea otra lista sin el ID seleccionado.
     const alumnos = obtenerAlumnos()
     const alumnosActualizados = alumnos.filter(alumno => alumno.id !== id)
+        // Reemplaza en localStorage la lista anterior por la lista filtrada.
     guardarDatos("alumnos", alumnosActualizados)
     mostrarAlumnos(alumnosActualizados)
 
@@ -161,7 +167,7 @@ listaAlumnos.addEventListener("click", (e) => {
 })
 
 function editarAlumno(id) {
-    // Busca el alumno, carga sus datos en el formulario y activa el modo edición.
+    // Obtiene nuevamente la lista guardada y busca dentro de ella el ID elegido.
     const alumnos = obtenerAlumnos()
     const alumno = alumnos.find(alumno => alumno.id === id)
 
