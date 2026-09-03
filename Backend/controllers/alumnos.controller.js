@@ -1,18 +1,45 @@
-// Importa el arreglo que funciona como fuente de datos temporal de alumnos.
 const alumnos = require("../data/alumnos")
 
-// Devuelve todos los alumnos en formato JSON como respuesta de la API.
 function obtenerAlumnos(req, res) {
     res.json(alumnos)
 }
 
-// Convierte el parámetro de la URL a número, busca el alumno y lo devuelve.
 function obtenerAlumno(req, res) {
     const id = Number(req.params.id)
     const alumno = alumnos.find(a => a.id === id)
     res.json(alumno)
-
 }
 
-// Exporta las funciones para que puedan ser utilizadas por el archivo de rutas.
-module.exports = { obtenerAlumnos, obtenerAlumno }
+function crearAlumno(req, res) {
+    const nuevoAlumno = req.body
+    alumnos.push(nuevoAlumno)
+    res.json({ mensaje: "Alumno registrado correctamente" })
+}
+
+function actualizarAlumno(req, res) {
+    const id = Number(req.params.id)
+    const alumno = alumnos.find(alumno => alumno.id === id)
+
+    alumno.id = req.body.id
+    alumno.nombre = req.body.nombre
+    alumno.carrera = req.body.carrera
+
+    res.json({ mensaje: "Alumno actualizado correctamente" })
+}
+
+function eliminarAlumno(req, res) {
+    const id = Number(req.params.id)
+    const alumnosActualizados = alumnos.filter(alumno => alumno.id !== id)
+    alumnos.length = 0
+    alumnos.push(...alumnosActualizados)
+
+    res.json({ mensaje: "Alumno eliminado correctamente" })
+}
+
+module.exports = {
+    obtenerAlumnos,
+    obtenerAlumno,
+    crearAlumno,
+    actualizarAlumno,
+    eliminarAlumno
+}

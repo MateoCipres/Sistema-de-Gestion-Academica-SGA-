@@ -1,5 +1,6 @@
 // Módulo Docentes - SGA.
-// Usa storage.js para persistencia y ui.js para mensajes, seguridad y validación.
+// Usa storage.js para persistencia local y ui.js para mensajes, seguridad y validación.
+// La clave "docentes" mantiene estos datos separados de la lista de alumnos.
 
 // Obtiene las referencias al formulario y a la tabla de docentes.
 const formularioDocente = document.querySelector("#formDocente")
@@ -58,16 +59,18 @@ formularioDocente.addEventListener("submit", function(event) {
         return
     }
 
-    // Recupera la lista actual antes de aplicar la operación solicitada.
+    // Recupera la lista persistida; si está vacía, obtenerDatos devuelve [].
+    // Después se decide entre alta o actualización según docenteEditandoId.
     const docentes = obtenerDocentes()
 
     if (docenteEditandoId === null) {
         const docente = {
-            id: Date.now(),
-            nombre: nombre,
-            especialidad: especialidad,
-            correo: correo
-        }
+                id: Date.now(),
+                nombre: nombre,
+                especialidad: especialidad,
+                correo: correo
+            }
+            // Agrega el nuevo docente a la lista que se guardará en localStorage.
         docentes.push(docente)
         mostrarMensaje("Docente guardado correctamente", "mje-exito")
     } else {
@@ -77,6 +80,7 @@ formularioDocente.addEventListener("submit", function(event) {
             return
         }
 
+        // Actualiza el objeto recuperado y luego se persiste la lista completa.
         docente.nombre = nombre
         docente.especialidad = especialidad
         docente.correo = correo
@@ -85,13 +89,14 @@ formularioDocente.addEventListener("submit", function(event) {
         mostrarMensaje("Docente actualizado correctamente", "mje-exito")
     }
 
+    // Sobrescribe la clave "docentes" con los datos actualizados convertidos a JSON.
     guardarDatos("docentes", docentes)
     mostrarDocentes(docentes)
     formularioDocente.reset()
 })
 
 function obtenerDocentes() {
-    // Centraliza la lectura de docentes almacenados en localStorage.
+    // Lee la clave "docentes" mediante la función común de storage.js.
     return obtenerDatos("docentes")
 }
 
@@ -118,7 +123,7 @@ function mostrarDocentes(docentes) {
 }
 
 function eliminarDocente(id) {
-    // Elimina por ID, persiste la lista resultante y actualiza la tabla.
+    // Recupera los datos, filter genera una lista sin el docente indicado y la persiste.
     const docentes = obtenerDocentes()
     const docentesActualizados = docentes.filter(docente => docente.id !== id)
     guardarDatos("docentes", docentesActualizados)
@@ -152,7 +157,7 @@ listaDocentes.addEventListener("click", (e) => {
 })
 
 function editarDocente(id) {
-    // Busca el docente y coloca sus datos en el formulario para editarlos.
+    // Busca el docente dentro de la lista recuperada desde localStorage.
     const docentes = obtenerDocentes()
     const docente = docentes.find(docente => docente.id === id)
 
