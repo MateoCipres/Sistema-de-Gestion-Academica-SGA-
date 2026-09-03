@@ -1,7 +1,7 @@
 GET http://localhost:3000/alumnos
 
 ###
-GET http://localhost:3000/alumnos/2
+GET http://localhost:3000/alumnos/22
 
 ###
 POST http://localhost:3000/alumnos
@@ -24,3 +24,12 @@ Content-Type: application/json
 
 ###
 DELETE http://localhost:3000/alumnos/2
+
+###
+POST http://localhost:3000/alumnos
+Content-Type: application/json
+
+{
+    "id": 3,
+    "carrera": "Programación"
+}
