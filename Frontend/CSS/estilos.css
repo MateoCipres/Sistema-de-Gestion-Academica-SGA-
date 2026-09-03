@@ -43,10 +43,12 @@ nav a {
 }
 
 nav a:hover {
+    /* Diferencia visualmente el enlace cuando el cursor pasa sobre él. */
     background-color: slategray;
 }
 
 nav a.activo {
+    /* Identifica la sección que está abierta actualmente. */
     background-color: dimgrey;
 }
 
@@ -61,10 +63,12 @@ main {
 }
 
 h1 {
+    /* Separa el título principal del contenido que aparece debajo. */
     margin-bottom: 30px;
 }
 
 h2 {
+    /* Elimina el margen superior adicional de los subtítulos de paneles. */
     margin-top: 0;
 }
 
@@ -88,6 +92,7 @@ form {
 }
 
 .campo input {
+    /* Da una apariencia uniforme a los campos dentro de los formularios. */
     padding: 10px;
     border: 1px solid #ccc;
     border-radius: 6px;
@@ -95,12 +100,14 @@ form {
 }
 
 .campo input:focus {
+    /* Resalta el campo que está recibiendo la entrada de la persona. */
     outline: none;
     border-color: #cef604;
     box-shadow: 0 0 0 2px rgba(37, 99, 235, 0.15);
 }
 
 input {
+    /* Mantiene un estilo base para cualquier input de la aplicación. */
     padding: 10px;
     border: 1px solid #ccc;
     border-radius: 5px;
@@ -120,6 +127,7 @@ button {
 }
 
 button:hover {
+    /* Indica que el botón está listo para ser pulsado. */
     background-color: #cb0eff;
     color: #333;
 }
@@ -135,6 +143,7 @@ button:hover {
 }
 
 form button {
+    /* Alinea verticalmente los botones incluidos en un formulario. */
     margin-top: 10px;
 }
 
@@ -154,6 +163,7 @@ td {
 }
 
 th {
+    /* Distingue visualmente los encabezados de las columnas. */
     background-color: thistle;
 }
 
@@ -174,15 +184,18 @@ th {
 }
 
 .mje-error {
+    /* Color utilizado para mensajes de validación o fallos. */
     background-color: red;
 }
 
 .mje-exito {
+    /* Color utilizado para confirmar una operación completada. */
     background-color: green;
     color: white;
 }
 
 .mje-advertencia {
+    /* Color utilizado para avisos que no bloquean la operación. */
     background-color: #d19b00;
     color: white;
 }
@@ -201,6 +214,7 @@ th {
 }
 
 .btn-editar {
+    /* Diferencia las acciones de edición y eliminación dentro de la tabla. */
     background-color: rgb(16, 4, 244);
     color: #cef604;
 }
@@ -211,11 +225,13 @@ th {
 }
 
 .btn-editar:hover {
+    /* Cambia el color del botón de edición al pasar el cursor. */
     background-color: aqua;
     transition-duration: .6s;
 }
 
 .btn-eliminar:hover {
+    /* Cambia el color del botón de eliminación al pasar el cursor. */
     background-color: rgb(241, 229, 1);
     transition-duration: .3s;
 }
@@ -254,11 +270,13 @@ th {
 }
 
 .tarjeta:hover {
+    /* Eleva la tarjeta para señalar que funciona como enlace. */
     transform: translateY(-4px);
     box-shadow: 0 6px 15px rgba(0, 0, 0, 0.12);
 }
 
 .tarjeta i {
+    /* Ajusta el tamaño y color de los iconos de cada módulo. */
     font-size: 40px;
     margin-bottom: 15px;
     color: #cb0eff;
@@ -273,6 +291,7 @@ th {
 }
 
 .tarjeta-deshabilitada {
+    /* Conserva la tarjeta de Materias como contenido informativo sin interacción. */
     transform: none;
     box-shadow: 0 2px 8px rgba(0, 0, 0, 0.88);
 }

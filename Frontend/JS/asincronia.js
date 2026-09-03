@@ -114,6 +114,8 @@
 // Función de prueba: solicita usuarios a una API externa usando async/await.
 // La respuesta se imprime para observar el objeto Response devuelto por fetch.
 async function prueba() {
+    // fetch devuelve una promesa que se resuelve con la respuesta HTTP.
     const respuesta = await fetch("https://jsonplaceholder.typicode.com/users")
+        // Muestra el objeto Response; todavía no convierte su cuerpo a JSON.
     console.log(respuesta)
 }
