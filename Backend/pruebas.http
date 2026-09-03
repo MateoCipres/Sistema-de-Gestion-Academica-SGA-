@@ -1,9 +1,12 @@
+# Solicita la lista completa de alumnos.
 GET http://localhost:3000/alumnos
 
 ###
+# Busca un alumno por su ID.
 GET http://localhost:3000/alumnos/22
 
 ###
+# Crea un alumno enviando los datos en formato JSON.
 POST http://localhost:3000/alumnos
 Content-Type: application/json
 
@@ -13,6 +16,7 @@ Content-Type: application/json
     "carrera": "Programación"
 }
 ###
+# Actualiza el alumno cuyo ID aparece en la URL.
 PUT http://localhost:3000/alumnos/2
 Content-Type: application/json
 
@@ -23,9 +27,11 @@ Content-Type: application/json
 }
 
 ###
+# Elimina el alumno indicado por el ID de la URL.
 DELETE http://localhost:3000/alumnos/2
 
 ###
+# Prueba la validación de campos obligatorios: falta el nombre.
 POST http://localhost:3000/alumnos
 Content-Type: application/json
 
