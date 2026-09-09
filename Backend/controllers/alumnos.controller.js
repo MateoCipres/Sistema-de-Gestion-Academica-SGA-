@@ -1,27 +1,30 @@
-// Importa el arreglo que funciona como almacenamiento temporal de alumnos.
-const alumnos = require("../data/alumnos")
+const Alumno = require("../models/Alumno")
 
-// Devuelve la colección completa en formato JSON.
-function obtenerAlumnos(req, res) {
-    res.json(alumnos)
+
+async function obtenerAlumnos(req, res) {
+    try {
+        const alumnos = await Alumno.find()
+        res.json(alumnos)
+    } catch (error) {
+        res.status(500).json({ mensaje: "Error al obtener los alumnos" })
+    }
 }
 
 // Busca un alumno por el ID recibido en la URL y devuelve 404 si no existe.
-function obtenerAlumno(req, res) {
-    // Los parámetros de Express llegan como texto, por eso se convierten a número.
-    const id = Number(req.params.id)
-    const alumno = alumnos.find(a => a.id === id)
-    if (!alumno) {
-        return res.status(404).json({
-            mensaje: "Alumno no encontrado"
-        })
+async function obtenerAlumno(req, res) {
+    try {
+        const alumno = await Alumno.findOne({ legajo: Number(req.params.id) })
+        if (!alumno) {
+            return res.status(404).json({ mensaje: "Alumno no encontrado" })
+        }
+        res.json(alumno)
+    } catch (error) {
+        res.status(500).json({ mensaje: "Error al obtener el alumno" })
     }
-    res.json(alumno)
-
 }
 
-// Valida los campos básicos del cuerpo y agrega un nuevo alumno al arreglo.
-function crearAlumno(req, res) {
+// Valida los campos básicos del cuerpo y guarda el alumno en MongoDB.
+async function crearAlumno(req, res) {
     // req.body contiene el objeto enviado por el cliente mediante JSON.
     const nuevoAlumno = req.body
     const { id, nombre, carrera } = req.body
@@ -36,44 +39,47 @@ function crearAlumno(req, res) {
         })
     }
 
-    // push incorpora el registro al almacenamiento en memoria.
-    alumnos.push(nuevoAlumno)
-    res.status(201).json({ mensaje: "Alumno registrado correctamente" })
+    try {
+        const alumno = await Alumno.create({
+            legajo: id,
+            nombre,
+            carrera,
+            correo: req.body.correo
+        })
+        res.status(201).json(alumno)
+    } catch (error) {
+        res.status(500).json({ mensaje: "Error al registrar el alumno" })
+    }
 }
 
 // Actualiza los datos del alumno que coincide con el ID de la URL.
-function actualizarAlumno(req, res) {
-    const id = Number(req.params.id)
-    const alumno = alumnos.find(alumno => alumno.id === id)
-    if (!alumno) {
-        return res.status(404).json({
-            mensaje: "Alumno no encontrado"
-        })
+async function actualizarAlumno(req, res) {
+    try {
+        const alumno = await Alumno.findOneAndUpdate({ legajo: Number(req.params.id) }, {
+            nombre: req.body.nombre,
+            carrera: req.body.carrera,
+            correo: req.body.correo
+        }, { new: true, runValidators: true })
+        if (!alumno) {
+            return res.status(404).json({ mensaje: "Alumno no encontrado" })
+        }
+        res.json(alumno)
+    } catch (error) {
+        res.status(500).json({ mensaje: "Error al actualizar el alumno" })
     }
-    // Reemplaza las propiedades con los valores recibidos en la solicitud.
-    alumno.id = req.body.id
-    alumno.nombre = req.body.nombre
-    alumno.carrera = req.body.carrera
-
-    res.json({ mensaje: "Alumno actualizado correctamente" })
 }
 
-// Elimina del arreglo el alumno indicado por el parámetro de la URL.
-function eliminarAlumno(req, res) {
-    const id = Number(req.params.id)
-        // filter crea una nueva lista conservando todos los alumnos con otro ID.
-    const alumnosActualizados = alumnos.filter(alumno => alumno.id !== id)
-    const alumno = alumnos.find(a => a.id != id)
-    if (!alumnosActualizados) {
-        return res.status(404).json({
-            mensaje: "Alumno no encontrado"
-        })
+// Elimina de MongoDB el alumno indicado por el parámetro de la URL.
+async function eliminarAlumno(req, res) {
+    try {
+        const alumno = await Alumno.findOneAndDelete({ legajo: Number(req.params.id) })
+        if (!alumno) {
+            return res.status(404).json({ mensaje: "Alumno no encontrado" })
+        }
+        res.json({ mensaje: "Alumno eliminado correctamente" })
+    } catch (error) {
+        res.status(500).json({ mensaje: "Error al eliminar el alumno" })
     }
-    // Vacía el arreglo original y copia la lista filtrada para conservar su referencia.
-    alumnos.length = 0
-    alumnos.push(...alumnosActualizados)
-
-    res.json({ mensaje: "Alumno eliminado correctamente" })
 }
 
 // Exporta los controladores para que el archivo de rutas pueda asociarlos a endpoints.
