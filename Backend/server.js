@@ -8,6 +8,8 @@ app.use(express.json())
 // Registra las rutas de alumnos bajo el prefijo /alumnos.
 const alumnosRoutes = require("./routes/alumnos.routes")
 app.use("/alumnos", alumnosRoutes)
+const conectarBD = require("./config/database")
+conectarBD()
 
 // Middleware de registro: muestra el método y la URL de cada solicitud que lo atraviesa.
 app.use((req, res, next) => {
