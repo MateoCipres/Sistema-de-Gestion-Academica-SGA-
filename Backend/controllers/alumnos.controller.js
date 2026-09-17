@@ -12,23 +12,21 @@ async function obtenerAlumnos(req, res) {
 
 // Busca un alumno por el ID recibido en la URL y devuelve 404 si no existe.
 async function obtenerAlumno(req, res) {
-    try {
-        const alumno = await Alumno.findOne({ legajo: Number(req.params.id) })
-        if (!alumno) {
-            return res.status(404).json({ mensaje: "Alumno no encontrado" })
-        }
-        res.json(alumno)
-    } catch (error) {
-        res.status(500).json({ mensaje: "Error al obtener el alumno" })
+    const alumno = await Alumno.findOne({
+        legajo: Number(req.params.id)
+    })
+    if (!alumno) {
+        return res.status(404).json({
+            mensaje: "Alumno no encontrado"
+        })
     }
+    res.json(alumno)
 }
 
 // Valida los campos básicos del cuerpo y guarda el alumno en MongoDB.
 async function crearAlumno(req, res) {
-    // req.body contiene el objeto enviado por el cliente mediante JSON.
-    const nuevoAlumno = req.body
-    const { id, nombre, carrera } = req.body
-    if (!id || !nombre || !carrera) {
+    const { legajo, nombre, carrera, correo } = req.body
+    if (!legajo || !nombre || !carrera || !correo) {
         return res.status(400).json({
             mensaje: "Todos los campos son obligatorios"
         })
@@ -38,6 +36,9 @@ async function crearAlumno(req, res) {
             mensaje: "El nombre debe ser un texto"
         })
     }
+    const nuevoAlumno = await Alumno.create({
+
+    })
 
     try {
         const alumno = await Alumno.create({

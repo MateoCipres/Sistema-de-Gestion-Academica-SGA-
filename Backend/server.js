@@ -1,25 +1,31 @@
-// Importa Express y crea la aplicación HTTP del backend.
+require("dotenv").config()
+
 const express = require("express")
+const cors = require("cors")
+
+const conectarDB = require("./config/database")
+const alumnosRoutes = require("./routes/alumnos.routes")
+
 const app = express()
 
-// Permite interpretar cuerpos de solicitudes que contienen datos JSON.
 app.use(express.json())
-
-// Registra las rutas de alumnos bajo el prefijo /alumnos.
-const alumnosRoutes = require("./routes/alumnos.routes")
+app.use(cors())
 app.use("/alumnos", alumnosRoutes)
-const conectarBD = require("./config/database")
-conectarBD()
 
-// Middleware de registro: muestra el método y la URL de cada solicitud que lo atraviesa.
-app.use((req, res, next) => {
-    console.log(req.method)
-    console.log(req.url)
-    next()
+const PORT = process.env.PORT
+
+conectarDB()
+
+console.log("Ejecutado con nodemon")
+
+app.listen(PORT, () => {
+    console.log(`Servidor funcionando en http://localhost:${PORT}`)
 })
 
-// Inicia el servidor y queda escuchando solicitudes en el puerto 3000.
 
-app.listen(3000, () => {
-    console.log("Servidor funcionando en http://localhost:3000")
-})
+// Creo un middleware
+// app.use((req, res, next) => {
+//     console.log(req.method)
+//     console.log(req.url)
+//     next()
+// })
