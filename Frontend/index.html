@@ -1,34 +1,31 @@
-<!-- Página inicial del Sistema de Gestión Académica. -->
 <!DOCTYPE html>
-<html lang="es">
+<html lang="en">
 
 <head>
-    <!-- Define la codificación, adaptación a móviles y recursos visuales. -->
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="CSS/estilos.css">
+    <link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
+    <link rel="stylesheet" href="css/estilos.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
     <title>SGA</title>
 </head>
 
 <body>
-    <!-- Menú principal para acceder a los módulos disponibles. -->
     <header>
-        <nav class="Navegacion">
+        <nav>
             <a href="index.html" class="activo">Inicio</a>
             <a href="alumnos.html">Alumnos</a>
             <a href="docentes.html">Docentes</a>
         </nav>
     </header>
-    <main>
-        <h1>Sistema de gestion academica</h1>
-        <p>Bienvenidos al sistema de gestion academica</p>
-        <!-- Cada tarjeta enlaza con un módulo; Materias se muestra como pendiente. -->
+    <main class="inicio">
+        <h1>Sistema de Gestión Académica</h1>
+        <p>Bienvenido al Sistema de Gestión Académica</p>
         <section class="modulos">
             <a href="alumnos.html" class="tarjeta">
                 <i class="fa-solid fa-users"></i>
                 <h2>Alumnos</h2>
-                <p>Gestionar alumnos registrados</p>
+                <p>Gestionar alumnos</p>
             </a>
             <a href="docentes.html" class="tarjeta">
                 <i class="fa-solid fa-chalkboard-user"></i>
@@ -38,7 +35,7 @@
             <div class="tarjeta tarjeta-deshabilitada">
                 <i class="fa-solid fa-book"></i>
                 <h2>Materias</h2>
-                <p>Proximamente</p>
+                <p>Próximamente</p>
             </div>
         </section>
     </main>

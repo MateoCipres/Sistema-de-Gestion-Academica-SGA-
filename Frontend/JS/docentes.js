@@ -1,41 +1,12 @@
-// Módulo Docentes - SGA.
-// Usa storage.js para persistencia local y ui.js para mensajes, seguridad y validación.
-// La clave "docentes" mantiene estos datos separados de la lista de alumnos.
-
-// Obtiene las referencias al formulario y a la tabla de docentes.
-const formularioDocente = document.querySelector("#formDocente")
+const formulario = document.querySelector("#formDocente")
+const mensaje = document.querySelector("#mensajeDocente")
 const listaDocentes = document.querySelector("#listaDocentes")
 let docenteEditandoId = null
 
-// Agrega un botón para limpiar los campos y cancelar una edición.
-const botonVaciarFormulario = document.createElement("button")
-botonVaciarFormulario.type = "button"
-botonVaciarFormulario.id = "btnVaciarFormulario"
-botonVaciarFormulario.textContent = "Vaciar formulario"
-botonVaciarFormulario.className = "btn btn-secondary"
-formularioDocente.appendChild(botonVaciarFormulario)
+formulario.addEventListener("submit", function(event) {
+    event.preventDefault();
 
-function vaciarFormulario() {
-    // Borra los valores y vuelve el formulario al estado de alta.
-    formularioDocente.reset()
-    docenteEditandoId = null
-    const botonSubmit = formularioDocente.querySelector("button[type='submit']")
-    if (botonSubmit) {
-        botonSubmit.textContent = "Confirmar Docente"
-    }
-}
-
-botonVaciarFormulario.addEventListener("click", () => {
-    vaciarFormulario()
-    mostrarMensaje("Formulario vaciado", "mje-exito")
-    document.querySelector("#nombre").focus()
-})
-
-formularioDocente.addEventListener("submit", function(event) {
-    // Intercepta el envío, valida los campos y crea o actualiza un docente.
-    event.preventDefault()
-
-    const nombre = document.querySelector("#nombre").value.trim()
+    const nombre = document.querySelector("#nombreDocente").value.trim()
     const especialidad = document.querySelector("#especialidad").value.trim()
     const correo = document.querySelector("#correo").value.trim()
 
@@ -44,135 +15,118 @@ formularioDocente.addEventListener("submit", function(event) {
         return
     }
 
+    if (!correo.includes("@")) {
+        mostrarMensaje("Ingrese un correo electrónico válido", "mje-error")
+        return
+    }
+
     if (nombre.length < 3) {
-        mostrarMensaje("El nombre debe tener como minimo 3 caracteres", "mje-error")
+        mostrarMensaje("El nombre debe tener al menos 3 caracteres", "mje-error")
         return
     }
 
-    if (especialidad.length < 3) {
-        mostrarMensaje("La especialidad debe tener como minimo 3 caracteres", "mje-error")
-        return
-    }
-
-    if (!esCorreoValido(correo)) {
-        mostrarMensaje("Ingrese un correo electronico valido", "mje-error")
-        return
-    }
-
-    // Recupera la lista persistida; si está vacía, obtenerDatos devuelve [].
-    // Después se decide entre alta o actualización según docenteEditandoId.
     const docentes = obtenerDocentes()
 
     if (docenteEditandoId === null) {
         const docente = {
-                id: Date.now(),
-                nombre: nombre,
-                especialidad: especialidad,
-                correo: correo
-            }
-            // Agrega el nuevo docente a la lista que se guardará en localStorage.
+            id: Date.now(),
+            nombre: nombre,
+            especialidad: especialidad,
+            correo: correo
+        }
         docentes.push(docente)
         mostrarMensaje("Docente guardado correctamente", "mje-exito")
     } else {
         const docente = docentes.find(docente => docente.id === docenteEditandoId)
-        if (!docente) {
-            mostrarMensaje("No se encontró el docente a actualizar", "mje-error")
-            return
-        }
-
-        // Actualiza el objeto recuperado y luego se persiste la lista completa.
         docente.nombre = nombre
         docente.especialidad = especialidad
         docente.correo = correo
         docenteEditandoId = null
-        formularioDocente.querySelector("button[type='submit']").textContent = "Confirmar Docente"
+        formulario.querySelector("button").textContent = "Guardar Docente"
+
         mostrarMensaje("Docente actualizado correctamente", "mje-exito")
     }
-
-    // Sobrescribe la clave "docentes" con los datos actualizados convertidos a JSON.
+    // localStorage.setItem("docentes", JSON.stringify(docentes))
     guardarDatos("docentes", docentes)
-    mostrarDocentes(docentes)
-    formularioDocente.reset()
-})
+    mostraDocentes(docentes)
+    formulario.reset()
+});
+
 
 function obtenerDocentes() {
-    // Lee la clave "docentes" mediante la función común de storage.js.
     return obtenerDatos("docentes")
 }
 
-function mostrarDocentes(docentes) {
-    // Genera las filas de la tabla y escapa los datos antes de insertarlos.
-    const filas = docentes.map(docente => `
+
+function mostraDocentes(docentes) {
+    listaDocentes.innerHTML = ""
+    for (const docente of docentes) {
+        listaDocentes.innerHTML += `
         <tr>
             <td>${docente.id}</td>
-            <td>${escaparHTML(docente.nombre)}</td>
-            <td>${escaparHTML(docente.especialidad)}</td>
-            <td>${escaparHTML(docente.correo)}</td>
+            <td>${docente.nombre}</td>
+            <td>${docente.especialidad}</td>
+            <td>${docente.correo}</td>
             <td>
-                <button class="btn-editar" data-id="${docente.id}" title="Editar docente">
-                    <i class="fa-solid fa-pen"></i>
+                <button 
+                class="btn-editar" 
+                data-id="${docente.id}"
+                title="Editar docente">
+                <i class="fa-solid fa-pen"></i>
                 </button>
-                <button class="btn-eliminar" data-id="${docente.id}" title="Eliminar docente">
-                    <i class="fa-solid fa-trash"></i>
+                <button 
+                class="btn-eliminar" 
+                data-id="${docente.id}"
+                title="Eliminar docente">
+                <i class="fa-solid fa-trash"></i>
                 </button>
             </td>
         </tr>
-    `)
-
-    listaDocentes.innerHTML = filas.join("")
+        `;
+    }
 }
 
 function eliminarDocente(id) {
-    // Recupera los datos, filter genera una lista sin el docente indicado y la persiste.
     const docentes = obtenerDocentes()
-    const docentesActualizados = docentes.filter(docente => docente.id !== id)
-    guardarDatos("docentes", docentesActualizados)
-    mostrarDocentes(docentesActualizados)
-
-    // Si se borra el docente que se estaba editando, hay que limpiar el formulario
+    const docentesActualizados = docentes.filter(
+        docente => docente.id !== id
+    );
+    localStorage.setItem("docentes", JSON.stringify(docentesActualizados))
+    mostraDocentes(docentesActualizados)
     if (docenteEditandoId === id) {
-        vaciarFormulario()
+        formulario.reset()
+        docenteEditandoId = null
+        formulario.querySelector("button").textContent = "Guardar docente"
     }
-
     mostrarMensaje("Docente eliminado correctamente", "mje-exito")
 }
 
-// La delegación de eventos permite manejar botones creados dinámicamente.
 listaDocentes.addEventListener("click", (e) => {
-    const botonEliminar = e.target.closest(".btn-eliminar")
-    if (botonEliminar) {
-        const id = Number(botonEliminar.dataset.id)
+    const boton_el = e.target.closest(".btn-eliminar")
+    if (boton_el) {
+        const id = Number(boton_el.dataset.id)
         const confirmar = confirm("¿Está seguro de eliminar este docente?")
         if (confirmar) {
             eliminarDocente(id)
         }
-        return
     }
-
-    const botonEditar = e.target.closest(".btn-editar")
-    if (botonEditar) {
-        const id = Number(botonEditar.dataset.id)
+    const boton_ed = e.target.closest(".btn-editar")
+    if (boton_ed) {
+        const id = Number(boton_ed.dataset.id)
         editarDocente(id)
     }
 })
 
 function editarDocente(id) {
-    // Busca el docente dentro de la lista recuperada desde localStorage.
     const docentes = obtenerDocentes()
     const docente = docentes.find(docente => docente.id === id)
-
-    if (!docente) {
-        mostrarMensaje("No se encontró el docente", "mje-error")
-        return
-    }
-
-    document.querySelector("#nombre").value = docente.nombre
-    document.querySelector("#especialidad").value = docente.especialidad
-    document.querySelector("#correo").value = docente.correo
-    docenteEditandoId = id
-    formularioDocente.querySelector("button[type='submit']").textContent = "Actualizar docente"
+    document.querySelector("#nombre").value = docente.nombre;
+    document.querySelector("#especialidad").value = docente.especialidad;
+    document.querySelector("#correo").value = docente.correo;
+    docenteEditandoId = id;
+    formulario.querySelector("button").textContent = "Actualizar Docente"
     document.querySelector("#nombre").focus()
 }
 
-// Renderiza los docentes existentes al cargar la página.
-mostrarDocentes(obtenerDocentes())
+const docentes = obtenerDocentes()
+mostraDocentes(docentes)
