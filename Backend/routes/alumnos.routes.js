@@ -1,3 +1,4 @@
+// Importa Express para construir el router y las funciones que resuelven cada operación CRUD.
 const express = require("express")
     // const alumnosController = require("../controllers/alumnos.controller")
 const {
@@ -9,6 +10,7 @@ const {
 } = require("../controllers/alumnos.controller")
 const router = express.Router()
 
+// Cada método y ruta HTTP se delega al controlador correspondiente.
 router.get("/", obtenerAlumnos)
 
 router.get("/:id", obtenerAlumno)
