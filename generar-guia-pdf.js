@@ -1,6 +1,8 @@
+// Importa módulos nativos para crear el archivo y construir rutas portables.
 const fs = require("fs")
 const path = require("path")
 
+// Define la ubicación del PDF y las medidas de una página A4 en puntos.
 const output = path.join(__dirname, "GUIA_SGA.pdf")
 const pageWidth = 595
 const pageHeight = 842
@@ -10,6 +12,7 @@ const fontSize = 10
 const lineHeight = 14
 const maxLines = 51
 
+// Contenido estructurado de la guía; cada tipo se renderiza con un estilo distinto.
 const sections = [
     { type: "title", text: "Guia de estudio - Sistema de Gestion Academica" },
     { type: "subtitle", text: "Proyecto de Programacion IV" },
@@ -96,6 +99,7 @@ const sections = [
     { type: "footer-note", text: "Documento generado a partir del estado actual del proyecto SGA." }
 ]
 
+// Divide un texto en líneas que no superen la cantidad máxima de caracteres.
 function wrap(text, maxChars) {
     const words = text.split(/\s+/)
     const lines = []
@@ -114,10 +118,12 @@ function wrap(text, maxChars) {
     return lines
 }
 
+// Acumula las líneas agrupadas por página antes de crear el documento PDF.
 const pages = []
 let page = []
 let lineCount = 0
 
+// Abre una página nueva cuando las líneas siguientes excederían el límite.
 function ensure(linesNeeded = 1) {
     if (lineCount + linesNeeded > maxLines) {
         pages.push(page)
@@ -126,14 +132,17 @@ function ensure(linesNeeded = 1) {
     }
 }
 
+// Agrega una línea junto con el estilo que usará el renderizador.
 function addLine(text, style = "body") {
     ensure()
     page.push({ text, style })
     lineCount++
 }
 
+// Inserta una línea vacía para separar visualmente las secciones.
 function addBlank() { addLine("", "body") }
 
+// Convierte la definición de secciones en páginas y líneas renderizables.
 for (const section of sections) {
     if (section.type === "title") {
         ensure(4);
@@ -159,10 +168,12 @@ for (const section of sections) {
 }
 if (page.length) pages.push(page)
 
+// Escapa caracteres reservados del formato PDF para imprimirlos literalmente.
 function pdfText(text) {
     return text.replace(/\\/g, "\\\\").replace(/\(/g, "\\(").replace(/\)/g, "\\)")
 }
 
+// Devuelve el comando PDF que establece el color según el estilo.
 function colorFor(style) {
     if (style === "title") return "0.16 0.27 0.36 rg"
     if (style === "subtitle") return "0.35 0.35 0.35 rg"
@@ -172,6 +183,7 @@ function colorFor(style) {
     return "0.12 0.12 0.12 rg"
 }
 
+// Devuelve el tamaño de fuente correspondiente a cada estilo.
 function sizeFor(style) {
     if (style === "title") return 22
     if (style === "subtitle") return 13
@@ -180,13 +192,16 @@ function sizeFor(style) {
     return fontSize
 }
 
+// Guarda los objetos PDF para calcular referencias y posiciones posteriormente.
 const objects = []
 
+// Agrega un objeto y devuelve su número de referencia dentro del documento.
 function addObject(body) { objects.push(body); return objects.length }
 const catalogId = addObject(null)
 const pagesId = addObject(null)
 const fontId = addObject("<< /Type /Font /Subtype /Type1 /BaseFont /Helvetica >>")
 const pageIds = []
+    // Crea un objeto de página y su flujo de comandos de texto por cada página.
 for (const pageLines of pages) {
     let stream = "BT\n"
     let y = pageHeight - margin
@@ -211,6 +226,7 @@ for (let i = 0; i < objects.length; i++) {
     offsets.push(Buffer.byteLength(pdf, "latin1"))
     pdf += `${i + 1} 0 obj\n${objects[i]}\nendobj\n`
 }
+// La tabla xref permite al lector PDF localizar cada objeto del archivo.
 const xref = Buffer.byteLength(pdf, "latin1")
 pdf += `xref\n0 ${objects.length + 1}\n0000000000 65535 f \n`
 for (let i = 1; i < offsets.length; i++) pdf += `${String(offsets[i]).padStart(10, "0")} 00000 n \n`
