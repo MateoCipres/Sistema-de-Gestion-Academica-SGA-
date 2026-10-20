@@ -1,12 +1,9 @@
-// Elementos de la página y estado que identifica si el formulario está creando o editando.
 const formulario = document.querySelector("#formDocente")
 const mensaje = document.querySelector("#mensajeDocente")
 const listaDocentes = document.querySelector("#listaDocentes")
 let docenteEditandoId = null
 
-// El formulario valida y guarda docentes localmente; no realiza solicitudes al backend.
-formulario.addEventListener("submit", function(event) {
-    // Evita que el navegador recargue la página al enviar el formulario.
+formulario.addEventListener("submit", function (event) {
     event.preventDefault();
 
     const nombre = document.querySelector("#nombreDocente").value.trim()
@@ -28,7 +25,6 @@ formulario.addEventListener("submit", function(event) {
         return
     }
 
-    // Se modifica una copia recuperada de localStorage y luego se persiste la lista completa.
     const docentes = obtenerDocentes()
 
     if (docenteEditandoId === null) {
@@ -50,20 +46,18 @@ formulario.addEventListener("submit", function(event) {
 
         mostrarMensaje("Docente actualizado correctamente", "mje-exito")
     }
-    // La utilidad compartida serializa los datos y los guarda con la clave "docentes".
+    // localStorage.setItem("docentes", JSON.stringify(docentes))
     guardarDatos("docentes", docentes)
     mostraDocentes(docentes)
     formulario.reset()
 });
 
 
-// Usa la utilidad compartida para leer la lista persistida en el navegador.
 function obtenerDocentes() {
-    return obtenerDatos("docentes")
+  return obtenerDatos("docentes")
 }
 
 
-// Vacía y vuelve a construir las filas para que la tabla represente la lista actual.
 function mostraDocentes(docentes) {
     listaDocentes.innerHTML = ""
     for (const docente of docentes) {
@@ -91,8 +85,6 @@ function mostraDocentes(docentes) {
         `;
     }
 }
-
-// Elimina el docente indicado creando una lista filtrada y guardándola en localStorage.
 function eliminarDocente(id) {
     const docentes = obtenerDocentes()
     const docentesActualizados = docentes.filter(
@@ -100,7 +92,7 @@ function eliminarDocente(id) {
     );
     localStorage.setItem("docentes", JSON.stringify(docentesActualizados))
     mostraDocentes(docentesActualizados)
-    if (docenteEditandoId === id) {
+    if (docenteEditandoId === id){
         formulario.reset()
         docenteEditandoId = null
         formulario.querySelector("button").textContent = "Guardar docente"
@@ -108,14 +100,13 @@ function eliminarDocente(id) {
     mostrarMensaje("Docente eliminado correctamente", "mje-exito")
 }
 
-// La delegación de eventos permite manejar los botones de cada fila desde un solo listener.
 listaDocentes.addEventListener("click", (e) => {
     const boton_el = e.target.closest(".btn-eliminar")
     if (boton_el) {
         const id = Number(boton_el.dataset.id)
         const confirmar = confirm("¿Está seguro de eliminar este docente?")
         if (confirmar) {
-            eliminarDocente(id)
+        eliminarDocente(id)
         }
     }
     const boton_ed = e.target.closest(".btn-editar")
@@ -125,7 +116,6 @@ listaDocentes.addEventListener("click", (e) => {
     }
 })
 
-// Busca el registro seleccionado y completa el formulario para editarlo.
 function editarDocente(id) {
     const docentes = obtenerDocentes()
     const docente = docentes.find(docente => docente.id === id)
@@ -137,6 +127,5 @@ function editarDocente(id) {
     document.querySelector("#nombre").focus()
 }
 
-// Render inicial: muestra los datos persistidos apenas se carga el script.
 const docentes = obtenerDocentes()
-mostraDocentes(docentes)
+mostraDocentes(docentes)  

@@ -1,12 +1,9 @@
-### Recupera la colección completa para comprobar el endpoint GET de alumnos.
 GET http://localhost:3000/alumnos
 
 ###
-### Busca un alumno específico usando su legajo como parámetro de ruta.
 GET http://localhost:3000/alumnos/1002
 
 ###
-### Crea un alumno; el cuerpo JSON debe incluir los campos requeridos por el controlador.
 POST http://localhost:3000/alumnos
 Content-Type: application/json
 
@@ -17,7 +14,6 @@ Content-Type: application/json
     "correo": "ramon@mail.com"
 }
 ###
-### Actualiza nombre, carrera y correo del legajo indicado.
 PUT http://localhost:3000/alumnos/1002
 Content-Type: application/json
 
@@ -28,11 +24,9 @@ Content-Type: application/json
 }
 
 ###
-### Elimina el alumno cuyo legajo aparece al final de la URL.
 DELETE http://localhost:3000/alumnos/1021
 
 ###
-### Ejemplo adicional de POST; sirve para contrastar qué campos exige la API.
 POST http://localhost:3000/alumnos
 Content-Type: application/json
 
