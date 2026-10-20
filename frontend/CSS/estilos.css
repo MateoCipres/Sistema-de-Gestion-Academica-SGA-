@@ -1,11 +1,6 @@
-/* Incluye bordes y relleno en el ancho total calculado de cada elemento. */
-
 * {
     box-sizing: border-box;
 }
-
-
-/* Estilos generales del documento y del texto que no tenga una regla más específica. */
 
 body {
     font-family: Arial, Helvetica, sans-serif;
@@ -14,15 +9,9 @@ body {
     color: #333;
 }
 
-
-/* Barra superior y enlaces de navegación compartidos por las páginas. */
-
 header {
     background-color: #1f2937;
 }
-
-
-/* Centra y distribuye los enlaces dentro de la barra de navegación. */
 
 nav {
     max-width: 1100px;
@@ -47,9 +36,6 @@ nav a.activo {
     background-color: #4b5563;
 }
 
-
-/* Área principal con ancho máximo y separación respecto del encabezado. */
-
 main {
     max-width: 1100px;
     margin: 40px auto;
@@ -64,9 +50,6 @@ h2 {
     margin-top: 0;
 }
 
-
-/* Contenedor, distribución y apariencia de los formularios de alta y edición. */
-
 .formulario-container {
     background-color: white;
     padding: 25px;
@@ -74,9 +57,6 @@ h2 {
     margin-bottom: 30px;
     box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
 }
-
-
-/* Presenta cada etiqueta e input como un campo verticalmente agrupado. */
 
 form {
     display: grid;
@@ -88,9 +68,6 @@ form {
     flex-direction: column;
     gap: 6px;
 }
-
-
-/* Apariencia uniforme de etiquetas e inputs; :focus distingue el campo activo. */
 
 .campo label {
     font-weight: bold;
@@ -109,9 +86,6 @@ form {
     box-shadow: 0 0 0 2px rgba(37, 99, 0235, 0.15);
 }
 
-
-/* Estilo común de botones y cambio visual al pasar el cursor. */
-
 button {
     padding: 11px 18px;
     border: none;
@@ -126,9 +100,6 @@ button:hover {
     background-color: #1d4ed8;
 }
 
-
-/* Panel y estructura de la tabla donde se muestran los registros. */
-
 .lista-container {
     background-color: white;
     padding: 25px;
@@ -141,8 +112,7 @@ table {
     border-collapse: collapse;
 }
 
-th,
-td {
+th, td {
     padding: 12px;
     border-bottom: 1px solid #ddd;
     text-align: left;
@@ -151,9 +121,6 @@ td {
 th {
     background-color: #f0f0f0;
 }
-
-
-/* Avisos flotantes; las clases siguientes distinguen el tipo de resultado. */
 
 .mensaje {
     position: fixed;
@@ -167,7 +134,6 @@ th {
     display: none;
     z-index: 1000;
 }
-
 .mje-error {
     background-color: #f39393;
 }
@@ -180,11 +146,7 @@ th {
     background-color: #f1bd63;
 }
 
-
-/* Botones de edición y eliminación, con colores que diferencian las acciones. */
-
-.btn-editar,
-.btn-eliminar {
+.btn-editar, .btn-eliminar {
     border: none;
     padding: 8px 10px;
     border-radius: 6px;
@@ -192,36 +154,29 @@ th {
     margin: 0 3px;
     font-size: 14px;
 }
-
 .btn-editar {
     background-color: #fef3c7;
     color: #b45309;
 }
-
 .btn-eliminar {
     background-color: #fee2e2;
     color: #dc2626;
 }
-
 .btn-editar:hover {
     background-color: #f59e0b;
     color: white;
 }
-
 .btn-eliminar:hover {
     background-color: #dc2626;
     color: white;
 }
-
-
-/* Presentación del inicio: centra el contenido y distribuye accesos a módulos. */
 
 .inicio {
     text-align: center;
     max-width: 1000px;
 }
 
-.inicio>p {
+.inicio > p {
     margin-bottom: 40px;
 }
 
@@ -230,9 +185,6 @@ th {
     grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
     gap: 25px;
 }
-
-
-/* Cada tarjeta es un enlace o una opción del panel de módulos. */
 
 .tarjeta {
     display: block;
@@ -264,9 +216,6 @@ th {
     color: #666;
 }
 
-
-/* La tarjeta deshabilitada se atenúa y no simula una acción disponible. */
-
 .tarjeta-deshabilitada {
     opacity: 0.5;
     cursor: default;
@@ -276,9 +225,6 @@ th {
     transform: none;
     box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
 }
-
-
-/* Agrupa las acciones del formulario y da un aspecto secundario a Cancelar. */
 
 .acciones-form {
     display: flex;

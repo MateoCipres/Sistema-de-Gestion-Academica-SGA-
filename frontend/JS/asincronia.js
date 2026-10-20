@@ -1,11 +1,9 @@
-// Ejercicio desactivado: muestra que setTimeout agenda una tarea y el resto del código sigue ejecutándose.
 // console.log("Inicio")
 // setTimeout(() => {
 //     console.log("Buscando alumnos...")
 // }, 3000)
 // console.log("Fin")
 
-// Ejercicio desactivado: una función puede recibirse como argumento y ejecutarse como callback.
 // function saludar(){
 //     console.log("Hola")
 // }
@@ -19,7 +17,6 @@
 // }
 // setTimeout(despedirse, 3000)
 
-// Ejercicio desactivado: varios temporizadores pueden finalizar en un orden distinto al que fueron declarados.
 // setTimeout(() => {
 //     console.log("Buscando docentes...")
 // }, 2000);
@@ -39,7 +36,6 @@
 
 // console.log("El usuario puede seguir navegando")
 
-// Ejercicio desactivado: una Promise representa un resultado que estará disponible más adelante.
 // function obtenerAlumnos(){
 //    return new Promise((resolve) => {
 //     setTimeout(() => {
@@ -48,9 +44,9 @@
 //     }, 3000);
 //    })
 // }
-// obtenerAlumnos().then((alumnos) => {
-//     console.log(alumnos)
-// })
+// // obtenerAlumnos().then((alumnos) => {
+// //     console.log(alumnos)
+// // })
 
 // // async function iniciar() {
 // //     const alumnos = await obtenerAlumnos()
@@ -58,7 +54,6 @@
 // // } 
 // // iniciar()
 
-// Ejercicio desactivado: encadena consultas dependientes y captura errores al final con catch.
 // // login(usuario).then((usuario) => {
 // //     return obtenerCursos(usuario.id)
 // // })
@@ -84,7 +79,6 @@
 // //     }
 // // }
 
-// Ejercicio desactivado: la misma Promise puede consumirse con then o con async/await.
 // function obtenerClima() {
 //     return new Promise((resolve) => {
 //         setTimeout(() => {
@@ -106,7 +100,6 @@
 
 // mostrarClima()
 
-// Ejercicio desactivado: ejemplos breves de async/await para esperar resultados simulados.
 // function consultarSaldo() {
 //     return new Promise((resolve) => {
 //     setTimeout(() => {
@@ -152,14 +145,12 @@
 // }
 // mostrarUsuario()
 
-// Ejemplo activo: consulta una API pública y muestra el objeto Response que devuelve fetch.
-async function prueba() {
-    const respuesta = await fetch("https://jsonplaceholder.typicode.com/users")
-    console.log(respuesta)
+async function prueba(){
+const respuesta = await fetch("https://jsonplaceholder.typicode.com/users")
+console.log(respuesta)
 }
 prueba()
 
-// Ejercicio desactivado: datos simulados para practicar una consulta asíncrona sin servidor.
 // Parte inicial de alumnos.js
 
 // const alumnos = [
@@ -180,12 +171,10 @@ prueba()
 //     })
 // }
 
-// Ejercicio desactivado: ideas para obtener diferentes colecciones y mostrarlas con async/await.
 // crear obtenerMaterias()
 // crear obtenerDocentes()
 // mostrar los datos a través de async/await
 
-// Ejercicio desactivado: fetch obtiene datos HTTP y response.json convierte el cuerpo JSON a objetos.
 // async function obtenerAlumnos() {
 //     const respuesta = await fetch("https://jsonplaceholder.typicode.com/users")
 //     const alumnos = await respuesta.json()
