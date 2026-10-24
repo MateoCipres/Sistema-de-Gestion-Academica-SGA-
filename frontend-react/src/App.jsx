@@ -1,6 +1,9 @@
 import { ListaAlumnos } from "./components/ListaAlumnos"
 import { useState } from "react"
 import FormularioA from "./components/FormularioA"
+// import EjemploMUI from "./components/ejemplos/EjemploMUI"
+import { FAQ } from "./components/ejemplos/FAQ"
+import SelectorTema from "./components/SelectorTema"
 
 function App()
 {
@@ -17,16 +20,21 @@ function seleccionarAlumno(alumno) {
 }
 
 return (
-   <main>
+   <>
+    <SelectorTema />
+    <FAQ /> 
+     {/* <EjemploMUI />  */}
    <FormularioA key={alumnoEditar?.legajo ?? "nuevo"}
    onAlumnoCreado={alumnoCreado}
-   alumnoEditar={alumnoEditar}/>
+   alumnoEditar={alumnoEditar}
+   onCancelar={() => setAlumnoEditar(null)}
+   />
    <ListaAlumnos 
    actualizar={actualizar} 
    onAlumnoCreado={alumnoCreado}
-   onEditarAlumno={seleccionarAlumno}
-   />
-   </main>
+   onEditarAlumno={seleccionarAlumno} 
+   /> 
+  </>
   )
 }
 export default App
