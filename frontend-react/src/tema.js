@@ -44,6 +44,31 @@ const tema = createTheme({
                 divider: "#414B56"
             }
         }
+    },
+    shape: {
+        borderRadius: 8
+    },
+    typography: {
+        fontFamily: "system-ui, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif",
+        h4: { fontWeight: 700, letterSpacing: "-0.02em" },
+        h5: { fontWeight: 700, letterSpacing: "-0.01em" },
+        h6: { fontWeight: 700 },
+        button: { textTransform: "none", fontWeight: 600 }
+    },
+    components: {
+        MuiCssBaseline: {
+            styleOverrides: {
+                html: {
+                    scrollBehavior: "smooth",
+                    "@media (prefers-reduced-motion: reduce)": { scrollBehavior: "auto" }
+                }
+            }
+        },
+        MuiButton: {
+            defaultProps: {
+                disableElevation: true
+            }
+        }
     }
 })
 

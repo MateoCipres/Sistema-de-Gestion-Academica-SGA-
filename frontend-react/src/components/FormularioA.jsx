@@ -1,4 +1,15 @@
 import { useState } from "react";
+import Paper from "@mui/material/Paper"
+import Box from "@mui/material/Box"
+import Stack from "@mui/material/Stack"
+import Avatar from "@mui/material/Avatar"
+import Typography from "@mui/material/Typography"
+import TextField from "@mui/material/TextField"
+import Button from "@mui/material/Button"
+import Alert from "@mui/material/Alert"
+import PersonAddAlt1RoundedIcon from "@mui/icons-material/PersonAddAlt1Rounded"
+import EditRoundedIcon from "@mui/icons-material/EditRounded"
+import SaveRoundedIcon from "@mui/icons-material/SaveRounded"
 const API_ALUMNOS = "http://localhost:3000/alumnos"
 
 function FormularioA({ onAlumnoCreado, alumnoEditar, onCancelar }){
@@ -62,61 +73,117 @@ function FormularioA({ onAlumnoCreado, alumnoEditar, onCancelar }){
         onCancelar()
     }
     return(
-        <>
-        <h2>{alumnoEditar ? "Editar alumno" : "Nuevo Alumno"}</h2>
-        <form onSubmit={guardar}>
-            <label htmlFor="legajo">Legajo</label>
-            <input
+        <Paper
+        elevation={0}
+        sx={{
+            p: { xs: 2.5, sm: 3 },
+            border: 1,
+            borderColor: alumnoEditar ? "secondary.main" : "divider",
+            borderRadius: 2,
+            transition: "border-color 0.2s"
+        }}
+        >
+        <Stack direction="row" spacing={1.5} sx={{ alignItems: "center", mb: 3 }}>
+            <Avatar sx={{
+                bgcolor: alumnoEditar ? "secondary.main" : "primary.main",
+                color: alumnoEditar ? "secondary.contrastText" : "primary.contrastText"
+            }}>
+                {alumnoEditar ? <EditRoundedIcon /> : <PersonAddAlt1RoundedIcon />}
+            </Avatar>
+            <Box sx={{ minWidth: 0 }}>
+                <Typography variant="h5" component="h2">
+                    {alumnoEditar ? "Editar alumno" : "Nuevo Alumno"}
+                </Typography>
+                <Typography variant="body2" color="text.secondary">
+                    {alumnoEditar
+                    ? `Modificando el legajo ${alumnoEditar.legajo}`
+                    : "Completá los datos para registrarlo"}
+                </Typography>
+            </Box>
+        </Stack>
+        <Box
+        component="form"
+        onSubmit={guardar}
+        sx={{
+            display: "grid",
+            gap: 2,
+            gridTemplateColumns: { xs: "1fr", sm: "repeat(2, minmax(0, 1fr))", md: "1fr" }
+        }}
+        >
+            <TextField
             id="legajo"
             name="legajo"
+            label="Legajo"
             value={formulario.legajo}
             onChange={manejarCambio}
             required
+            fullWidth
             />
-            <label htmlFor="nombre">Nombre</label>
-            <input
+            <TextField
             id="nombre"
             name="nombre"
+            label="Nombre"
             value={formulario.nombre}
             onChange={manejarCambio}
             required
+            fullWidth
             />
-            <label htmlFor="carrera">Carrera</label>
-            <input
+            <TextField
             id="carrera"
             name="carrera"
+            label="Carrera"
             value={formulario.carrera}
             onChange={manejarCambio}
             required
+            fullWidth
             />
-            <label htmlFor="correo">Correo</label>
-            <input
+            <TextField
             id="correo"
             name="correo"
+            label="Correo"
             value={formulario.correo}
             onChange={manejarCambio}
             required
+            fullWidth
             />
-            <button type="submit" disabled={guardando}>
-                {guardando 
-                ? "Guardando..." 
-                : alumnoEditar 
-                    ? "Guardar cambios"
-                    : "Guardar"}
-            </button>
-            {alumnoEditar && (
-                <button
-                type="button"
-                onClick={cancelar}
+            <Stack
+            direction={{ xs: "column", sm: "row" }}
+            spacing={1.5}
+            sx={{ gridColumn: "1 / -1", justifyContent: "flex-end", mt: 1 }}
+            >
+                <Button
+                type="submit"
+                variant="contained"
+                size="large"
+                startIcon={<SaveRoundedIcon />}
                 disabled={guardando}
                 >
-                    Cancelar
-                </button>
+                    {guardando
+                    ? "Guardando..."
+                    : alumnoEditar
+                        ? "Guardar cambios"
+                        : "Guardar"}
+                </Button>
+                {alumnoEditar && (
+                    <Button
+                    type="button"
+                    variant="outlined"
+                    color="inherit"
+                    size="large"
+                    onClick={cancelar}
+                    disabled={guardando}
+                    >
+                        Cancelar
+                    </Button>
+                )}
+            </Stack>
+            {error && (
+                <Alert severity="error" variant="outlined" sx={{ gridColumn: "1 / -1" }}>
+                    {error}
+                </Alert>
             )}
-            <br />
-            {error && <p role="alert">{error}</p>}
-        </form>
-        </>
+        </Box>
+        </Paper>
     )
 }
 export default FormularioA
