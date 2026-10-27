@@ -16,9 +16,7 @@ function SelectorTema() {
     return (
         <Box sx={{
             display: "flex",
-            justifyContent: "flex-end",
-            mb: 3,
-            width: "100%"
+            alignItems: "center"
         }}>
             <MaterialUISwitch
             checked={modoOscuro}  // El switch está activado si el modo actual es oscuro
