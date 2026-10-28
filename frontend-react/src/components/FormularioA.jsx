@@ -1,15 +1,10 @@
 import { useState } from "react";
-import Paper from "@mui/material/Paper"
-import Box from "@mui/material/Box"
-import Stack from "@mui/material/Stack"
-import Avatar from "@mui/material/Avatar"
-import Typography from "@mui/material/Typography"
-import TextField from "@mui/material/TextField"
-import Button from "@mui/material/Button"
 import Alert from "@mui/material/Alert"
-import PersonAddAlt1RoundedIcon from "@mui/icons-material/PersonAddAlt1Rounded"
-import EditRoundedIcon from "@mui/icons-material/EditRounded"
-import SaveRoundedIcon from "@mui/icons-material/SaveRounded"
+import Box from "@mui/material/Box"
+import Button from "@mui/material/Button"
+import Paper from "@mui/material/Paper"
+import TextField from "@mui/material/TextField"
+import Typography from "@mui/material/Typography"
 const API_ALUMNOS = "http://localhost:3000/alumnos"
 
 function FormularioA({ onAlumnoCreado, alumnoEditar, onCancelar }){
@@ -74,115 +69,99 @@ function FormularioA({ onAlumnoCreado, alumnoEditar, onCancelar }){
     }
     return(
         <Paper
-        elevation={0}
-        sx={{
-            p: { xs: 2.5, sm: 3 },
-            border: 1,
-            borderColor: alumnoEditar ? "secondary.main" : "divider",
-            borderRadius: 2,
-            transition: "border-color 0.2s"
-        }}
+            component="section"
+            elevation={0}
+            sx={{
+                p: { xs: 2.5, sm: 3.5 },
+                mb: 3,
+                border: 1,
+                borderColor: "divider",
+                borderRadius: 4,
+                bgcolor: "background.paper"
+            }}
         >
-        <Stack direction="row" spacing={1.5} sx={{ alignItems: "center", mb: 3 }}>
-            <Avatar sx={{
-                bgcolor: alumnoEditar ? "secondary.main" : "primary.main",
-                color: alumnoEditar ? "secondary.contrastText" : "primary.contrastText"
-            }}>
-                {alumnoEditar ? <EditRoundedIcon /> : <PersonAddAlt1RoundedIcon />}
-            </Avatar>
-            <Box sx={{ minWidth: 0 }}>
-                <Typography variant="h5" component="h2">
-                    {alumnoEditar ? "Editar alumno" : "Nuevo Alumno"}
-                </Typography>
-                <Typography variant="body2" color="text.secondary">
-                    {alumnoEditar
-                    ? `Modificando el legajo ${alumnoEditar.legajo}`
-                    : "Completá los datos para registrarlo"}
-                </Typography>
-            </Box>
-        </Stack>
-        <Box
-        component="form"
-        onSubmit={guardar}
-        sx={{
-            display: "grid",
-            gap: 2,
-            gridTemplateColumns: { xs: "1fr", sm: "repeat(2, minmax(0, 1fr))", md: "1fr" }
-        }}
-        >
-            <TextField
-            id="legajo"
-            name="legajo"
-            label="Legajo"
-            value={formulario.legajo}
-            onChange={manejarCambio}
-            required
-            fullWidth
-            />
-            <TextField
-            id="nombre"
-            name="nombre"
-            label="Nombre"
-            value={formulario.nombre}
-            onChange={manejarCambio}
-            required
-            fullWidth
-            />
-            <TextField
-            id="carrera"
-            name="carrera"
-            label="Carrera"
-            value={formulario.carrera}
-            onChange={manejarCambio}
-            required
-            fullWidth
-            />
-            <TextField
-            id="correo"
-            name="correo"
-            label="Correo"
-            value={formulario.correo}
-            onChange={manejarCambio}
-            required
-            fullWidth
-            />
-            <Stack
-            direction={{ xs: "column", sm: "row" }}
-            spacing={1.5}
-            sx={{ gridColumn: "1 / -1", justifyContent: "flex-end", mt: 1 }}
+            <Typography component="h2" variant="h5" sx={{ mb: 2.5, fontWeight: 700 }}>
+                {alumnoEditar ? "Editar alumno" : "Nuevo Alumno"}
+            </Typography>
+            <Box
+                component="form"
+                onSubmit={guardar}
+                sx={{
+                    display: "grid",
+                    gridTemplateColumns: { xs: "1fr", sm: "repeat(2, minmax(0, 1fr))" },
+                    gap: 2
+                }}
             >
-                <Button
-                type="submit"
-                variant="contained"
-                size="large"
-                startIcon={<SaveRoundedIcon />}
-                disabled={guardando}
+                <TextField
+                    id="legajo"
+                    name="legajo"
+                    label="Legajo"
+                    value={formulario.legajo}
+                    onChange={manejarCambio}
+                    required
+                    fullWidth
+                />
+                <TextField
+                    id="nombre"
+                    name="nombre"
+                    label="Nombre"
+                    value={formulario.nombre}
+                    onChange={manejarCambio}
+                    required
+                    fullWidth
+                />
+                <TextField
+                    id="carrera"
+                    name="carrera"
+                    label="Carrera"
+                    value={formulario.carrera}
+                    onChange={manejarCambio}
+                    required
+                    fullWidth
+                />
+                <TextField
+                    id="correo"
+                    name="correo"
+                    label="Correo"
+                    value={formulario.correo}
+                    onChange={manejarCambio}
+                    required
+                    fullWidth
+                />
+                <Box
+                    sx={{
+                        gridColumn: "1 / -1",
+                        display: "flex",
+                        justifyContent: "flex-end",
+                        flexWrap: "wrap",
+                        gap: 1.5,
+                        mt: 1
+                    }}
                 >
-                    {guardando
-                    ? "Guardando..."
-                    : alumnoEditar
-                        ? "Guardar cambios"
-                        : "Guardar"}
-                </Button>
-                {alumnoEditar && (
-                    <Button
-                    type="button"
-                    variant="outlined"
-                    color="inherit"
-                    size="large"
-                    onClick={cancelar}
-                    disabled={guardando}
-                    >
-                        Cancelar
+                    <Button type="submit" variant="contained" disabled={guardando}>
+                        {guardando
+                            ? "Guardando..."
+                            : alumnoEditar
+                                ? "Guardar cambios"
+                                : "Guardar"}
                     </Button>
+                    {alumnoEditar && (
+                        <Button
+                            type="button"
+                            onClick={cancelar}
+                            disabled={guardando}
+                            variant="outlined"
+                        >
+                            Cancelar
+                        </Button>
+                    )}
+                </Box>
+                {error && (
+                    <Alert severity="error" role="alert" sx={{ gridColumn: "1 / -1" }}>
+                        {error}
+                    </Alert>
                 )}
-            </Stack>
-            {error && (
-                <Alert severity="error" variant="outlined" sx={{ gridColumn: "1 / -1" }}>
-                    {error}
-                </Alert>
-            )}
-        </Box>
+            </Box>
         </Paper>
     )
 }

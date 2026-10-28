@@ -16,13 +16,17 @@ function SelectorTema() {
     return (
         <Box sx={{
             display: "flex",
-            alignItems: "center"
+            justifyContent: "center",
+            alignItems: "center",
+            flexShrink: 0
         }}>
             <MaterialUISwitch
             checked={modoOscuro}  // El switch está activado si el modo actual es oscuro
             onChange={cambiarModo}
-            inputProps={{
-                "aria-label": "Cambiar entre modo claro y oscuro", // Propiedad de accesibilidad para describir la función del switch
+            slotProps={{
+                input: {
+                    "aria-label": "Cambiar entre modo claro y oscuro",
+                },
             }} />
         </Box>
     )
