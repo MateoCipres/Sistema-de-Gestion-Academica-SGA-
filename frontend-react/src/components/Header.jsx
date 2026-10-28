@@ -1,31 +1,24 @@
 import AppBar from "@mui/material/AppBar"
-import Toolbar from "@mui/material/Toolbar"
-import Container from "@mui/material/Container"
 import Box from "@mui/material/Box"
+import Container from "@mui/material/Container"
+import IconButton from "@mui/material/IconButton"
+import Link from "@mui/material/Link"
 import Stack from "@mui/material/Stack"
+import Toolbar from "@mui/material/Toolbar"
 import Typography from "@mui/material/Typography"
-import Button from "@mui/material/Button"
-import PersonAddAlt1RoundedIcon from "@mui/icons-material/PersonAddAlt1Rounded"
-import GroupsRoundedIcon from "@mui/icons-material/GroupsRounded"
 import HelpOutlineRoundedIcon from "@mui/icons-material/HelpOutlineRounded"
-import SelectorTema from "./SelectorTema"
-import logoSGA from "../assets/logo-sga.svg"
+import { Link as RouterLink } from "react-router-dom"
+import SelectorTema from "./SelectorTema";
 
-// Enlaces a las secciones de la página
-const secciones = [
-    { texto: "Nuevo alumno", href: "#formulario", icono: <PersonAddAlt1RoundedIcon /> },
-    { texto: "Alumnos", href: "#alumnos", icono: <GroupsRoundedIcon /> },
-    { texto: "Ayuda", href: "#ayuda", icono: <HelpOutlineRoundedIcon /> }
-]
-
-function Header() {
+export default function Header() {
     return (
         <AppBar
-            position="sticky"
+            component="header"
+            position="static"
+            color="transparent"
             elevation={0}
             sx={{
                 bgcolor: "background.paper",
-                color: "text.primary",
                 borderBottom: 1,
                 borderColor: "divider"
             }}
@@ -34,80 +27,96 @@ function Header() {
                 <Toolbar
                     disableGutters
                     sx={{
+                        minHeight: { xs: 76, sm: 88 },
+                        py: { xs: 1, sm: 1.5 },
+                        gap: { xs: 1.5, sm: 3 },
                         flexWrap: "wrap",
-                        columnGap: 2,
-                        rowGap: 1,
-                        py: 1
+                        justifyContent: "space-between"
                     }}
                 >
-                    <Box
-                        component="a"
-                        href="#"
-                        sx={{
-                            display: "flex",
-                            alignItems: "center",
-                            gap: 1.5,
-                            color: "inherit",
-                            textDecoration: "none"
-                        }}
+                    <Link
+                        component={RouterLink}
+                        to="/"
+                        aria-label="SGA, ir al inicio"
+                        underline="none"
+                        sx={{ display: "inline-flex", alignItems: "center", flexShrink: 0 }}
                     >
-                        <Box
-                            component="img"
-                            src={logoSGA}
-                            alt="Logo SGA"
-                            sx={{ width: { xs: 40, sm: 44 }, height: { xs: 40, sm: 44 }, display: "block" }}
-                        />
-                        <Box>
-                            <Typography variant="h6" component="span" sx={{ display: "block", fontWeight: 800, lineHeight: 1.1 }}>
-                                SGA
-                            </Typography>
-                            <Typography
-                                variant="caption"
-                                color="text.secondary"
-                                sx={{ display: { xs: "none", sm: "block" }, lineHeight: 1.2 }}
-                            >
-                                Sistema de Gestión Académica
-                            </Typography>
-                        </Box>
-                    </Box>
+                        <Stack direction="row" spacing={1.25} sx={{ alignItems: "center" }}>
+                            <Box
+                                component="img"
+                                src="/sga-logo.svg"
+                                alt="Identidad visual de SGA"
+                                sx={{
+                                    display: "block",
+                                    width: { xs: 42, sm: 50 },
+                                    height: { xs: 42, sm: 50 },
+                                    objectFit: "contain"
+                                }}
+                            />
+                            <Box>
+                                <Typography variant="h6" color="text.primary" sx={{ fontWeight: 800, lineHeight: 1.15 }}>
+                                    SGA
+                                </Typography>
+                                <Typography variant="caption" color="text.secondary">
+                                    Gestión Académica
+                                </Typography>
+                            </Box>
+                        </Stack>
+                    </Link>
 
                     <Stack
                         component="nav"
-                        aria-label="Secciones"
+                        aria-label="Navegación principal"
                         direction="row"
-                        spacing={0.5}
                         sx={{
-                            order: { xs: 3, md: 0 },
-                            width: { xs: "100%", md: "auto" },
-                            mx: { md: "auto" },
-                            justifyContent: { xs: "space-between", sm: "flex-start", md: "center" }
+                            alignItems: "center",
+                            justifyContent: "flex-end",
+                            gap: { xs: 0.5, sm: 1.5 },
+                            flexWrap: "wrap",
+                            flex: { xs: "1 1 100%", sm: "0 1 auto" },
+                            order: { xs: 2, sm: 0 }
                         }}
                     >
-                        {secciones.map(seccion => (
-                            <Button
-                                key={seccion.href}
-                                href={seccion.href}
-                                color="inherit"
-                                size="small"
-                                startIcon={seccion.icono}
-                                sx={{
-                                    color: "text.secondary",
-                                    px: 1.5,
-                                    "&:hover": { color: "primary.main", bgcolor: "action.hover" }
-                                }}
-                            >
-                                {seccion.texto}
-                            </Button>
-                        ))}
-                    </Stack>
-
-                    <Box sx={{ ml: { xs: "auto", md: 0 } }}>
+                        <Link
+                            component={RouterLink}
+                            to="/"
+                            color="text.primary"
+                            underline="none"
+                            sx={{ px: { xs: 1, sm: 1.5 }, py: 1, borderRadius: 2, "&:hover": { bgcolor: "action.hover" } }}
+                        >
+                            Inicio
+                        </Link>
+                        <Link
+                            component={RouterLink}
+                            to="/alumnos"
+                            color="text.primary"
+                            underline="none"
+                            sx={{ px: { xs: 1, sm: 1.5 }, py: 1, borderRadius: 2, "&:hover": { bgcolor: "action.hover" } }}
+                        >
+                            Alumnos
+                        </Link>
+                        <Link
+                            component={RouterLink}
+                            to="/docentes"
+                            color="text.primary"
+                            underline="none"
+                            sx={{ px: { xs: 1, sm: 1.5 }, py: 1, borderRadius: 2, "&:hover": { bgcolor: "action.hover" } }}
+                        >
+                            Docentes
+                        </Link>
+                        <IconButton
+                            component={RouterLink}
+                            to="/ayuda"
+                            aria-label="Ayuda"
+                            color="primary"
+                            sx={{ mx: 0.25 }}
+                        >
+                            <HelpOutlineRoundedIcon />
+                        </IconButton>
                         <SelectorTema />
-                    </Box>
+                    </Stack>
                 </Toolbar>
             </Container>
         </AppBar>
     )
 }
-
-export default Header
