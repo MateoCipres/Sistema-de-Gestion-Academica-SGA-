@@ -1,0 +1,218 @@
+# 1. Consultar colección vacía (esperado: 200 y [])
+GET http://localhost:3000/materias
+
+###
+# 2a. Registrar varias: PRG1 (esperado: 201)
+POST http://localhost:3000/materias
+Content-Type: application/json
+
+{
+    "codigo": "PRG1",
+    "nombre": "Programación I",
+    "descripcion": "Fundamentos de algoritmos y programación estructurada",
+    "cargaHoraria": 96,
+    "estado": "activa"
+}
+
+###
+# 2b. Registrar varias: PRG4 (esperado: 201)
+POST http://localhost:3000/materias
+Content-Type: application/json
+
+{
+    "codigo": "PRG4",
+    "nombre": "Programación IV",
+    "descripcion": "Desarrollo web con Node.js, Express, MongoDB y React",
+    "cargaHoraria": 128,
+    "estado": "activa"
+}
+
+###
+# 2c. Registrar varias: BD1 (esperado: 201)
+POST http://localhost:3000/materias
+Content-Type: application/json
+
+{
+    "codigo": "BD1",
+    "nombre": "Bases de Datos I",
+    "descripcion": "Modelo relacional y SQL",
+    "cargaHoraria": 64,
+    "estado": "inactiva"
+}
+
+###
+# 3. Consultar por código (esperado: 200)
+GET http://localhost:3000/materias/PRG4
+
+###
+# 4. Consultar código inexistente (esperado: 404)
+GET http://localhost:3000/materias/XYZ9
+
+###
+# 5. Alta válida (esperado: 201)
+POST http://localhost:3000/materias
+Content-Type: application/json
+
+{
+    "codigo": "LAB1",
+    "nombre": "Laboratorio I",
+    "descripcion": "Prácticas de programación",
+    "cargaHoraria": 64,
+    "estado": "activa"
+}
+
+###
+# 6. Alta sin código (esperado: 400)
+POST http://localhost:3000/materias
+Content-Type: application/json
+
+{
+    "nombre": "Sistemas Operativos",
+    "cargaHoraria": 64,
+    "estado": "activa"
+}
+
+###
+# 7. Alta sin nombre (esperado: 400)
+POST http://localhost:3000/materias
+Content-Type: application/json
+
+{
+    "codigo": "SO1",
+    "cargaHoraria": 64,
+    "estado": "activa"
+}
+
+###
+# 8. Alta sin carga horaria (esperado: 400)
+POST http://localhost:3000/materias
+Content-Type: application/json
+
+{
+    "codigo": "SO1",
+    "nombre": "Sistemas Operativos",
+    "estado": "activa"
+}
+
+###
+# 9a. Alta con carga horaria 0 (esperado: 400)
+POST http://localhost:3000/materias
+Content-Type: application/json
+
+{
+    "codigo": "SO1",
+    "nombre": "Sistemas Operativos",
+    "cargaHoraria": 0,
+    "estado": "activa"
+}
+
+###
+# 9b. Alta con carga horaria negativa (esperado: 400)
+POST http://localhost:3000/materias
+Content-Type: application/json
+
+{
+    "codigo": "SO1",
+    "nombre": "Sistemas Operativos",
+    "cargaHoraria": -32,
+    "estado": "activa"
+}
+
+###
+# 9c. Alta con carga horaria decimal (esperado: 400)
+POST http://localhost:3000/materias
+Content-Type: application/json
+
+{
+    "codigo": "SO1",
+    "nombre": "Sistemas Operativos",
+    "cargaHoraria": 64.5,
+    "estado": "activa"
+}
+
+###
+# 10. Alta con código duplicado (esperado: 409)
+POST http://localhost:3000/materias
+Content-Type: application/json
+
+{
+    "codigo": "PRG1",
+    "nombre": "Programación I bis",
+    "cargaHoraria": 96,
+    "estado": "activa"
+}
+
+###
+# 11. Alta con estado no permitido (esperado: 400)
+POST http://localhost:3000/materias
+Content-Type: application/json
+
+{
+    "codigo": "SO1",
+    "nombre": "Sistemas Operativos",
+    "cargaHoraria": 64,
+    "estado": "suspendida"
+}
+
+###
+# 12. Modificar nombre y descripción (esperado: 200)
+PUT http://localhost:3000/materias/LAB1
+Content-Type: application/json
+
+{
+    "codigo": "LAB1",
+    "nombre": "Laboratorio de Programación I",
+    "descripcion": "Prácticas guiadas de programación",
+    "cargaHoraria": 64,
+    "estado": "activa"
+}
+
+###
+# 13. Modificar carga horaria y estado (esperado: 200)
+PUT http://localhost:3000/materias/LAB1
+Content-Type: application/json
+
+{
+    "codigo": "LAB1",
+    "nombre": "Laboratorio de Programación I",
+    "descripcion": "Prácticas guiadas de programación",
+    "cargaHoraria": 96,
+    "estado": "inactiva"
+}
+
+###
+# 14. Modificar materia inexistente (esperado: 404)
+PUT http://localhost:3000/materias/XYZ9
+Content-Type: application/json
+
+{
+    "codigo": "XYZ9",
+    "nombre": "Materia inexistente",
+    "cargaHoraria": 64,
+    "estado": "activa"
+}
+
+###
+# 15. Cambiar el código al de otra materia (esperado: 409)
+PUT http://localhost:3000/materias/LAB1
+Content-Type: application/json
+
+{
+    "codigo": "PRG4",
+    "nombre": "Laboratorio de Programación I",
+    "descripcion": "Prácticas guiadas de programación",
+    "cargaHoraria": 96,
+    "estado": "inactiva"
+}
+
+###
+# 16a. Eliminar materia existente (esperado: 200)
+DELETE http://localhost:3000/materias/LAB1
+
+###
+# 16b. Volver a consultar la materia eliminada (esperado: 404)
+GET http://localhost:3000/materias/LAB1
+
+###
+# 17. Eliminar materia inexistente (esperado: 404)
+DELETE http://localhost:3000/materias/XYZ9
