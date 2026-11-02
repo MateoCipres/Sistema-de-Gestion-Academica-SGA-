@@ -1,11 +1,4 @@
-import AppBar from "@mui/material/AppBar"
-import Box from "@mui/material/Box"
-import Container from "@mui/material/Container"
-import IconButton from "@mui/material/IconButton"
-import Link from "@mui/material/Link"
-import Stack from "@mui/material/Stack"
-import Toolbar from "@mui/material/Toolbar"
-import Typography from "@mui/material/Typography"
+import { AppBar, Box, Container, IconButton, Link, Stack, Toolbar, Typography } from "@mui/material"
 import HelpOutlineRoundedIcon from "@mui/icons-material/HelpOutlineRounded"
 import { Link as RouterLink } from "react-router-dom"
 import SelectorTema from "./SelectorTema";
@@ -103,15 +96,6 @@ export default function Header() {
                             sx={{ px: { xs: 1, sm: 1.5 }, py: 1, borderRadius: 2, "&:hover": { bgcolor: "action.hover" } }}
                         >
                             Docentes
-                        </Link>
-                        <Link
-                            component={RouterLink}
-                            to="/materias"
-                            color="text.primary"
-                            underline="none"
-                            sx={{ px: { xs: 1, sm: 1.5 }, py: 1, borderRadius: 2, "&:hover": { bgcolor: "action.hover" } }}
-                        >
-                            Materias
                         </Link>
                         <IconButton
                             component={RouterLink}
