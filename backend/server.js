@@ -7,14 +7,17 @@ const conectarDB = require("./config/database")
 const alumnosRoutes = require("./routes/alumnos.routes") 
 const docentesRoutes = require("./routes/docentes.routes")
 const materiasRoutes = require("./routes/materias.routes")
+const authRoutes = require("./routes/authRoutes")
 
 const app = express() 
+
 
 app.use(express.json()) 
 app.use(cors()) 
 app.use("/alumnos", alumnosRoutes) 
 app.use("/docentes", docentesRoutes)
 app.use("/materias", materiasRoutes)
+app.use("/auth", authRoutes)
 
 const PORT = process.env.PORT 
 
