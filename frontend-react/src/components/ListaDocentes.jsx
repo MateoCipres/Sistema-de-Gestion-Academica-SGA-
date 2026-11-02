@@ -1,11 +1,6 @@
 import { useEffect, useState } from "react"
-import Alert from "@mui/material/Alert"
-import Box from "@mui/material/Box"
-import Button from "@mui/material/Button"
-import Chip from "@mui/material/Chip"
-import Paper from "@mui/material/Paper"
-import Stack from "@mui/material/Stack"
-import Typography from "@mui/material/Typography"
+import { Alert, Box, Button, Chip, Paper, Stack, Typography } from "@mui/material"
+
 const API_DOCENTES = "http://localhost:3000/docentes"
 
 export function ListaDocentes({ actualizar, onDocenteCreado, onEditarDocente }) {
