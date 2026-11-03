@@ -49,3 +49,12 @@ Content-Type: application/json
     "especialidad": "Programación",
     "correo": "rocio@mail.com"
 }
+
+###
+POST http://localhost:3000/auth/login
+Content-Type: application/json
+
+{
+    "email": "admin@sga.com",
+    "password": "ClaveDePrueba123!"
+}
