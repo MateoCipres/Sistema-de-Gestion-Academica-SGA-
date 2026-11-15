@@ -8,47 +8,7 @@ import TextField from "@mui/material/TextField"
 import Typography from "@mui/material/Typography"
 const API_MATERIAS = "http://localhost:3000/materias"
 
-const FORMULARIO_VACIO = {
-    codigo: "",
-    nombre: "",
-    descripcion: "",
-    cargaHoraria: "",
-    estado: "activa"
-}
-
-function validar(formulario) {
-    const codigo = formulario.codigo.trim()
-    const nombre = formulario.nombre.trim()
-    const cargaHoraria = Number(formulario.cargaHoraria)
-
-    if (codigo === "") {
-        return "El código es obligatorio"
-    }
-    if (!/^[A-Za-z0-9]+$/.test(codigo) || codigo.length > 10) {
-        return "El código debe tener hasta 10 letras o números, sin espacios ni símbolos"
-    }
-    if (nombre === "") {
-        return "El nombre es obligatorio"
-    }
-    if (nombre.length < 3 || nombre.length > 100) {
-        return "El nombre debe tener entre 3 y 100 caracteres"
-    }
-    if (formulario.descripcion.trim().length > 500) {
-        return "La descripción no puede superar los 500 caracteres"
-    }
-    if (String(formulario.cargaHoraria).trim() === "") {
-        return "La carga horaria es obligatoria"
-    }
-    if (!Number.isInteger(cargaHoraria) || cargaHoraria <= 0) {
-        return "La carga horaria debe ser un número entero mayor que cero"
-    }
-    if (!["activa", "inactiva"].includes(formulario.estado)) {
-        return "El estado debe ser activa o inactiva"
-    }
-    return ""
-}
-
-function FormularioMateria({ onMateriaCreada, materiaEditar, onCancelar, onLimpiarMensaje }){
+function FormularioMateria({ onMateriaCreada, materiaEditar, onCancelar }){
     const [formulario, setFormulario] = useState({
         codigo: materiaEditar?.codigo ?? "",
         nombre: materiaEditar?.nombre ?? "",
@@ -71,23 +31,20 @@ function FormularioMateria({ onMateriaCreada, materiaEditar, onCancelar, onLimpi
     async function guardar(e) {
         e.preventDefault()
         setError("")
-        onLimpiarMensaje()
-
-        const errorValidacion = validar(formulario)
-        if (errorValidacion) {
-            setError(errorValidacion)
-            return
-        }
         setGuardando(true)
 
-    const materia = {
-        codigo: formulario.codigo.trim(),
-        nombre: formulario.nombre.trim(),
-        descripcion: formulario.descripcion.trim(),
-        cargaHoraria: Number(formulario.cargaHoraria),
-        estado: formulario.estado
-    }
     const editando = Boolean(materiaEditar)
+    const materia = editando
+                ? {
+                    nombre: formulario.nombre,
+                    descripcion: formulario.descripcion,
+                    cargaHoraria: Number(formulario.cargaHoraria),
+                    estado: formulario.estado
+                }
+                : {
+                    ...formulario,
+                    cargaHoraria: Number(formulario.cargaHoraria)
+                }
     const url = editando
                 ? `${API_MATERIAS}/${materiaEditar.codigo}`
                 : API_MATERIAS
@@ -97,23 +54,22 @@ function FormularioMateria({ onMateriaCreada, materiaEditar, onCancelar, onLimpi
                 headers: {"Content-Type":"application/json"},
                 body: JSON.stringify(materia)
             })
-            const datos = await respuesta.json().catch(() => ({}))
 
             if (!respuesta.ok) {
-                throw new Error(datos.mensaje || `No se pudo guardar la materia. Estado HTTP: ${respuesta.status}`)
+                throw new Error(`No se pudo guardar la materia. Estado HTTP: ${respuesta.status}`)
             }
 
-            if (!editando) {
-                setFormulario(FORMULARIO_VACIO)
-            }
-            onMateriaCreada(editando
-                ? "Materia modificada correctamente"
-                : "Materia registrada correctamente")
+            setFormulario({
+                codigo: "",
+                nombre: "",
+                descripcion: "",
+                cargaHoraria: "",
+                estado: "activa"
+            })
+            onMateriaCreada()
         } catch (error) {
             console.error("Error al guardar:", error)
-            setError(error instanceof TypeError
-                ? "No se pudo conectar con el servidor"
-                : error.message)
+            setError(error.message || "No se pudo conectar con el servidor")
         } finally {
             setGuardando(false)
         }
@@ -140,7 +96,6 @@ function FormularioMateria({ onMateriaCreada, materiaEditar, onCancelar, onLimpi
             <Box
                 component="form"
                 onSubmit={guardar}
-                noValidate
                 sx={{
                     display: "grid",
                     gridTemplateColumns: { xs: "1fr", sm: "repeat(2, minmax(0, 1fr))" },
@@ -154,6 +109,7 @@ function FormularioMateria({ onMateriaCreada, materiaEditar, onCancelar, onLimpi
                     value={formulario.codigo}
                     onChange={manejarCambio}
                     helperText="Ej.: PRG4"
+                    disabled={Boolean(materiaEditar)}
                     required
                     fullWidth
                 />
@@ -173,7 +129,7 @@ function FormularioMateria({ onMateriaCreada, materiaEditar, onCancelar, onLimpi
                     type="number"
                     value={formulario.cargaHoraria}
                     onChange={manejarCambio}
-                    helperText="Horas totales, número entero"
+                    helperText="Horas totales"
                     required
                     fullWidth
                 />

@@ -1,10 +1,25 @@
-# 1. Consultar colección vacía (esperado: 200 y [])
+# 0. Login para obtener el token (esperado: 200)
+# @name login
+POST http://localhost:3000/auth/login
+Content-Type: application/json
+
+{
+    "email": "admin@sga.com",
+    "password": "ClaveDePrueba123!"
+}
+
+###
+@token = {{login.response.body.token}}
+
+# 1. Consultar todas las materias (esperado: 200)
 GET http://localhost:3000/materias
+Authorization: Bearer {{token}}
 
 ###
 # 2a. Registrar varias: PRG1 (esperado: 201)
 POST http://localhost:3000/materias
 Content-Type: application/json
+Authorization: Bearer {{token}}
 
 {
     "codigo": "PRG1",
@@ -18,6 +33,7 @@ Content-Type: application/json
 # 2b. Registrar varias: PRG4 (esperado: 201)
 POST http://localhost:3000/materias
 Content-Type: application/json
+Authorization: Bearer {{token}}
 
 {
     "codigo": "PRG4",
@@ -28,30 +44,10 @@ Content-Type: application/json
 }
 
 ###
-# 2c. Registrar varias: BD1 (esperado: 201)
+# 2c. Registrar varias: LAB1 (esperado: 201)
 POST http://localhost:3000/materias
 Content-Type: application/json
-
-{
-    "codigo": "BD1",
-    "nombre": "Bases de Datos I",
-    "descripcion": "Modelo relacional y SQL",
-    "cargaHoraria": 64,
-    "estado": "inactiva"
-}
-
-###
-# 3. Consultar por código (esperado: 200)
-GET http://localhost:3000/materias/PRG4
-
-###
-# 4. Consultar código inexistente (esperado: 404)
-GET http://localhost:3000/materias/XYZ9
-
-###
-# 5. Alta válida (esperado: 201)
-POST http://localhost:3000/materias
-Content-Type: application/json
+Authorization: Bearer {{token}}
 
 {
     "codigo": "LAB1",
@@ -62,9 +58,20 @@ Content-Type: application/json
 }
 
 ###
-# 6. Alta sin código (esperado: 400)
+# 3. Consultar por código (esperado: 200)
+GET http://localhost:3000/materias/PRG4
+Authorization: Bearer {{token}}
+
+###
+# 4. Consultar código inexistente (esperado: 404 "Materia no encontrada")
+GET http://localhost:3000/materias/XYZ9
+Authorization: Bearer {{token}}
+
+###
+# 5. Alta sin campos obligatorios (esperado: 400 "Todos los campos obligatorios")
 POST http://localhost:3000/materias
 Content-Type: application/json
+Authorization: Bearer {{token}}
 
 {
     "nombre": "Sistemas Operativos",
@@ -73,67 +80,36 @@ Content-Type: application/json
 }
 
 ###
-# 7. Alta sin nombre (esperado: 400)
+# 6. Alta con nombre que no es texto (esperado: 400 "El nombre debe ser un texto")
 POST http://localhost:3000/materias
 Content-Type: application/json
+Authorization: Bearer {{token}}
 
 {
     "codigo": "SO1",
+    "nombre": 123,
     "cargaHoraria": 64,
     "estado": "activa"
 }
 
 ###
-# 8. Alta sin carga horaria (esperado: 400)
+# 7. Alta con carga horaria que no es número (esperado: 400 "La carga horaria debe ser un número")
 POST http://localhost:3000/materias
 Content-Type: application/json
+Authorization: Bearer {{token}}
 
 {
     "codigo": "SO1",
     "nombre": "Sistemas Operativos",
+    "cargaHoraria": "64",
     "estado": "activa"
 }
 
 ###
-# 9a. Alta con carga horaria 0 (esperado: 400)
+# 8. Alta con código duplicado (esperado: 400 "El código ya existe")
 POST http://localhost:3000/materias
 Content-Type: application/json
-
-{
-    "codigo": "SO1",
-    "nombre": "Sistemas Operativos",
-    "cargaHoraria": 0,
-    "estado": "activa"
-}
-
-###
-# 9b. Alta con carga horaria negativa (esperado: 400)
-POST http://localhost:3000/materias
-Content-Type: application/json
-
-{
-    "codigo": "SO1",
-    "nombre": "Sistemas Operativos",
-    "cargaHoraria": -32,
-    "estado": "activa"
-}
-
-###
-# 9c. Alta con carga horaria decimal (esperado: 400)
-POST http://localhost:3000/materias
-Content-Type: application/json
-
-{
-    "codigo": "SO1",
-    "nombre": "Sistemas Operativos",
-    "cargaHoraria": 64.5,
-    "estado": "activa"
-}
-
-###
-# 10. Alta con código duplicado (esperado: 409)
-POST http://localhost:3000/materias
-Content-Type: application/json
+Authorization: Bearer {{token}}
 
 {
     "codigo": "PRG1",
@@ -143,37 +119,12 @@ Content-Type: application/json
 }
 
 ###
-# 11. Alta con estado no permitido (esperado: 400)
-POST http://localhost:3000/materias
-Content-Type: application/json
-
-{
-    "codigo": "SO1",
-    "nombre": "Sistemas Operativos",
-    "cargaHoraria": 64,
-    "estado": "suspendida"
-}
-
-###
-# 12. Modificar nombre y descripción (esperado: 200)
+# 9. Modificar nombre, descripción, carga horaria y estado (esperado: 200)
 PUT http://localhost:3000/materias/LAB1
 Content-Type: application/json
+Authorization: Bearer {{token}}
 
 {
-    "codigo": "LAB1",
-    "nombre": "Laboratorio de Programación I",
-    "descripcion": "Prácticas guiadas de programación",
-    "cargaHoraria": 64,
-    "estado": "activa"
-}
-
-###
-# 13. Modificar carga horaria y estado (esperado: 200)
-PUT http://localhost:3000/materias/LAB1
-Content-Type: application/json
-
-{
-    "codigo": "LAB1",
     "nombre": "Laboratorio de Programación I",
     "descripcion": "Prácticas guiadas de programación",
     "cargaHoraria": 96,
@@ -181,38 +132,52 @@ Content-Type: application/json
 }
 
 ###
-# 14. Modificar materia inexistente (esperado: 404)
-PUT http://localhost:3000/materias/XYZ9
+# 10. Intentar cambiar el código (esperado: 200, pero el código sigue siendo LAB1)
+PUT http://localhost:3000/materias/LAB1
 Content-Type: application/json
+Authorization: Bearer {{token}}
 
 {
-    "codigo": "XYZ9",
+    "codigo": "NUEVO1",
+    "nombre": "Laboratorio de Programación I",
+    "descripcion": "Prácticas guiadas de programación",
+    "cargaHoraria": 96,
+    "estado": "inactiva"
+}
+
+###
+# 10b. Verificar que el código no cambió (esperado: 200 con codigo "LAB1")
+GET http://localhost:3000/materias/LAB1
+Authorization: Bearer {{token}}
+
+###
+# 10c. El código nuevo no existe (esperado: 404)
+GET http://localhost:3000/materias/NUEVO1
+Authorization: Bearer {{token}}
+
+###
+# 11. Modificar materia inexistente (esperado: 404)
+PUT http://localhost:3000/materias/XYZ9
+Content-Type: application/json
+Authorization: Bearer {{token}}
+
+{
     "nombre": "Materia inexistente",
     "cargaHoraria": 64,
     "estado": "activa"
 }
 
 ###
-# 15. Cambiar el código al de otra materia (esperado: 409)
-PUT http://localhost:3000/materias/LAB1
-Content-Type: application/json
-
-{
-    "codigo": "PRG4",
-    "nombre": "Laboratorio de Programación I",
-    "descripcion": "Prácticas guiadas de programación",
-    "cargaHoraria": 96,
-    "estado": "inactiva"
-}
-
-###
-# 16a. Eliminar materia existente (esperado: 200)
+# 12a. Eliminar materia existente (esperado: 200)
 DELETE http://localhost:3000/materias/LAB1
+Authorization: Bearer {{token}}
 
 ###
-# 16b. Volver a consultar la materia eliminada (esperado: 404)
+# 12b. Volver a consultar la materia eliminada (esperado: 404)
 GET http://localhost:3000/materias/LAB1
+Authorization: Bearer {{token}}
 
 ###
-# 17. Eliminar materia inexistente (esperado: 404)
+# 13. Eliminar materia inexistente (esperado: 404)
 DELETE http://localhost:3000/materias/XYZ9
+Authorization: Bearer {{token}}

@@ -13,25 +13,22 @@ export function ListaMaterias({ actualizar, onMateriaCreada, onEditarMateria }) 
     const [cargando, setCargando] = useState(true)
     const [error, setError] = useState("")
 
-    async function eliminarMateria(materia){
-        const confirmar = window.confirm(`¿Seguro que querés eliminar la materia ${materia.codigo} - ${materia.nombre}?`)
+    async function eliminarMateria(codigo){
+        const confirmar = window.confirm("¿Seguro que querés eliminar esta materia?")
         if (!confirmar) {
             return
         }
         try {
-            const respuesta = await fetch(`${API_MATERIAS}/${materia.codigo}`,
+            const respuesta = await fetch(`${API_MATERIAS}/${codigo}`,
                 { method: "DELETE" }
             )
-            const datos = await respuesta.json().catch(() => ({}))
             if (!respuesta.ok) {
-                throw new Error(datos.mensaje || `No se pudo eliminar. Estado HTTP: ${respuesta.status}`)
+                throw new Error(`No se pudo eliminar. Estado HTTP: ${respuesta.status}`)
             }
-            onMateriaCreada(datos.mensaje || "Materia eliminada correctamente")
+            onMateriaCreada()
         } catch (error) {
             console.error("Error al eliminar: ", error)
-            alert(error instanceof TypeError
-                ? "No se pudo conectar con el servidor"
-                : error.message)
+            alert(error.message || "No se pudo eliminar la materia")
         }
     }
     useEffect(() => {
@@ -43,14 +40,14 @@ export function ListaMaterias({ actualizar, onMateriaCreada, onEditarMateria }) 
             const respuesta = await fetch(API_MATERIAS)
 
             if (!respuesta.ok){
-                throw new Error(`No se pudo obtener la lista. Estado HTTP: ${respuesta.status}`)
+                throw new Error("No se pudo obtener la lista", respuesta.status)
             }
 
             const datos = await respuesta.json()
             setMaterias(datos)
         } catch(error) {
             console.error("Error de conexión", error)
-            setError("No se pudo cargar la lista de materias. Verificá que el servidor esté funcionando.")
+            setError("No se pudo cargar la lista de materias.")
         } finally {
             setCargando(false)
         }
@@ -142,7 +139,7 @@ export function ListaMaterias({ actualizar, onMateriaCreada, onEditarMateria }) 
                                     </Button>
                                     <Button
                                         type="button"
-                                        onClick={() => eliminarMateria(materia)}
+                                        onClick={() => eliminarMateria(materia.codigo)}
                                         variant="outlined"
                                         color="error"
                                         size="small"
