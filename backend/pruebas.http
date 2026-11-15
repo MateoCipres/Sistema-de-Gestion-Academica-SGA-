@@ -58,3 +58,15 @@ Content-Type: application/json
     "email": "admin@sga.com",
     "password": "ClaveDePrueba123!"
 }
+
+###
+GET  http://localhost:3000/alumnos
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjZhZThkNmI3MTMwYmFlZDE1N2IxZmY5NiIsInJvbCI6ImFkbWluIiwiaWF0IjoxNzk0NTA3ODc4LCJleHAiOjE3OTQ1MTE0Nzh9.0Yh9XMCAXPC8M4auJyjKNPLecz_A9LjQOxAk64MfRlE
+
+###
+GET  http://localhost:3000/docentes
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjZhZThkNmI3MTMwYmFlZDE1N2IxZmY5NiIsInJvbCI6ImFkbWluIiwiaWF0IjoxNzk0NTA3ODc4LCJleHAiOjE3OTQ1MTE0Nzh9.0Yh9XMCAXPC8M4auJyjKNPLecz_A9LjQOxAk64MfRlE
+
+###
+GET  http://localhost:3000/materias
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjZhZThkNmI3MTMwYmFlZDE1N2IxZmY5NiIsInJvbCI6ImFkbWluIiwiaWF0IjoxNzk0NTA3ODc4LCJleHAiOjE3OTQ1MTE0Nzh9.0Yh9XMCAXPC8M4auJyjKNPLecz_A9LjQOxAk64MfRlE

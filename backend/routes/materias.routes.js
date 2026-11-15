@@ -1,4 +1,6 @@
+//Define q función tiene que responder a cada petición, segun su endpoint
 const express = require("express")
+const { verificarToken } = require("../middlewares/authMidleware")
 const {
     obtenerMaterias,
     obtenerMateria,
@@ -7,14 +9,15 @@ const {
     eliminarMateria } = require("../controllers/materias.controller")
 const router = express.Router()
 
-router.get("/", obtenerMaterias)
 
-router.get("/:codigo", obtenerMateria)
+router.get("/",verificarToken, obtenerMaterias)
 
-router.post("/", crearMateria)
+router.get("/:codigo",verificarToken, obtenerMateria)
 
-router.put("/:codigo", actualizarMateria)
+router.post("/",verificarToken, crearMateria)
 
-router.delete("/:codigo", eliminarMateria)
+router.put("/:codigo",verificarToken, actualizarMateria)
+
+router.delete("/:codigo",verificarToken, eliminarMateria)
 
 module.exports = router

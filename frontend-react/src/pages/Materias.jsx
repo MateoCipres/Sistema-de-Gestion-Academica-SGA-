@@ -13,6 +13,7 @@ function materiaCreada(texto) {
   setMateriaEditar(null)
   setMensaje(texto)
 }
+//Pasa a modo edición y borra el mensaje viejo
 
 function seleccionarMateria(materia) {
   setMateriaEditar(materia)

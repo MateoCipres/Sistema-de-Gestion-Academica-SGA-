@@ -1,3 +1,4 @@
+//toda la logica de los endpoints
 const Materia = require("../models/Materia")
 
 const ESTADOS = ["activa", "inactiva"]
@@ -50,6 +51,8 @@ function manejarError(error, res) {
     })
 }
 
+// Endpoints: combinacion entre el metodo http y una URL en este caso /materias
+//get con todas
 async function obtenerMaterias(req, res) {
     try {
         const materias = await Materia.find()
@@ -58,7 +61,7 @@ async function obtenerMaterias(req, res) {
         manejarError(error, res)
     }
 }
-
+//get con codigo especifico
 async function obtenerMateria(req, res) {
     try {
         const materia = await Materia.findOne({
@@ -73,8 +76,7 @@ async function obtenerMateria(req, res) {
     } catch (error) {
         manejarError(error, res)
     }
-}
-
+}//POST
 async function crearMateria(req, res) {
     const errorValidacion = validarMateria(req.body)
     if (errorValidacion) {
@@ -103,8 +105,7 @@ async function crearMateria(req, res) {
     } catch (error) {
         manejarError(error, res)
     }
-}
-
+}//PUT
 async function actualizarMateria(req, res) {
     const errorValidacion = validarMateria(req.body)
     if (errorValidacion) {
@@ -150,6 +151,7 @@ async function actualizarMateria(req, res) {
     }
 }
 
+//DELETE
 async function eliminarMateria(req, res) {
     try {
         const materia = await Materia.findOneAndDelete({

@@ -1,27 +1,26 @@
-import Alumnos from "./pages/Alumnos"
-import {FAQ} from "./pages/FAQ"
-import {Routes, Route} from "react-router-dom"
-import LayoutPpal from "./layouts/LayoutPpal"
-import Inicio from "./pages/Inicio"
-import Docentes from "./pages/Docentes"
-import Materias from "./pages/Materias"
+// import Alumnos from "./pages/Alumnos"
+// import {FAQ} from "./pages/FAQ"
+// import {Routes, Route} from "react-router-dom"
+// import LayoutPpal from "./layouts/LayoutPpal"
+// import Inicio from "./pages/Inicio"
+// import Docentes from "./pages/Docentes"
+// import Materias from "./pages/Materias"
 import Login from "./pages/Login"
 
 
 function App()
 {
-
-return (
-  <Login/>
-  // <Routes>
-  //   <Route path="/" element={<LayoutPpal />}>
-  //   <Route index element={<Inicio />} />
-  //   <Route path="alumnos" element={<Alumnos />} />
-  //   <Route path="docentes" element={<Docentes /> } />
-  //   <Route path="materias" element={<Materias />} />
-  //   <Route path="ayuda" element={<FAQ />} />
-  //   </Route>
-  // </Routes>
+  return (
+     <Login/>
+    // <Routes>
+    //   <Route path="/" element={<LayoutPpal />}>
+    //     <Route index element={<Inicio />} />
+    //     <Route path="alumnos" element={<Alumnos />} />
+    //     <Route path="docentes" element={<Docentes /> } />
+    //     <Route path="materias" element={<Materias />} />
+    //     <Route path="ayuda" element={<FAQ />} />
+    //   </Route>
+    // </Routes>
   )
 }
 export default App
