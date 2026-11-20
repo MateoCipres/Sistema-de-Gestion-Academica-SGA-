@@ -25,15 +25,18 @@ Content-Type: application/json
 
 ###
 DELETE http://localhost:3000/alumnos/1021
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjZhZThjYmUyZGFlOGEwMzFiMGJhNDJiZiIsInJvbCI6ImFkbWluIiwiaWF0IjoxNzk0NTE5NTgwLCJleHAiOjE3OTQ1MjMxODB9.NAL0l5InkKwOdIqqJkjKRXCjlmjQjBoBLMhBgYJ6XJY
 
 ###
 POST http://localhost:3000/alumnos
 Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjZhZThjYmUyZGFlOGEwMzFiMGJhNDJiZiIsInJvbCI6ImFkbWluIiwiaWF0IjoxNzk0NTE5NTgwLCJleHAiOjE3OTQ1MjMxODB9.NAL0l5InkKwOdIqqJkjKRXCjlmjQjBoBLMhBgYJ6XJY
 
 {
-    "id": 5,
+    "legajo": 1066,
     "nombre": "Rocío",
-    "carrera": "Programación"
+    "carrera": "Programación",
+    "correo": "rocio@mail.com"
 }
 
 ###
@@ -56,17 +59,9 @@ Content-Type: application/json
 
 {
     "email": "admin@sga.com",
-    "password": "ClaveDePrueba123!"
+    "password":"ClaveDePrueba123!"
 }
 
 ###
-GET  http://localhost:3000/alumnos
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjZhZThkNmI3MTMwYmFlZDE1N2IxZmY5NiIsInJvbCI6ImFkbWluIiwiaWF0IjoxNzk0NTA3ODc4LCJleHAiOjE3OTQ1MTE0Nzh9.0Yh9XMCAXPC8M4auJyjKNPLecz_A9LjQOxAk64MfRlE
-
-###
-GET  http://localhost:3000/docentes
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjZhZThkNmI3MTMwYmFlZDE1N2IxZmY5NiIsInJvbCI6ImFkbWluIiwiaWF0IjoxNzk0NTA3ODc4LCJleHAiOjE3OTQ1MTE0Nzh9.0Yh9XMCAXPC8M4auJyjKNPLecz_A9LjQOxAk64MfRlE
-
-###
-GET  http://localhost:3000/materias
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjZhZThkNmI3MTMwYmFlZDE1N2IxZmY5NiIsInJvbCI6ImFkbWluIiwiaWF0IjoxNzk0NTA3ODc4LCJleHAiOjE3OTQ1MTE0Nzh9.0Yh9XMCAXPC8M4auJyjKNPLecz_A9LjQOxAk64MfRlE
+GET http://localhost:3000/alumnos
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjZhZThjYmUyZGFlOGEwMzFiMGJhNDJiZiIsInJvbCI6ImFkbWluIiwiaWF0IjoxNzk0NTA3NzA4LCJleHAiOjE3OTQ1MTEzMDh9.vJbyQWwW8y6YTBU2EKEUVbTn87wJxZqYwzKZQuy0pnY
