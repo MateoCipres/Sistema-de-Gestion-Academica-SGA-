@@ -23,7 +23,7 @@ async function crearUsuario() {
         console.log("Usuario de prueba creado correctamente")
         console.log("Email: ", email)
         } catch(error){
-        console.error("Error al crear el usuario: ", error.mensaje)
+        console.error("Error al crear el usuario: ", error.message)
         } finally{
         await mongoose.disconnect()
         }
