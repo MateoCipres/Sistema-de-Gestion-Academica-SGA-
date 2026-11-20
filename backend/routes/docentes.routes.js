@@ -1,6 +1,6 @@
 const express = require("express") 
 // const alumnosController = require("../controllers/alumnos.controller")
-const { verificarToken } = require("../middlewares/authMidleware")
+const { verificarToken } = require("../middlewares/authMiddleware")
 const { 
     obtenerDocentes, 
     obtenerDocente, 

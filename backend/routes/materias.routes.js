@@ -1,6 +1,6 @@
 //Define q función tiene que responder a cada petición, segun su endpoint
 const express = require("express")
-const { verificarToken } = require("../middlewares/authMidleware")
+const { verificarToken } = require("../middlewares/authMiddleware")
 const {
     obtenerMaterias,
     obtenerMateria,
