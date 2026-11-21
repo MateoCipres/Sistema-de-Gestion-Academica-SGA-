@@ -5,6 +5,7 @@ import LayoutPpal from "./layouts/LayoutPpal";
 import Inicio from "./pages/Inicio";
 import Docentes from "./pages/Docentes";
 import Login from "./pages/Login";
+import Materias from "./pages/Materias";
 import RutaProtegida from "./components/RutaProtegida";
 
 function App() {
@@ -16,6 +17,7 @@ function App() {
           <Route index element={<Inicio />} />
           <Route path="alumnos" element={<Alumnos />} />
           <Route path="docentes" element={<Docentes />} />
+          <Route path="materias" element={<Materias />} />
           <Route path="ayuda" element={<FAQ />} />
         </Route>
       </Route>
