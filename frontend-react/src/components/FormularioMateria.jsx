@@ -2,11 +2,11 @@ import { useState } from "react";
 import Alert from "@mui/material/Alert"
 import Box from "@mui/material/Box"
 import Button from "@mui/material/Button"
-import MenuItem from "@mui/material/MenuItem"
 import Paper from "@mui/material/Paper"
 import TextField from "@mui/material/TextField"
 import Typography from "@mui/material/Typography"
 const API_MATERIAS = "http://localhost:3000/materias"
+import { useAuth } from "../context/useAuth"
 
 function FormularioMateria({ onMateriaCreada, materiaEditar, onCancelar }){
     const [formulario, setFormulario] = useState({
@@ -14,10 +14,11 @@ function FormularioMateria({ onMateriaCreada, materiaEditar, onCancelar }){
         nombre: materiaEditar?.nombre ?? "",
         descripcion: materiaEditar?.descripcion ?? "",
         cargaHoraria: String(materiaEditar?.cargaHoraria ?? ""),
-        estado: materiaEditar?.estado ?? "activa"
+        estado: materiaEditar?.estado ?? ""
     })
     const [error, setError] = useState("")
     const [guardando, setGuardando] = useState(false)
+    const { token } = useAuth()
 
     function manejarCambio(e) {
         const { name, value} = e.target
@@ -51,7 +52,7 @@ function FormularioMateria({ onMateriaCreada, materiaEditar, onCancelar }){
         try {
             const respuesta = await fetch(url, {
                 method: editando ? "PUT" : "POST",
-                headers: {"Content-Type":"application/json"},
+                headers: {"Content-Type":"application/json", Authorization: `Bearer ${token}`},
                 body: JSON.stringify(materia)
             })
 
@@ -126,7 +127,6 @@ function FormularioMateria({ onMateriaCreada, materiaEditar, onCancelar }){
                     id="cargaHoraria"
                     name="cargaHoraria"
                     label="Carga horaria"
-                    type="number"
                     value={formulario.cargaHoraria}
                     onChange={manejarCambio}
                     helperText="Horas totales"
@@ -137,15 +137,12 @@ function FormularioMateria({ onMateriaCreada, materiaEditar, onCancelar }){
                     id="estado"
                     name="estado"
                     label="Estado"
-                    select
+                    placeholder="activa o inactiva"
                     value={formulario.estado}
                     onChange={manejarCambio}
                     required
                     fullWidth
-                >
-                    <MenuItem value="activa">Activa</MenuItem>
-                    <MenuItem value="inactiva">Inactiva</MenuItem>
-                </TextField>
+                />
                 <TextField
                     id="descripcion"
                     name="descripcion"

@@ -39,6 +39,16 @@ async function crearMateria(req, res) {
             mensaje: "La carga horaria debe ser un número"
         })
     }
+    if (cargaHoraria <= 0) {
+        return res.status(400).json({
+            mensaje: "La carga horaria debe ser mayor a 0"
+        })
+    }
+    if (estado !== "activa" && estado !== "inactiva") {
+        return res.status(400).json({
+            mensaje: "El estado debe ser activa o inactiva"
+        })
+    }
     const existe = await Materia.findOne({
         codigo
     })
@@ -59,6 +69,18 @@ async function crearMateria(req, res) {
 
 async function actualizarMateria(req, res) {
     const { nombre, descripcion, cargaHoraria, estado } = req.body
+
+    if (cargaHoraria <= 0) {
+        return res.status(400).json({
+            mensaje: "La carga horaria debe ser mayor a 0"
+        })
+    }
+    if (estado !== "activa" && estado !== "inactiva") {
+        return res.status(400).json({
+            mensaje: "El estado debe ser activa o inactiva"
+        })
+    }
+
     const materia = await Materia.findOneAndUpdate(
         { codigo: req.params.codigo },
         { nombre, descripcion, cargaHoraria, estado },

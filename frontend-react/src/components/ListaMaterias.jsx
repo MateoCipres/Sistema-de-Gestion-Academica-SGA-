@@ -7,11 +7,13 @@ import Paper from "@mui/material/Paper"
 import Stack from "@mui/material/Stack"
 import Typography from "@mui/material/Typography"
 const API_MATERIAS = "http://localhost:3000/materias"
+import { useAuth } from "../context/useAuth"
 
 export function ListaMaterias({ actualizar, onMateriaCreada, onEditarMateria }) {
     const [materias, setMaterias] = useState([])
     const [cargando, setCargando] = useState(true)
     const [error, setError] = useState("")
+        const { token } = useAuth()
 
     async function eliminarMateria(codigo){
         const confirmar = window.confirm("¿Seguro que querés eliminar esta materia?")
@@ -20,7 +22,11 @@ export function ListaMaterias({ actualizar, onMateriaCreada, onEditarMateria }) 
         }
         try {
             const respuesta = await fetch(`${API_MATERIAS}/${codigo}`,
-                { method: "DELETE" }
+                { method: "DELETE",
+                headers: {
+                    Authorization: `Bearer ${token}`
+                }
+                }
             )
             if (!respuesta.ok) {
                 throw new Error(`No se pudo eliminar. Estado HTTP: ${respuesta.status}`)
@@ -37,7 +43,9 @@ export function ListaMaterias({ actualizar, onMateriaCreada, onEditarMateria }) 
             setError("")
 
             try {
-            const respuesta = await fetch(API_MATERIAS)
+                    const respuesta = await fetch(API_MATERIAS, {
+                headers: {Authorization: `Bearer ${token}`}
+            })
 
             if (!respuesta.ok){
                 throw new Error("No se pudo obtener la lista", respuesta.status)
