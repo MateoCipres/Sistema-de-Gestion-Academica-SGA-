@@ -117,7 +117,7 @@
 // function iniciarSesion() {
 //     return new Promise((resolve) => {
 //         setTimeout(() => {
-//             resolve("Bienvenida, Irina")
+//             resolve("Bienvenido, Mateo")
 //         }, 2000)
 //     })
 // }
