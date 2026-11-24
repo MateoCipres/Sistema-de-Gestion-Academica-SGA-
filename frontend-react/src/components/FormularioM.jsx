@@ -8,7 +8,7 @@ import Typography from "@mui/material/Typography"
 const API_MATERIAS = "http://localhost:3000/materias"
 import { useAuth } from "../context/useAuth"
 
-function FormularioMateria({ onMateriaCreada, materiaEditar, onCancelar }){
+function FormularioM({ onMateriaCreada, materiaEditar, onCancelar }){
     const [formulario, setFormulario] = useState({
         codigo: materiaEditar?.codigo ?? "",
         nombre: materiaEditar?.nombre ?? "",
@@ -191,4 +191,4 @@ function FormularioMateria({ onMateriaCreada, materiaEditar, onCancelar }){
         </Paper>
     )
 }
-export default FormularioMateria
+export default FormularioM

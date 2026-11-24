@@ -1,6 +1,6 @@
 import { ListaMaterias } from "../components/ListaMaterias"
 import { useState } from "react"
-import FormularioMateria from "../components/FormularioMateria"
+import FormularioM from "../components/FormularioM"
 
 export default function Materias() {
 const [actualizar, setActualizar] = useState(0)
@@ -17,7 +17,7 @@ function seleccionarMateria(materia) {
 
 return (
    <>
-   <FormularioMateria key={materiaEditar?.codigo ?? "nueva"}
+   <FormularioM key={materiaEditar?.codigo ?? "nueva"}
    onMateriaCreada={materiaCreada}
    materiaEditar={materiaEditar}
    onCancelar={() => setMateriaEditar(null)}
