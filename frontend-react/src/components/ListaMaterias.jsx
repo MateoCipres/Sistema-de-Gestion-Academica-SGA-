@@ -126,15 +126,10 @@ export function ListaMaterias({ actualizar, onMateriaCreada, onEditarMateria }) 
                                     <Box>
                                         <Typography fontWeight={600}>{materia.nombre}</Typography>
                                         <Typography variant="body2" color="text.secondary">
-                                            {materia.cargaHoraria} hs
+                                            {materia.cargaHoraria} hs · {materia.estado}
                                             {materia.descripcion && ` · ${materia.descripcion}`}
                                         </Typography>
                                     </Box>
-                                    <Chip
-                                        label={materia.estado === "activa" ? "Activa" : "Inactiva"}
-                                        color={materia.estado === "activa" ? "success" : "default"}
-                                        size="small"
-                                    />
                                 </Stack>
                                 <Stack direction="row" spacing={1} sx={{ justifyContent: "flex-end" }}>
                                     <Button

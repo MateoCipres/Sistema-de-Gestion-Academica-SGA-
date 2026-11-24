@@ -65,7 +65,7 @@ function FormularioMateria({ onMateriaCreada, materiaEditar, onCancelar }){
                 nombre: "",
                 descripcion: "",
                 cargaHoraria: "",
-                estado: "activa"
+                estado: ""
             })
             onMateriaCreada()
         } catch (error) {
