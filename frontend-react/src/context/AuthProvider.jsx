@@ -1,9 +1,11 @@
 import { useEffect, useState } from "react"
 import { AuthContext } from "./AuthContext"
+import API_URL from "../config/api"
 
 const AuthProvider = ({ children }) => {
     const [token, setToken] = useState(() => localStorage.getItem("token"))
     const [cargando, setCargando] = useState(true)
+    const [usuario, setUsuario] = useState(null)
 
     const cerrarSesion = () => {
         localStorage.removeItem("token")
@@ -20,7 +22,7 @@ const AuthProvider = ({ children }) => {
                 return
             }
             try {
-                const respuesta = await fetch("http://localhost:3000/alumnos", 
+                const respuesta = await fetch(`${API_URL}/alumnos`, 
                     {headers: {Authorization: `Bearer ${tokenGuardado}`}}
                 )
             if (!respuesta.ok) {
@@ -39,7 +41,7 @@ const AuthProvider = ({ children }) => {
 
     return (
         <AuthContext.Provider
-        value={{token, setToken, cerrarSesion, cargando}}>
+        value={{token, setToken, cerrarSesion, cargando, usuario, setUsuario}}>
             {children}
         </AuthContext.Provider>
     )

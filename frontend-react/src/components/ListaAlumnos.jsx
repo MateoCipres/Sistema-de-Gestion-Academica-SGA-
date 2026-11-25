@@ -6,14 +6,15 @@ import Chip from "@mui/material/Chip"
 import Paper from "@mui/material/Paper"
 import Stack from "@mui/material/Stack"
 import Typography from "@mui/material/Typography"
-const API_ALUMNOS = "http://localhost:3000/alumnos"
+import API_URL from "../config/api"
+const API_ALUMNOS = `${API_URL}/alumnos`
 import { useAuth } from "../context/useAuth"
 
 export function ListaAlumnos({ actualizar, onAlumnoCreado, onEditarAlumno }) {
     const [alumnos, setAlumnos] = useState([])
     const [cargando, setCargando] = useState(true)
     const [error, setError] = useState("")
-    const { token } = useAuth()
+    const { token, usuario } = useAuth()
 
     async function eliminarAlumno(legajo){
         const confirmar = window.confirm("¿Seguro que querés eliminar este alumno?")
@@ -23,10 +24,10 @@ export function ListaAlumnos({ actualizar, onAlumnoCreado, onEditarAlumno }) {
         try {
             const respuesta = await fetch(`${API_ALUMNOS}/${legajo}`, 
                 { method: "DELETE",
-                headers: {
+                  headers: {
                     Authorization: `Bearer ${token}`
-                }
-                }
+                  }
+                 }
             )
             if (!respuesta.ok) {
                 throw new Error(`No se pudo eliminar. Estado HTTP: ${respuesta.status}`)
@@ -61,7 +62,7 @@ export function ListaAlumnos({ actualizar, onAlumnoCreado, onEditarAlumno }) {
         }
     }
         cargarAlumnos()
-    }, [actualizar])
+    }, [actualizar, token])
 
     if (cargando) {
         return (
@@ -131,6 +132,7 @@ export function ListaAlumnos({ actualizar, onAlumnoCreado, onEditarAlumno }) {
                                     </Box>
                                 </Stack>
                                 <Stack direction="row" spacing={1} sx={{ justifyContent: "flex-end" }}>
+                                    {usuario?.rol === "admin" && (
                                     <Button
                                         type="button"
                                         onClick={() => onEditarAlumno(alumno)}
@@ -139,6 +141,8 @@ export function ListaAlumnos({ actualizar, onAlumnoCreado, onEditarAlumno }) {
                                     >
                                         Editar
                                     </Button>
+                                    )}
+                                    {usuario?.rol === "admin" && (
                                     <Button
                                         type="button"
                                         onClick={() => eliminarAlumno(alumno.legajo)}
@@ -148,6 +152,7 @@ export function ListaAlumnos({ actualizar, onAlumnoCreado, onEditarAlumno }) {
                                     >
                                         Eliminar
                                     </Button>
+                                    )}
                                 </Stack>
                             </Paper>
                         ))}

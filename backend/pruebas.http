@@ -30,7 +30,7 @@ Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjZhZThjYmUyZ
 ###
 POST http://localhost:3000/alumnos
 Content-Type: application/json
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjZhZThjYmUyZGFlOGEwMzFiMGJhNDJiZiIsInJvbCI6ImFkbWluIiwiaWF0IjoxNzk0NTE5NTgwLCJleHAiOjE3OTQ1MjMxODB9.NAL0l5InkKwOdIqqJkjKRXCjlmjQjBoBLMhBgYJ6XJY
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjZhZmNjZDU5MjliNzVlNGVhOWExYzQ5ZiIsInJvbCI6ImFkbWluIiwiaWF0IjoxNzk1NTU2MTY3LCJleHAiOjE3OTU1NTk3Njd9.n3oezQSyIGeCyjqvWX7OM8G3SMmrVxKtdPMV_EwJXHM
 
 {
     "legajo": 1066,
@@ -54,14 +54,14 @@ Content-Type: application/json
 }
 
 ###
-POST http://localhost:3000/auth/login
+POST https://sga-backend-prueba.onrender.com/auth/login
 Content-Type: application/json
 
 {
     "email": "admin@sga.com",
-    "password":"ClaveDePrueba123!"
+    "password":"claveDePrueba123!"
 }
 
 ###
 GET http://localhost:3000/alumnos
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjZhZThjYmUyZGFlOGEwMzFiMGJhNDJiZiIsInJvbCI6ImFkbWluIiwiaWF0IjoxNzk0NTA3NzA4LCJleHAiOjE3OTQ1MTEzMDh9.vJbyQWwW8y6YTBU2EKEUVbTn87wJxZqYwzKZQuy0pnY
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjZhZmNjZDU5MjliNzVlNGVhOWExYzQ5ZiIsInJvbCI6ImFkbWluIiwiaWF0IjoxNzk1NTU2MTY3LCJleHAiOjE3OTU1NTk3Njd9.n3oezQSyIGeCyjqvWX7OM8G3SMmrVxKtdPMV_EwJXHM
