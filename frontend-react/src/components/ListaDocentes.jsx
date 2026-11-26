@@ -10,7 +10,7 @@ export function ListaDocentes({ actualizar, onDocenteCreado, onEditarDocente }) 
     const [docentes, setDocentes] = useState([])
     const [cargando, setCargando] = useState(true)
     const [error, setError] = useState("")
-        const { token } = useAuth()
+    const { token, usuario } = useAuth()
 
     async function eliminarDocente(dni){
         const confirmar = window.confirm("¿Seguro que querés eliminar este alumno?")
@@ -128,6 +128,7 @@ export function ListaDocentes({ actualizar, onDocenteCreado, onEditarDocente }) 
                                     </Box>
                                 </Stack>
                                 <Stack direction="row" spacing={1} sx={{ justifyContent: "flex-end" }}>
+                                                                      {usuario?.rol === "admin" && (
                                     <Button
                                         type="button"
                                         onClick={() => onEditarDocente(docente)}
@@ -136,6 +137,8 @@ export function ListaDocentes({ actualizar, onDocenteCreado, onEditarDocente }) 
                                     >
                                         Editar
                                     </Button>
+                                    )}
+                                    {usuario?.rol === "admin" && (
                                     <Button
                                         type="button"
                                         onClick={() => eliminarDocente(docente.dni)}
@@ -145,6 +148,7 @@ export function ListaDocentes({ actualizar, onDocenteCreado, onEditarDocente }) 
                                     >
                                         Eliminar
                                     </Button>
+                                    )}
                                 </Stack>
                             </Paper>
                         ))}

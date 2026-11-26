@@ -14,7 +14,7 @@ export function ListaMaterias({ actualizar, onMateriaCreada, onEditarMateria }) 
     const [materias, setMaterias] = useState([])
     const [cargando, setCargando] = useState(true)
     const [error, setError] = useState("")
-        const { token } = useAuth()
+        const { token, usuario } = useAuth()
 
     async function eliminarMateria(codigo){
         const confirmar = window.confirm("¿Seguro que querés eliminar esta materia?")
@@ -133,6 +133,7 @@ export function ListaMaterias({ actualizar, onMateriaCreada, onEditarMateria }) 
                                     </Box>
                                 </Stack>
                                 <Stack direction="row" spacing={1} sx={{ justifyContent: "flex-end" }}>
+                                    {usuario?.rol === "admin" && (
                                     <Button
                                         type="button"
                                         onClick={() => onEditarMateria(materia)}
@@ -141,6 +142,8 @@ export function ListaMaterias({ actualizar, onMateriaCreada, onEditarMateria }) 
                                     >
                                         Editar
                                     </Button>
+                                    )}
+                                    {usuario?.rol === "admin" && (
                                     <Button
                                         type="button"
                                         onClick={() => eliminarMateria(materia.codigo)}
@@ -150,6 +153,7 @@ export function ListaMaterias({ actualizar, onMateriaCreada, onEditarMateria }) 
                                     >
                                         Eliminar
                                     </Button>
+                                    )}
                                 </Stack>
                             </Paper>
                         ))}

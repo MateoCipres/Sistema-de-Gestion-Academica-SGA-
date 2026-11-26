@@ -1,6 +1,7 @@
 const express = require("express") 
 // const alumnosController = require("../controllers/alumnos.controller")
 const { verificarToken } = require("../middlewares/authMiddleware")
+const { verificarRol } = require("../middlewares/rolMiddleware")
 const { 
     obtenerDocentes, 
     obtenerDocente, 
@@ -13,10 +14,10 @@ router.get("/", verificarToken, obtenerDocentes)
 
 router.get("/:id", verificarToken, obtenerDocente) 
 
-router.post("/", verificarToken, crearDocente) 
+router.post("/", verificarToken, verificarRol("admin"), crearDocente) 
 
-router.put("/:id", verificarToken, actualizarDocente) 
+router.put("/:id", verificarToken, verificarRol("admin"), actualizarDocente) 
 
-router.delete("/:id", verificarToken, eliminarDocente) 
+router.delete("/:id", verificarToken, verificarRol("admin"), eliminarDocente)
 
 module.exports = router 
