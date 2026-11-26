@@ -5,7 +5,8 @@ import Button from "@mui/material/Button"
 import Paper from "@mui/material/Paper"
 import TextField from "@mui/material/TextField"
 import Typography from "@mui/material/Typography"
-const API_MATERIAS = "http://localhost:3000/materias"
+import API_URL from "../config/api"
+const API_MATERIAS = `${API_URL}/materias`
 import { useAuth } from "../context/useAuth"
 
 function FormularioM({ onMateriaCreada, materiaEditar, onCancelar }){

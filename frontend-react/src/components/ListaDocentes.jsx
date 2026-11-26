@@ -1,7 +1,9 @@
 import { useEffect, useState } from "react"
 import { Alert, Box, Button, Chip, Paper, Stack, Typography } from "@mui/material"
 
-const API_DOCENTES = "http://localhost:3000/docentes"
+import API_URL from "../config/api"
+const API_DOCENTES = `${API_URL}/docentes`
+
 import { useAuth } from "../context/useAuth"
 
 export function ListaDocentes({ actualizar, onDocenteCreado, onEditarDocente }) {

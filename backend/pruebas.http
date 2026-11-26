@@ -54,13 +54,15 @@ Content-Type: application/json
 }
 
 ###
-POST https://sga-backend-prueba.onrender.com/auth/login
+POST https://sga-backend-1lpo.onrender.com/auth/login
 Content-Type: application/json
 
 {
     "email": "admin@sga.com",
-    "password":"claveDePrueba123!"
+    "password": "claveAdmin123"
 }
+
+
 
 ###
 GET http://localhost:3000/alumnos

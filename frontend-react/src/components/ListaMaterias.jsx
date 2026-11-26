@@ -6,7 +6,8 @@ import Chip from "@mui/material/Chip"
 import Paper from "@mui/material/Paper"
 import Stack from "@mui/material/Stack"
 import Typography from "@mui/material/Typography"
-const API_MATERIAS = "http://localhost:3000/materias"
+import API_URL from "../config/api"
+const API_MATERIAS = `${API_URL}/materias`
 import { useAuth } from "../context/useAuth"
 
 export function ListaMaterias({ actualizar, onMateriaCreada, onEditarMateria }) {
