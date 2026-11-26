@@ -13,7 +13,7 @@ export function ListaDocentes({ actualizar, onDocenteCreado, onEditarDocente }) 
     const { token, usuario } = useAuth()
 
     async function eliminarDocente(dni){
-        const confirmar = window.confirm("¿Seguro que querés eliminar este alumno?")
+        const confirmar = window.confirm("¿Seguro que querés eliminar este docente?")
         if (!confirmar) {
             return
         }
