@@ -67,3 +67,65 @@ Content-Type: application/json
 ###
 GET http://localhost:3000/alumnos
 Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjZhZmNjZDU5MjliNzVlNGVhOWExYzQ5ZiIsInJvbCI6ImFkbWluIiwiaWF0IjoxNzk1NTU2MTY3LCJleHAiOjE3OTU1NTk3Njd9.n3oezQSyIGeCyjqvWX7OM8G3SMmrVxKtdPMV_EwJXHM
+
+
+###
+
+POST http://localhost:3000/auth/login
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjZiMDc4YmNiNzA1MDM2ZDk2ZTJhOTM3ZiIsInJvbCI6ImFkbWluIiwiaWF0IjoxNzk1NzE2MjIyLCJleHAiOjE3OTU3MTk4MjJ9.GXBKOsjxaSeCU25-b-D6S197LzJatLaKkQGXPnNV0lE
+
+{
+    "email": "admin@sga.com",
+    "password": "claveAdmin123"
+}
+
+
+
+###
+GET http://localhost:3000/cursos
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjZiMDc4YmNiNzA1MDM2ZDk2ZTJhOTM3ZiIsInJvbCI6ImFkbWluIiwiaWF0IjoxNzk1NzE2MjIyLCJleHAiOjE3OTU3MTk4MjJ9.GXBKOsjxaSeCU25-b-D6S197LzJatLaKkQGXPnNV0lE
+
+###
+POST http://localhost:3000/cursos
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjZiMDc4YmNiNzA1MDM2ZDk2ZTJhOTM3ZiIsInJvbCI6ImFkbWluIiwiaWF0IjoxNzk1NzE2MjIyLCJleHAiOjE3OTU3MTk4MjJ9.GXBKOsjxaSeCU25-b-D6S197LzJatLaKkQGXPnNV0lE
+
+{
+    "codigo": "C10",
+    "nombre": "Analisis de datos",
+    "descripcion": "Analisis de estadisticas y datos ",
+    "duracion": 21
+}
+###
+POST http://localhost:3000/cursos
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjZiMDc4YmNiNzA1MDM2ZDk2ZTJhOTM3ZiIsInJvbCI6ImFkbWluIiwiaWF0IjoxNzk1NzE2MjIyLCJleHAiOjE3OTU3MTk4MjJ9.GXBKOsjxaSeCU25-b-D6S197LzJatLaKkQGXPnNV0lE
+
+{
+    "codigo": "C20",
+    "nombre": "legislacion",
+    "descripcion": "leyes y delitos Argentinos",
+    "duracion": 45
+}
+
+###
+GET http://localhost:3000/cursos/C10
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjZiMDc4YmNiNzA1MDM2ZDk2ZTJhOTM3ZiIsInJvbCI6ImFkbWluIiwiaWF0IjoxNzk1NzE2MjIyLCJleHAiOjE3OTU3MTk4MjJ9.GXBKOsjxaSeCU25-b-D6S197LzJatLaKkQGXPnNV0lE
+
+###
+PUT http://localhost:3000/cursos/C10
+Content-Type: application/json 
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjZiMDc4YmNiNzA1MDM2ZDk2ZTJhOTM3ZiIsInJvbCI6ImFkbWluIiwiaWF0IjoxNzk1NzE2MjIyLCJleHAiOjE3OTU3MTk4MjJ9.GXBKOsjxaSeCU25-b-D6S197LzJatLaKkQGXPnNV0lE
+
+{
+    "codigo": "C10",
+    "nombre": "Analisis de datos y variables",
+    "descripcion": "Analisis de datos ",
+    "duracion": 20
+}
+
+###
+DELETE http://localhost:3000/cursos/C20
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjZiMDc4YmNiNzA1MDM2ZDk2ZTJhOTM3ZiIsInJvbCI6ImFkbWluIiwiaWF0IjoxNzk1NzE2MjIyLCJleHAiOjE3OTU3MTk4MjJ9.GXBKOsjxaSeCU25-b-D6S197LzJatLaKkQGXPnNV0lE
+

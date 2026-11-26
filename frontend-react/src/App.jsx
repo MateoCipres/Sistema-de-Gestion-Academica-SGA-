@@ -6,6 +6,7 @@ import Inicio from "./pages/Inicio";
 import Docentes from "./pages/Docentes";
 import Login from "./pages/Login";
 import Materias from "./pages/Materias";
+import Cursos from "./pages/Cursos"
 import RutaProtegida from "./components/RutaProtegida";
 
 function App() {
@@ -18,6 +19,7 @@ function App() {
           <Route path="alumnos" element={<Alumnos />} />
           <Route path="docentes" element={<Docentes />} />
           <Route path="materias" element={<Materias />} />
+          <Route path="cursos" element={<Cursos />} />
           <Route path="ayuda" element={<FAQ />} />
         </Route>
       </Route>
